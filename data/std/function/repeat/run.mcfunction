@@ -6,8 +6,8 @@ scoreboard objectives add local_std_repeat dummy
 
 $data modify storage minecraft:std local_command set value "$(cmd)"
 
-$scoreboard players set $local_i local_std_repeat $(i)
-$scoreboard players set $local_size local_std_repeat $(size)
+scoreboard players set $local_i local_std_repeat 0
+$scoreboard players set $local_times local_std_repeat $(times)
 
 # execute recursive function
 # in:
