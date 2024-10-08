@@ -13,7 +13,7 @@
 # small point in space. So when we want a really small detection, we use an intersecting block
 # that is [-1,-1,-1] relative to the origin of the box.
 
-execute store result score $do_intersection local_std_aabb run data get storage minecraft:hipochallenge local_do_intersection 1
+execute store result score $do_intersection local_std_aabb run data get storage minecraft:std local_do_intersection 1
 
 $execute if score $do_intersection local_std_aabb matches 1 positioned ~$(local_origin_offset_x) ~$(local_origin_offset_y) ~$(local_origin_offset_z) as $(local_selector) if entity @s[dx=$(local_dx),dy=$(local_dy),dz=$(local_dz)] positioned ~-0.999 ~-0.999 ~-0.999 if entity @s[dx=$(local_dx),dy=$(local_dy),dz=$(local_dz)] run $(local_cmd)
 $execute unless score $do_intersection local_std_aabb matches 1 positioned ~$(local_origin_offset_x) ~$(local_origin_offset_y) ~$(local_origin_offset_z) as $(local_selector) if entity @s[dx=$(local_dx),dy=$(local_dy),dz=$(local_dz)] run $(local_cmd)
