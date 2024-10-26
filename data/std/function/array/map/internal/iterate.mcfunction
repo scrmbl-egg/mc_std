@@ -9,6 +9,9 @@ function std:array/map/internal/get_element with storage minecraft:std
 # gives ownership of:
     # local_element
 
+# free local_idx
+data remove storage minecraft:std local_idx
+
 # in:
     # local_element
     # local_function_st

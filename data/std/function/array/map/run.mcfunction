@@ -19,5 +19,6 @@ execute as @s run function std:array/map/internal/iterate
 
 # free memory
 scoreboard objectives remove local_std_map
+data remove storage minecraft:std local_array_storage
 data remove storage minecraft:std local_array_name
 data remove storage minecraft:std local_function_st
