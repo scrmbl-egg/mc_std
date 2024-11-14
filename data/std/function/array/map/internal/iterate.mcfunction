@@ -1,5 +1,5 @@
 # turn current iteration into data for next caption
-execute store result storage minecraft:std local_idx int 1 run scoreboard players get $local_i local_std_map
+execute store result storage minecraft:std local_idx int 1 run scoreboard players get $local_i std_local_map
 
 # in:
     # local_array_storage
@@ -21,7 +21,7 @@ function std:array/map/internal/run_function_with_element_st with storage minecr
 data remove storage minecraft:std local_element
 
 # add one to current iteration
-scoreboard players add $local_i local_std_map 1
+scoreboard players add $local_i std_local_map 1
 
 # reiterate if local_i < local_size
-execute if score $local_i local_std_map < $local_size local_std_map as @s run function std:array/map/internal/iterate
+execute if score $local_i std_local_map < $local_size std_local_map as @s run function std:array/map/internal/iterate
