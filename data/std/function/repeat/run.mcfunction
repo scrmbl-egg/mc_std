@@ -1,14 +1,14 @@
 # params
     # score         (score where the current iteration will be stored, this is useful for nested loops)
-    # score_holder  (holder of iterations)
-        # TODO: implement score holder
+    # score_holder
+        # TODO: implement
     # times         (times the command will be executed)
     # cmd           (command executed each iteration)
 
 $scoreboard objectives add $(score) dummy
 
-$data modify storage minecraft:std local_std_score set value "$(score)"
-$data modify storage minecraft:std local_std_command set value "$(cmd)"
+$data modify storage minecraft:std local_score set value "$(score)"
+$data modify storage minecraft:std local_command set value "$(cmd)"
 
 $scoreboard players set $std_local_i $(score) 0
 $scoreboard players set $std_local_times $(score) $(times)

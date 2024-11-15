@@ -37,9 +37,7 @@ summon marker ~ ~ ~ {Tags:["me_sphere"]}
 
 # draw
 
-scoreboard objectives add local_std_iter dummy
-$function std:repeat/run {score:0,times:$(iterations),cmd:"execute as @n[type=minecraft:marker,tag=me] at @s run function std:draw/sphere/iteration_st with storage minecraft:std"}
-scoreboard objectives remove local_std_iter
+$function std:repeat/run {score:local_std_iter,times:$(iterations),cmd:"execute as @n[type=minecraft:marker,tag=me_sphere] at @s run function std:draw/sphere/internal/iteration_st with storage minecraft:std"}
 
 # kill marker
 kill @n[type=minecraft:marker,tag=me_sphere]
@@ -48,7 +46,7 @@ kill @n[type=minecraft:marker,tag=me_sphere]
 data remove storage minecraft:std local_resolution
 data remove storage minecraft:std local_pitch_increment_per_layer
 data remove storage minecraft:std local_radius
-#data remove storage minecraft:std local_iterations
+data remove storage minecraft:std local_iterations
 data remove storage minecraft:std local_draw_cmd
 data remove storage minecraft:std local_yaw_increment
 scoreboard objectives remove std_local_draw
