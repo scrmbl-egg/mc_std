@@ -5,18 +5,18 @@
     # iterations
     # draw_cmd
 
-scoreboard objectives add local_sp_draw dummy
+scoreboard objectives add std_local_draw dummy
 
 $data modify storage minecraft:std local_radius_assertion set value $(radius)
 
 # function assertions
-$scoreboard players set $res local_sp_draw $(resolution)
-execute store result score $rad local_sp_draw run data get storage minecraft:std local_radius_assertion 1000
+$scoreboard players set $res std_local_draw $(resolution)
+execute store result score $rad std_local_draw run data get storage minecraft:std local_radius_assertion 1000
 
 data remove storage minecraft:std local_radius_assertion
 
-execute if score $res local_sp_draw matches ..1 run return fail
-execute if score $rad local_sp_draw matches ..0 run return fail
+execute if score $res std_local_draw matches ..1 run return fail
+execute if score $rad std_local_draw matches ..0 run return fail
 
 # save info
 $data modify storage minecraft:std local_resolution set value $(resolution)
@@ -26,11 +26,11 @@ $data modify storage minecraft:std local_iterations set value $(iterations)
 $data modify storage minecraft:std local_draw_cmd set value "$(draw_cmd)"
 
 # init math values
-scoreboard players set $360 local_sp_draw 360000000
-execute store result score $angle local_sp_draw run data get storage minecraft:std local_resolution 1000
+scoreboard players set $360 std_local_draw 360000000
+execute store result score $angle std_local_draw run data get storage minecraft:std local_resolution 1000
 
 # calculate angle
-execute store result storage minecraft:std local_yaw_increment double 0.001 run scoreboard players operation $360 local_sp_draw /= $angle local_sp_draw
+execute store result storage minecraft:std local_yaw_increment double 0.001 run scoreboard players operation $360 std_local_draw /= $angle std_local_draw
 
 # summon marker
 summon marker ~ ~ ~ {Tags:["me_sphere"]}
@@ -51,4 +51,4 @@ data remove storage minecraft:std local_radius
 #data remove storage minecraft:std local_iterations
 data remove storage minecraft:std local_draw_cmd
 data remove storage minecraft:std local_yaw_increment
-scoreboard objectives remove local_sp_draw
+scoreboard objectives remove std_local_draw
