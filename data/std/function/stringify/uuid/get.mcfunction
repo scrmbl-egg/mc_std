@@ -2,9 +2,13 @@
     # dest_st   (destination storage)
     # dest_path (destination path)
 
+# NOTE: This function returns an entity's UUID separated by underscores.
+# For example, if the UUID is [I;-336586247,604718780,-2041004766,-448986292], the result is
+# "-336586247_604718780_-2041004766_-448986292", this is useful when using tags with macros.
+
 # process params
-data modify storage minecraft:std local_destination_storage set value "$(dest_st)"
-data modify storage minecraft:std local_destination_path set value "$(dest_path)"
+$data modify storage minecraft:std local_destination_storage set value "$(dest_st)"
+$data modify storage minecraft:std local_destination_path set value "$(dest_path)"
 
 # get data
 data modify storage minecraft:std local_target_uuid_0 set from entity @s UUID[0]
