@@ -1,7 +1,9 @@
 # storage:
-    # local_element
-    # local_function_st
+    # local_function
+    # local_function_storage
+    # local_element_path
 
 # in:
-    # local_element
-$function $(local_function_st) with storage minecraft:std
+    # caller's elem_path param
+    # ...
+$function $(local_function) with storage $(local_function_storage)
