@@ -1,5 +1,8 @@
 # storage:
+    # local_yaw_increment
     # local_pitch_increment_per_layer
+    # local_radius
+    # local_draw_cmd
 
 $tp @s ~ ~ ~ ~$(local_yaw_increment) ~$(local_pitch_increment_per_layer)
 $execute positioned ^ ^ ^$(local_radius) run $(local_draw_cmd)

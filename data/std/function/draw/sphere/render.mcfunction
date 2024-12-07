@@ -5,6 +5,8 @@
     # iterations
     # draw_cmd
 
+# WARNING: this function WILL be changed in the future, use isn't recommended.
+
 scoreboard objectives add std_local_draw dummy
 
 $data modify storage minecraft:std local_radius_assertion set value $(radius)
@@ -15,15 +17,15 @@ execute store result score $rad std_local_draw run data get storage minecraft:st
 
 data remove storage minecraft:std local_radius_assertion
 
-execute if score $res std_local_draw matches ..1 run return fail
-execute if score $rad std_local_draw matches ..0 run return fail
+execute if score $res std_local_draw matches ..1 run return run function std:draw/sphere/internal/error/fail_resolution_assertion
+execute if score $rad std_local_draw matches ..0 run return run function std:draw/sphere/internal/error/fail_radius_assertion
 
 # save info
 $data modify storage minecraft:std local_resolution set value $(resolution)
 $data modify storage minecraft:std local_pitch_increment_per_layer set value $(pitch_increment_per_layer)
 $data modify storage minecraft:std local_radius set value $(radius)
 $data modify storage minecraft:std local_iterations set value $(iterations)
-$data modify storage minecraft:std local_draw_cmd set value "$(draw_cmd)"
+$data modify storage minecraft:std local_draw_cmd set value '$(draw_cmd)'
 
 # init math values
 scoreboard players set $360 std_local_draw 360000000
@@ -37,7 +39,7 @@ summon marker ~ ~ ~ {Tags:["me_sphere"]}
 
 # draw
 
-$function std:repeat/run {score:local_std_iter,times:$(iterations),cmd:"execute as @n[type=minecraft:marker,tag=me_sphere] at @s run function std:draw/sphere/internal/iteration_st with storage minecraft:std"}
+$function std:repeat/run {score_obj:local_std_iter,score_holder:"$std_holder",times:$(iterations),cmd:"execute as @n[type=minecraft:marker,tag=me_sphere] at @s run function std:draw/sphere/internal/iteration_st with storage minecraft:std"}
 
 # kill marker
 kill @n[type=minecraft:marker,tag=me_sphere]
