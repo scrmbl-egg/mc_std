@@ -25,7 +25,6 @@ function std:array/map/internal/run_function_with_element_st with storage minecr
 
 # free copied array element
 
-# TODO: this line must be changed with a macro that references the user's function path
 $data remove storage $(local_function_storage) $(local_element_path)
 
 # add one to current iteration
