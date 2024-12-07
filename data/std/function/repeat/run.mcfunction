@@ -7,8 +7,8 @@
 
 $scoreboard objectives add $(score_obj) dummy
 
-$data modify storage minecraft:std local_score_objective set value "$(score_obj)"
-$data modify storage minecraft:std local_score_holder set value "$(score_holder)"
+$data modify storage minecraft:std local_score_objective set value '$(score_obj)'
+$data modify storage minecraft:std local_score_holder set value '$(score_holder)'
 $data modify storage minecraft:std local_command set value '$(cmd)'
 
 $scoreboard players set $(score_holder) $(score_obj) 0
