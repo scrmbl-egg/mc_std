@@ -3,8 +3,8 @@
     # dest_path (destination path)
 
 # NOTE: This function returns an entity's UUID separated by underscores.
-# For example, if the UUID is [I;-336586247,604718780,-2041004766,-448986292], the result is
-# "-336586247_604718780_-2041004766_-448986292", this is useful when using tags with macros.
+# For example, if the UUID is [I;-111111111,222222222,-3333333333,-4444444444], the result is
+# "-111111111_222222222_-3333333333_-4444444444", this is useful when using tags with macros.
 
 # process params
 $data modify storage minecraft:std local_destination_storage set value "$(dest_st)"
@@ -22,7 +22,7 @@ data modify storage minecraft:std local_target_uuid_3 set from entity @s UUID[3]
     # local_target_uuid_1
     # local_target_uuid_2
     # local_target_uuid_3
-execute as @s run function std:stringify/uuid/internal/build_string_st with storage minecraft:std
+execute as @s run function std:strings/uuid/internal/build_string_st with storage minecraft:std
 # gives ownership of:
     # local_uuid_str
 
@@ -31,7 +31,7 @@ execute as @s run function std:stringify/uuid/internal/build_string_st with stor
     # local_destination_storage
     # local_destination_path
     # local_uuid_str
-return run function std:stringify/uuid/internal/memset_st with storage minecraft:std
+return run function std:strings/uuid/internal/memset_st with storage minecraft:std
 
 # free memory
 data remove storage minecraft:std local_target_uuid_0
