@@ -6,7 +6,7 @@
     # elem_macro    (macro that the 'fn' function will use as the current element in the array)
 
 # assertions
-$execute unless data storage $(arr_st) $(arr_path) run return run function std:error/push {fn:"std:array/map/run",msg:"Path '$(arr_path)' in storage '$(arr_st)' doesn't contain data."}
+$execute unless data storage $(arr_st) $(arr_path) run return run function std:error/print {fn:"std:array/map/run",msg:"Path '$(arr_path)' in storage '$(arr_st)' doesn't contain data."}
 
 scoreboard objectives add std_local_map dummy
 
