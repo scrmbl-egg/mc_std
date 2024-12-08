@@ -1,10 +1,13 @@
+# doc:
+#
+# This function returns an entity's UUID separated by underscores.
+# For example, if the UUID is [I;-111111111,222222222,-3333333333,-4444444444], 
+# the result is "-111111111_222222222_-3333333333_-4444444444", this is useful
+# when using tags with macros.
+#
 # params:
-    # dest_st   (destination storage)
-    # dest_path (destination path)
-
-# NOTE: This function returns an entity's UUID separated by underscores.
-# For example, if the UUID is [I;-111111111,222222222,-3333333333,-4444444444], the result is
-# "-111111111_222222222_-3333333333_-4444444444", this is useful when using tags with macros.
+    # dest_path -- Destination path.
+    # dest_st   -- Destination storage.
 
 # process params
 $data modify storage minecraft:std local_destination_storage set value "$(dest_st)"

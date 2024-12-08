@@ -1,9 +1,16 @@
-# params
-    # arr_st        (array storage)
-    # arr_path      (array path)
-    # fn            (function that will be executed for each element of the array)
-    # fn_st         (storage that the 'fn' function will use)
-    # elem_macro    (macro that the 'fn' function will use as the current element in the array)
+# doc:
+#
+# Executes a function for each element of an array, binding a custom macro as
+# a parameter for said function.
+#
+# params:
+    # arr_st        -- Array storage.
+    # arr_path      -- Array path.
+    # fn            -- Function that will be executed for each element of the
+    #                  array.
+    # fn_st         -- Storage that the 'fn' function will use.
+    # elem_macro    -- Macro that the 'fn' function will use as the current 
+    #                  element in the array.
 
 # assertions
 $execute unless data storage $(arr_st) $(arr_path) run return run function std:error/print {fn:"std:array/map/run",msg:"Path '$(arr_path)' in storage '$(arr_st)' doesn't contain data."}
@@ -21,8 +28,9 @@ $data modify storage minecraft:std local_element_path set value '$(elem_macro)'
 scoreboard players set $local_i std_local_map 0
 $execute store result score $local_size std_local_map run data get storage $(arr_st) $(arr_path)
 
-# NOTE: "execute if/unless entity" detects whether or not an entity is running this command.
-# This is so that, if there's no entity running this command, the server will take care of it.
+# NOTE: "execute if/unless entity" detects whether or not an entity is running
+# this command. This is so that, if there's no entity running this command, the
+# server will take care of it.
   
 # execute recursive function
 # in:

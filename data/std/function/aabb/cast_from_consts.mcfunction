@@ -1,21 +1,34 @@
+# doc:
+#
+# Casts an invisible axis-aligned bounding box that can detect entities. This
+# box is not cast from two points in space, but rather, the center of its
+# position, so when the caller specifies, for example, a Y size of 1, the box
+# will expand 0.5 units above its center, and other 0.5 units under.
+# 
+# When the bounding box detects an entity inside of its collider, it executes
+# a command specified by the caller.
+#
+# This alternative function is designed to accomodate data from different
+# storages.
+#
 # params:
-    # selector  (entity selector)
-    # dx_st     (storage that stores dx_const)
-    # dx_const  (size x)
-    # dy_st     (storage that stores dy_const)
-    # dy_const  (size y)
-    # dz_st     (storage that stores dz_const)
-    # dz_const  (size z)
-    # cmd       (command executed on success)
+    # selector  -- Entity selector.
+    # dx_path   -- X size path.
+    # dy_path   -- Y size path.
+    # dz_path   -- Z size path.
+    # dx_st     -- Storage that stores 'dx_path'.
+    # dy_st     -- Storage that stores 'dy_path'.
+    # dz_st     -- Storage that stores 'dz_path'.
+    # cmd       -- Command executed when a 'selector' entity is detected.
 
 scoreboard objectives add std_local_aabb dummy
 scoreboard players set $one_scaled_block std_local_aabb 1000
 
 # save params
 $data modify storage minecraft:std local_selector set value "$(selector)"
-$data modify storage minecraft:std local_dx set from storage $(dx_st) $(dx_const)
-$data modify storage minecraft:std local_dy set from storage $(dy_st) $(dy_const)
-$data modify storage minecraft:std local_dz set from storage $(dz_st) $(dz_const)
+$data modify storage minecraft:std local_dx set from storage $(dx_st) $(dx_path)
+$data modify storage minecraft:std local_dy set from storage $(dy_st) $(dy_path)
+$data modify storage minecraft:std local_dz set from storage $(dz_st) $(dz_path)
 $data modify storage minecraft:std local_cmd set value "$(cmd)"
 
 # get origin offset
@@ -23,7 +36,8 @@ execute store result storage minecraft:std local_origin_offset_x double -0.5 run
 execute store result storage minecraft:std local_origin_offset_y double -0.5 run data get storage minecraft:std local_dy
 execute store result storage minecraft:std local_origin_offset_z double -0.5 run data get storage minecraft:std local_dz
 
-# check if doing a two volume intersection is necessary (all components must be < 1)
+# check if doing a two volume intersection is necessary
+# (all components must be < 1)
 
 # check if dx, dy and dz >= 1
 execute store result score $dx std_local_aabb run data get storage minecraft:std local_dx 1000
@@ -33,8 +47,8 @@ execute if score $dx std_local_aabb >= $one_scaled_block std_local_aabb run scor
 execute if score $dy std_local_aabb >= $one_scaled_block std_local_aabb run scoreboard players add $less_than_1_components std_local_aabb 1
 execute if score $dz std_local_aabb >= $one_scaled_block std_local_aabb run scoreboard players add $less_than_1_components std_local_aabb 1
 
-# if all components (3) are less than 1, subtract 1 from all and set 'local_do_intersection' to
-# false, otherwise, set it to true 
+# if all components (3) are less than 1, subtract 1 from all and set
+# 'local_do_intersection' to false, otherwise, set it to true 
 execute if score $less_than_1_components std_local_aabb matches 3 run scoreboard players remove $dx std_local_aabb 1000
 execute if score $less_than_1_components std_local_aabb matches 3 run scoreboard players remove $dy std_local_aabb 1000
 execute if score $less_than_1_components std_local_aabb matches 3 run scoreboard players remove $dz std_local_aabb 1000
