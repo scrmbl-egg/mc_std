@@ -10,8 +10,8 @@
     # dest_st   -- Destination storage.
 
 # process params
-$data modify storage minecraft:std local_destination_storage set value "$(dest_st)"
-$data modify storage minecraft:std local_destination_path set value "$(dest_path)"
+$data modify storage minecraft:std local_destination_storage set value '$(dest_st)'
+$data modify storage minecraft:std local_destination_path set value '$(dest_path)'
 
 # get data
 data modify storage minecraft:std local_target_uuid_0 set from entity @s UUID[0]
