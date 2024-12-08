@@ -1,9 +1,16 @@
-# params
-    # score_obj     (new score objective where the current iteration will be stored.
-    #                will be removed after operations are completed. useful for nested loops)
-    # score_holder  (score holder of the score parameter)
-    # times         (amount of times the command will be executed)
-    # cmd           (command executed each iteration)
+# doc:
+#
+# Repeats a command a specified amount of times. The name of a new score
+# objective and a score holder must be specified, so that they can store
+# the iteration count and allow nested loops.
+#
+# params:
+    # score_obj     -- New score objective where the current iteration will be 
+    #                  stored. Will be removed after operations are completed.
+    #                  Useful for nested loops.
+    # score_holder  -- Name of the score holder.
+    # times         -- Amount of times the command will be executed.
+    # cmd           -- Command executed each iteration.
 
 $scoreboard objectives add $(score_obj) dummy
 
@@ -14,8 +21,9 @@ $data modify storage minecraft:std local_command set value '$(cmd)'
 $scoreboard players set $(score_holder) $(score_obj) 0
 $scoreboard players set $std_local_times $(score_obj) $(times)
 
-# NOTE: "execute if/unless entity" detects whether or not an entity is running this command.
-# This is so that, if there's no entity running this command, the server will take care of it.
+# NOTE: "execute if/unless entity" detects whether or not an entity is running
+# this command. This is so that, if there's no entity running this command, the
+# server will take care of it.
   
 # execute recursive function
 # in:
