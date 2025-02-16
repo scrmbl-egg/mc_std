@@ -1,4 +1,7 @@
-# params:
+#>std:array/map/internal/run_function_with_element
+#
+# @authors scrmbl-egg
+# @params
     # local_map_func_memory
         # arr_st
         # arr_path

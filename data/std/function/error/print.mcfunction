@@ -1,9 +1,11 @@
-# doc:
+#>std:error/print
 #
+# @doc
 # Prints an error message into the game chat. The caller must specify which
 # specific function has caused an error, and detail the *why* in the message.
-#
-# params:
+# 
+# @authors scrmbl-egg
+# @params
     # fn    -- Function that failed.
     # msg   -- Error message.
 

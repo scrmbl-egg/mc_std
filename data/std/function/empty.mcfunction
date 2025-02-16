@@ -1,10 +1,7 @@
-# ******************************************
-# *                                        *
-# *           THE EMPTY FUNCTION           *
-# *                                        *
-# ******************************************
+#>std:empty
 #
-# This function is left intentionally blank.
+# @doc
+# Intentionally blank function.
 # 
 # USE CASES:
 #
@@ -20,3 +17,5 @@
 # these conditions are met, this function can be used.
 #
 # function std:ray/cast {on_step_cmd:"function std:empty",...}
+#
+# @authors scrmbl-egg

@@ -1,4 +1,7 @@
-# params:
+#>std:array/map/internal/iterate
+#
+# @authors scrmbl-egg
+# @params
     # arr_st
     # arr_path
     # fn

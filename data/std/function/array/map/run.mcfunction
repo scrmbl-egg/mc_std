@@ -1,9 +1,11 @@
-# doc:
+#>std:array/map/run
 #
+# @doc
 # Executes a function for each element of an array, binding a custom macro as
 # a parameter for said function.
 #
-# params:
+# @authors scrmbl-egg
+# @params
     # arr_st        -- Array storage.
     # arr_path      -- Array path.
     # fn            -- Function that will be executed for each element of the
