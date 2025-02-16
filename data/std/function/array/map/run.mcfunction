@@ -53,7 +53,7 @@ $execute store result score $arr_size std_local_map \
         # fn
         # fn_st
         # elem_macro
-        #
+        # storage_cpy
 execute \
     if entity @s \
     run \
