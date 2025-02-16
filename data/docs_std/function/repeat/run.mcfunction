@@ -1,3 +1,4 @@
+#>docs_std:repeat/run
 # function name
 tellraw @a ["",{"text":"[mc_std]: ","bold":true,"color":"gold"},{"text":"std:repeat/run","color":"green"},"\n"]
 

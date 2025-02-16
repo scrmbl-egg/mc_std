@@ -1,3 +1,4 @@
+#>docs_std:error/print
 # function name
 tellraw @a ["",{"text":"[mc_std]: ","bold":true,"color":"gold"},{"text":"std:error/print","color":"green"},"\n"]
 

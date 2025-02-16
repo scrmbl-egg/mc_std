@@ -1,3 +1,4 @@
+#>docs_std:strings/uuid/get
 # function name
 tellraw @a ["",{"text":"[mc_std]: ","bold":true,"color":"gold"},{"text":"std:strings/uuid/get","color":"green"},"\n"]
 

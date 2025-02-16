@@ -1,3 +1,4 @@
+#> docs_std:aabb/cast
 # function name
 tellraw @a ["",{"text":"[mc_std]: ","bold":true,"color":"gold"},{"text":"std:aabb/cast","color":"green"},"\n"]
 

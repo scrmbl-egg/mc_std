@@ -1,3 +1,4 @@
+#>docs_std:array/map/run
 # function name
 tellraw @a ["",{"text":"[mc_std]: ","bold":true,"color":"gold"},{"text":"std:array/map/run","color":"green"},"\n"]
 
