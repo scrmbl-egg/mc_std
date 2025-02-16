@@ -19,4 +19,4 @@
 # colliding with a block. When it is desired for the raycast to do nothing when
 # these conditions are met, this function can be used.
 #
-# function std:ray/cast {on_step_fn:"std:empty",...}
+# function std:ray/cast {on_step_cmd:"function std:empty",...}
