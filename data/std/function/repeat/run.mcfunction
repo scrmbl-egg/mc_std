@@ -26,8 +26,8 @@ $scoreboard players set $std_local_times $(score_obj) $(times)
 # server will take care of it.
   
 # execute recursive function
-#>
-# @in:
+#> 
+# @in
     # local_repeat_params
         # score_objective
         # score_holder
