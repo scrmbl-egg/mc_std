@@ -14,10 +14,9 @@
 
 $scoreboard objectives add $(score_obj) dummy
 
-# TODO: put this in a single object
-$data modify storage minecraft:std local_score_objective set value '$(score_obj)'
-$data modify storage minecraft:std local_score_holder set value '$(score_holder)'
-$data modify storage minecraft:std local_command set value '$(cmd)'
+$data modify storage minecraft:std local_repeat_params.score_objective set value '$(score_obj)'
+$data modify storage minecraft:std local_repeat_params.score_holder set value '$(score_holder)'
+$data modify storage minecraft:std local_repeat_params.command set value '$(cmd)'
 
 $scoreboard players set $(score_holder) $(score_obj) 0
 $scoreboard players set $std_local_times $(score_obj) $(times)
@@ -27,25 +26,24 @@ $scoreboard players set $std_local_times $(score_obj) $(times)
 # server will take care of it.
   
 # execute recursive function
-    # local_score_objective
-    # local_score_holder
-    # local_command
 #>
 # @in:
+    # local_repeat_params
+        # score_objective
+        # score_holder
+        # command
 execute \
     if entity @s \
     run \
-    function std:repeat/internal/iterate_st \
-    with storage minecraft:std
+    function std:repeat/internal/iterate \
+    with storage minecraft:std local_repeat_params
 execute \
     unless entity @s \
     run \
-    function std:repeat/internal/iterate_st \
-    with storage minecraft:std
+    function std:repeat/internal/iterate \
+    with storage minecraft:std local_repeat_params
 \
 
 # free memory
 $scoreboard objectives remove $(score_obj)
-data remove storage minecraft:std local_score_objective
-data remove storage minecraft:std local_score_holder
-data remove storage minecraft:std local_command
+data remove storage minecraft:std local_repeat_params
