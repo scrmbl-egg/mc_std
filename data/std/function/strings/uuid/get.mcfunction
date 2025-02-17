@@ -36,7 +36,7 @@ execute as @s run function std:strings/uuid/internal/build_string_st with storag
     # local_destination_storage
     # local_destination_path
     # local_uuid_str
-return run function std:strings/uuid/internal/memset_st with storage minecraft:std
+function std:strings/uuid/internal/memset_st with storage minecraft:std
 
 # free memory
 data remove storage minecraft:std local_target_uuid_0
