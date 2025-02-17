@@ -20,7 +20,6 @@ $execute \
     return run \ 
     function std:error/print \
     {fn:"std:array/map/run",msg:"Path '$(arr_path)' in storage '$(arr_st)' doesn't contain data."}
-\
 
 # create local scoreboard
 scoreboard objectives add std_local_map dummy
@@ -65,7 +64,6 @@ execute \
     run \
     function core_std:array/map/iterate \ 
     with storage minecraft:std local_map_func_memory
-\
 
 # free memory
 scoreboard objectives remove std_local_map

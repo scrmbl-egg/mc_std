@@ -15,7 +15,6 @@ execute \
     int 1 \
     run \
     scoreboard players get $current_iter_index std_local_map
-\
 
 # update caller's element path
 #> 
@@ -34,7 +33,6 @@ execute \
             # $(elem_macro)
 function core_std:array/map/save_element_in_storage_copy \
     with storage minecraft:std local_map_func_memory
-\
 
 #> 
 # @in
@@ -49,7 +47,6 @@ function core_std:array/map/save_element_in_storage_copy \
             # $(elem_macro)
 function core_std:array/map/run_function_with_element \
     with storage minecraft:std local_map_func_memory
-\
 
 # add one to current iteration index
 scoreboard players add $current_iter_index std_local_map 1

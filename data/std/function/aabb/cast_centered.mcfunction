@@ -38,7 +38,6 @@ execute \
     store result storage minecraft:std local_aabb_params.origin_offset_z \
     double -0.5 \
     run data get storage minecraft:std local_aabb_params.dz
-\
 
 # check if doing a two volume intersection is necessary
 # (all components must be < 1)
@@ -53,7 +52,6 @@ execute \
 execute \
     store result score $dz std_local_aabb \
     run data get storage minecraft:std local_aabb_params.dz 1000
-\
 
 execute \
     if score $dx std_local_aabb >= $1 std_local_aabb \
@@ -64,7 +62,6 @@ execute \
 execute \
     if score $dz std_local_aabb >= $1 std_local_aabb \
     run scoreboard players add $greater_than_1_components std_local_aabb 1
-\
 
 # if all components (3) are greater than 1, subtract 1 from all and set
 # 'local_do_intersection' to false, otherwise, set it to true 
@@ -79,7 +76,6 @@ execute \
 execute \
     if score $greater_than_1_components std_local_aabb matches 3 \
     run scoreboard players remove $dz std_local_aabb 1000
-\
 
 # get scores back as data as doubles
 execute \
@@ -97,7 +93,6 @@ execute \
     run execute store result storage minecraft:std local_aabb_params.dz \
     double 0.001 \
     run scoreboard players get $dx std_local_aabb
-\
 
 # finally, set do_intersection to false
 execute \
@@ -105,7 +100,6 @@ execute \
     run \
     data modify storage minecraft:std local_aabb_params.do_intersection \
     set value false
-\
 
 # if the previous conditions aren't met, just set do_intersection to true
 execute \
@@ -113,7 +107,6 @@ execute \
     run \
     data modify storage minecraft:std local_aabb_params.do_intersection \
     set value true
-\
 
 #> @in:
     # local_aabb_params
@@ -127,7 +120,6 @@ execute \
         # origin_offset_z
 function core_std:aabb/check_collision_and_run_cmd \
     with storage minecraft:std local_aabb_params
-\
 
 # free memory
 scoreboard objectives remove std_local_aabb

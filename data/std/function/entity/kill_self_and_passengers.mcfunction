@@ -9,6 +9,5 @@ execute \
     on passengers \
     run \
     function std:entity/kill_self_and_passengers
-\
 
 kill @s

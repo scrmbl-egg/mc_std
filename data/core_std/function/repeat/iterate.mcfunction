@@ -11,7 +11,6 @@ $execute \
     if score $(score_holder) $(score_objective) < $std_local_times $(score_objective) \
     run \
     $(command)
-\
 
 # add one to current iteration
 $scoreboard players add $(score_holder) $(score_objective) 1

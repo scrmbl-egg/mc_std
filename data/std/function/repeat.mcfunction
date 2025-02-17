@@ -42,7 +42,6 @@ execute \
     run \
     function core_std:repeat/iterate \
     with storage minecraft:std local_repeat_params
-\
 
 # free memory
 $scoreboard objectives remove $(score_obj)
