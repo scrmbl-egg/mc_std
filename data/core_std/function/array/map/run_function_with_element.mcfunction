@@ -1,4 +1,4 @@
-#>std:array/map/internal/run_function_with_element
+#>core_std:array/map/run_function_with_element
 #
 # @authors scrmbl-egg
 # @params

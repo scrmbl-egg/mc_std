@@ -1,4 +1,4 @@
-#>std:array/map/internal/iterate
+#>core_std:array/map/iterate
 #
 # @authors scrmbl-egg
 # @params
@@ -32,7 +32,7 @@ execute \
     # local_map_func_memory
         # storage_cpy
             # $(elem_macro)
-function std:array/map/internal/save_element_in_storage_copy \
+function core_std:array/map/save_element_in_storage_copy \
     with storage minecraft:std local_map_func_memory
 \
 
@@ -47,7 +47,7 @@ function std:array/map/internal/save_element_in_storage_copy \
         # storage_cpy
             # ... (user storage)
             # $(elem_macro)
-function std:array/map/internal/run_function_with_element \
+function core_std:array/map/run_function_with_element \
     with storage minecraft:std local_map_func_memory
 \
 
@@ -58,5 +58,5 @@ scoreboard players add $current_iter_index std_local_map 1
 execute \
     if score $current_iter_index std_local_map < $arr_size std_local_map \ 
     run \
-    function std:array/map/internal/iterate \
+    function core_std:array/map/iterate \
     with storage minecraft:std local_map_func_memory

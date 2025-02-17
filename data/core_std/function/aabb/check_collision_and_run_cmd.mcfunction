@@ -1,4 +1,4 @@
-#>std:aabb/internal/check_collision_and_run_cmd
+#>core_std:aabb/check_collision_and_run_cmd
 #
 # @authors scrmbl-egg
 # @params

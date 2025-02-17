@@ -1,6 +1,6 @@
 #>docs_std:array/map/run
 # function name
-tellraw @a ["",{"text":"[mc_std]: ","bold":true,"color":"gold"},{"text":"std:array/map/run","color":"green"},"\n"]
+tellraw @a ["",{"text":"[mc_std]: ","bold":true,"color":"gold"},{"text":"std:array/map","color":"green"},"\n"]
 
 # description
 tellraw @a ["","Executes a function for each element of an array, binding a custom macro as a parameter for said function.","\n"]

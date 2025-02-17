@@ -1,4 +1,4 @@
-#>std:repeat/internal/iterate_st
+#>core_std:repeat/iterate
 #
 # @authors scrmbl-egg
 # @params

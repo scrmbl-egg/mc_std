@@ -1,4 +1,4 @@
-#>std:array/map/run
+#>std:array/map
 # Executes a function for each element of an array, binding a custom macro as
 # a parameter for said function.
 #
@@ -58,12 +58,12 @@ $execute store result score $arr_size std_local_map \
 execute \
     if entity @s \
     run \
-    function std:array/map/internal/iterate \ 
+    function core_std:array/map/iterate \ 
     with storage minecraft:std local_map_func_memory
 execute \
     unless entity @s \ 
     run \
-    function std:array/map/internal/iterate \ 
+    function core_std:array/map/iterate \ 
     with storage minecraft:std local_map_func_memory
 \
 

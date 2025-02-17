@@ -31,7 +31,7 @@ data modify storage minecraft:std local_get_uuid_params.uuid_3 set from entity @
         # uuid_1
         # uuid_2
         # uuid_3
-execute as @s run function std:strings/uuid/internal/build_and_memset \
+execute as @s run function core_std:strings/uuid/get/build_and_memset \
     with storage minecraft:std local_get_uuid_params
 \
 

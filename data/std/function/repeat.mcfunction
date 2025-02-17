@@ -1,4 +1,4 @@
-#>std:repeat/run
+#>std:repeat
 # Repeats a command a specified amount of times. The name of a new score
 # objective and a score holder must be specified, so that they can store
 # the iteration count and allow nested loops.
@@ -35,12 +35,12 @@ $scoreboard players set $std_local_times $(score_obj) $(times)
 execute \
     if entity @s \
     run \
-    function std:repeat/internal/iterate \
+    function core_std:repeat/iterate \
     with storage minecraft:std local_repeat_params
 execute \
     unless entity @s \
     run \
-    function std:repeat/internal/iterate \
+    function core_std:repeat/iterate \
     with storage minecraft:std local_repeat_params
 \
 

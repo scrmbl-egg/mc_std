@@ -125,7 +125,7 @@ execute \
         # origin_offset_x
         # origin_offset_y
         # origin_offset_z
-function std:aabb/internal/check_collision_and_run_cmd \
+function core_std:aabb/check_collision_and_run_cmd \
     with storage minecraft:std local_aabb_params
 \
 

@@ -1,4 +1,4 @@
-#>std:strings/uuid/internal/build_and_memset
+#>core_std:strings/uuid/build_and_memset
 #
 # @authors scrmbl-egg, MARO-445
 # @params

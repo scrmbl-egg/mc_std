@@ -1,4 +1,4 @@
-#>std:array/map/internal/save_element_in_storage_copy
+#>core_std:array/map/save_element_in_storage_copy
 #
 # @authors scrmbl-egg
 # @params
