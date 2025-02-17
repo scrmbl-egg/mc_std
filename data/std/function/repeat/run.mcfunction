@@ -1,6 +1,4 @@
 #>std:repeat/run
-#
-# @doc
 # Repeats a command a specified amount of times. The name of a new score
 # objective and a score holder must be specified, so that they can store
 # the iteration count and allow nested loops.

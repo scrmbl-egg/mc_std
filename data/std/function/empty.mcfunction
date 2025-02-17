@@ -1,6 +1,4 @@
 #>std:empty
-#
-# @doc
 # Intentionally blank function.
 # 
 # USE CASES:

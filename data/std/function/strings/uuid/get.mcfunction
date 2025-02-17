@@ -1,6 +1,4 @@
 #>std:strings/uuid/get
-#
-# @doc
 # This function returns an entity's UUID separated by underscores.
 # For example, if the UUID is [I;-111111111,222222222,-3333333333,-4444444444], 
 # the result is "-111111111_222222222_-3333333333_-4444444444", this is useful
@@ -8,8 +6,10 @@
 #
 # @authors scrmbl-egg, MARO-445
 # @params
-    # dest_path -- Destination path.
+    # dest_path -- Destination NBT path.
     # dest_st   -- Destination storage.
+# @generates
+    # UUID string at specified storage and path.
 
 # process params
 $data modify storage minecraft:std local_get_uuid_params.dest_st set value '$(dest_st)'

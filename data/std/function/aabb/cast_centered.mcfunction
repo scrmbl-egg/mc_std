@@ -1,6 +1,4 @@
 #>std:aabb/cast_centered
-#
-# @doc
 # Casts an invisible axis-aligned bounding box that can detect entities. This
 # box is not cast from two points in space, but rather, the center of its
 # position, so when the caller specifies, for example, a Y size of 1, the box

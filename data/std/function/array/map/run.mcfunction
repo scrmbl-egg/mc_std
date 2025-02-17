@@ -1,6 +1,4 @@
 #>std:array/map/run
-#
-# @doc
 # Executes a function for each element of an array, binding a custom macro as
 # a parameter for said function.
 #
