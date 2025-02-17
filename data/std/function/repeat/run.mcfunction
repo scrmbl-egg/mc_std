@@ -27,10 +27,11 @@ $scoreboard players set $std_local_times $(score_obj) $(times)
 # server will take care of it.
   
 # execute recursive function
-#>@in:
     # local_score_objective
     # local_score_holder
     # local_command
+#>
+# @in:
 execute \
     if entity @s \
     run \

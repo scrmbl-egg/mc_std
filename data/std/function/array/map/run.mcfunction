@@ -46,7 +46,8 @@ $execute store result score $arr_size std_local_map \
 # "execute if/unless entity" detects whether or not an entity is running
 # this command. This is so that, if there's no entity running this command, the
 # server will take care of it.
-# in:
+#> 
+# @in
     # local_map_func_memory
         # arr_st
         # arr_path

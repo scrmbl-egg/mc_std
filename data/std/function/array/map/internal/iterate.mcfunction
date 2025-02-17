@@ -18,7 +18,8 @@ execute \
 \
 
 # update caller's element path
-# in:
+#> 
+# @in
     # local_map_func_memory
         # arr_st
         # arr_path
@@ -27,7 +28,7 @@ execute \
         # elem_macro
         # storage_cpy
         # current_index
-# generates:
+# @generates
     # local_map_func_memory
         # storage_cpy
             # $(elem_macro)
@@ -35,7 +36,8 @@ function std:array/map/internal/save_element_in_storage_copy \
     with storage minecraft:std local_map_func_memory
 \
 
-# in:
+#> 
+# @in
     # local_map_func_memory
         # arr_st
         # arr_path

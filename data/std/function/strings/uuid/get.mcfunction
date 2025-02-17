@@ -22,7 +22,8 @@ data modify storage minecraft:std local_get_uuid_params.uuid_2 set from entity @
 data modify storage minecraft:std local_get_uuid_params.uuid_3 set from entity @s UUID[3]
 
 # generate string
-#> @in
+#> 
+# @in
     # local_get_uuid_params
         # dest_st
         # dest_path
