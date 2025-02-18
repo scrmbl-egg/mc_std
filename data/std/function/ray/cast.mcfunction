@@ -9,7 +9,7 @@
     # params_path   -- ray_params_snbt object path.
 
 # object assertions
-function core_std:ray/error/assert_obj_structure \
+$function core_std:ray/error/assert_obj_structure \
     {fn:"std:ray/cast",params_st:"$(params_st)",params_path:"$(params_path)"}
 
 # new score for operations
