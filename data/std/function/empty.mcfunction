@@ -1,6 +1,6 @@
 #>std:empty
 # Intentionally blank function.
-# 
+#
 # USE CASES:
 #
 # Use this function when any function, either from this datapack or any other,
