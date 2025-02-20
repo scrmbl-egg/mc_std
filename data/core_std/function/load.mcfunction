@@ -1,6 +1,7 @@
-#>std:load
+#>core_std:load
 #
 # @authors scrmbl-egg, MARO-445
+
 
 ## __ KEEP AT BOTTOM OF FILE __
 # reload message
