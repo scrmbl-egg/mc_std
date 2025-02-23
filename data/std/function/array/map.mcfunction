@@ -9,7 +9,7 @@
     # fn            -- Function that will be executed for each element of the
     #                  array.
     # fn_st         -- Storage that the 'fn' function will use.
-    # elem_macro    -- Macro that the 'fn' function will use as the current 
+    # elem_macro    -- Macro that the 'fn' function will use as the current
     #                  element in the array.
 
 # assertions
@@ -17,7 +17,7 @@ $execute \
     unless \
     data storage $(arr_st) $(arr_path) \
     run \
-    return run \ 
+    return run \
     function std:error/print \
     {fn:"std:array/map/run",msg:"Path '$(arr_path)' in storage '$(arr_st)' doesn't contain data."}
 
@@ -45,7 +45,7 @@ $execute store result score $arr_size std_local_map \
 # "execute if/unless entity" detects whether or not an entity is running
 # this command. This is so that, if there's no entity running this command, the
 # server will take care of it.
-#> 
+#>_
 # @in
     # local_map_func_memory
         # arr_st
@@ -57,12 +57,12 @@ $execute store result score $arr_size std_local_map \
 execute \
     if entity @s \
     run \
-    function core_std:array/map/iterate \ 
+    function core_std:array/map/iterate \
     with storage minecraft:std local_map_func_memory
 execute \
-    unless entity @s \ 
+    unless entity @s \
     run \
-    function core_std:array/map/iterate \ 
+    function core_std:array/map/iterate \
     with storage minecraft:std local_map_func_memory
 
 # free memory

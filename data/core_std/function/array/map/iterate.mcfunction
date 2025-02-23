@@ -9,7 +9,7 @@
     # elem_macro
     # storage_cpy
 
-# turn current iteration into data for next caption
+# turn current iteration index into data for next step
 execute \
     store result storage minecraft:std local_map_func_memory.current_index \
     int 1 \
@@ -17,7 +17,7 @@ execute \
     scoreboard players get $current_iter_index std_local_map
 
 # update caller's element path
-#> 
+#>_
 # @in
     # local_map_func_memory
         # arr_st
@@ -34,7 +34,7 @@ execute \
 function core_std:array/map/save_element_in_storage_copy \
     with storage minecraft:std local_map_func_memory
 
-#> 
+#>_
 # @in
     # local_map_func_memory
         # arr_st
@@ -53,7 +53,7 @@ scoreboard players add $current_iter_index std_local_map 1
 
 # reiterate if current iteration index is less than the array size
 execute \
-    if score $current_iter_index std_local_map < $arr_size std_local_map \ 
+    if score $current_iter_index std_local_map < $arr_size std_local_map \
     run \
     function core_std:array/map/iterate \
     with storage minecraft:std local_map_func_memory
