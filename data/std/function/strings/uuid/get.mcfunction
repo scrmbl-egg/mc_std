@@ -1,6 +1,6 @@
 #>std:strings/uuid/get
 # This function returns an entity's UUID separated by underscores.
-# For example, if the UUID is [I;-111111111,222222222,-3333333333,-4444444444], 
+# For example, if the UUID is [I;-111111111,222222222,-3333333333,-4444444444],
 # the result is "-111111111_222222222_-3333333333_-4444444444", this is useful
 # when using tags with macros.
 #
@@ -22,7 +22,7 @@ data modify storage minecraft:std local_get_uuid_params.uuid_2 set from entity @
 data modify storage minecraft:std local_get_uuid_params.uuid_3 set from entity @s UUID[3]
 
 # generate string
-#> 
+#>_
 # @in
     # local_get_uuid_params
         # dest_st

@@ -5,7 +5,7 @@
 #
 # @authors scrmbl-egg
 # @params
-    # score_obj     -- New score objective where the current iteration will be 
+    # score_obj     -- New score objective where the current iteration will be
     #                  stored. Will be removed after operations are completed.
     #                  Useful for nested loops.
     # score_holder  -- Name of the score holder.
@@ -24,9 +24,9 @@ $scoreboard players set $std_local_times $(score_obj) $(times)
 # NOTE: "execute if/unless entity" detects whether or not an entity is running
 # this command. This is so that, if there's no entity running this command, the
 # server will take care of it.
-  
+
 # execute recursive function
-#> 
+#>_
 # @in
     # local_repeat_params
         # score_objective
