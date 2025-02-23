@@ -14,6 +14,7 @@ data modify storage minecraft:std consts.float.epsilon set value 1.401298e-45f
 data modify storage minecraft:std consts.float.math.pi set value 3.1415926535897931f
 data modify storage minecraft:std consts.float.math.tau set value 6.2831853071795864f
 data modify storage minecraft:std consts.float.math.phi set value 1.618033988749894f
+data modify storage minecraft:std consts.float.math.euler set value 2.718281828459045235360f
 
 # double (double precision floating point number, 64 bits)
 data modify storage minecraft:std consts.double.epsilon set value 4.94065645841247e-324d
@@ -21,6 +22,7 @@ data modify storage minecraft:std consts.double.epsilon set value 4.940656458412
 data modify storage minecraft:std consts.double.math.pi set value 3.1415926535897931d
 data modify storage minecraft:std consts.double.math.tau set value 6.2831853071795864d
 data modify storage minecraft:std consts.double.math.phi set value 1.618033988749894d
+data modify storage minecraft:std consts.double.math.euler set value 2.718281828459045235360d
 
 ## FUNCTION CONSTANTS
 
