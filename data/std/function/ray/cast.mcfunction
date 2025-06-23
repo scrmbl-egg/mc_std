@@ -28,7 +28,7 @@ $function core_std:ray/summon_marker \
 $execute store result score $max_distance std_local_ray_cast run data get storage $(params_st) $(params_path).max_distance 1000
 $execute store result score $steps_per_block std_local_ray_cast run data get storage $(params_st) $(params_path).steps_per_block 1000
 scoreboard players operation $max_distance std_local_ray_cast *= $steps_per_block std_local_ray_cast
-execute store result storage minecraft:std local_repeat_params.times int 0.000001 run scoreboard players get $max_distance std_local_ray_cast
+execute store result storage std:temp local_repeat_params.times int 0.000001 run scoreboard players get $max_distance std_local_ray_cast
 
 # calculate step length and add it to the ray/parameters object (this will be
 # deleted later inside the object)
@@ -38,17 +38,17 @@ scoreboard players operation $step_length std_local_ray_cast /= $steps_per_block
 $execute store result storage $(params_st) $(params_path).step_length double 1 run scoreboard players get $step_length std_local_ray_cast
 
 # set the rest of repeat function parameters
-data modify storage minecraft:std local_repeat_params.score_obj set value "std_local_ray_cast_iter"
-data modify storage minecraft:std local_repeat_params.score_holder set value "@s"
-$data modify storage minecraft:std local_repeat_params.cmd set value 'function std:ray/internal/take_step with storage $(params_st) $(params_path)'
+data modify storage std:temp local_repeat_params.score_obj set value "std_local_ray_cast_iter"
+data modify storage std:temp local_repeat_params.score_holder set value "@s"
+$data modify storage std:temp local_repeat_params.cmd set value 'function std:ray/internal/take_step with storage $(params_st) $(params_path)'
 
 # repeat steps with previously determined parameters
-execute as @n[type=marker,tag=std_ray] run function std:repeat with storage minecraft:std local_repeat_params
+execute as @n[type=marker,tag=std_ray] run function std:repeat with storage std:temp local_repeat_params
 
 # kill marker
 kill @n[type=marker,tag=std_ray]
 
 # free memory
 scoreboard objectives remove std_local_ray_cast
-data remove storage minecraft:std local_repeat_params
+data remove storage std:temp local_repeat_params
 $data remove storage $(params_st) $(params_path).step_length

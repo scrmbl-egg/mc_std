@@ -20,7 +20,7 @@
 execute \
     store result score $do_intersection std_local_aabb \
     run \
-    data get storage minecraft:std local_aabb_params.do_intersection 1
+    data get storage std:temp aabb_params.do_intersection 1
 
 # do 2 intersecting volume checks if do_intersection score is 1
 $execute \

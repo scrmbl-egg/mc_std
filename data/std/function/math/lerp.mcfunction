@@ -25,20 +25,20 @@ scoreboard objectives add std_local_lerp dummy
 scoreboard players set $scale std_local_lerp 1000
 
 # save parameters so they can be scaled later
-$data modify storage minecraft:std local_lerp_op.a set value $(from)
-$data modify storage minecraft:std local_lerp_op.b set value $(to)
-$data modify storage minecraft:std local_lerp_op.t set value $(weight)
+$data modify storage std:temp lerp.a set value $(from)
+$data modify storage std:temp lerp.b set value $(to)
+$data modify storage std:temp lerp.t set value $(weight)
 
 # get data as scores
 execute \
     store result score $a std_local_lerp \
-    run data get storage std local_lerp_op.a 1000
+    run data get storage std:temp lerp.a 1000
 execute \
     store result score $b std_local_lerp \
-    run data get storage std local_lerp_op.b 1000
+    run data get storage std:temp lerp.b 1000
 execute \
     store result score $t std_local_lerp \
-    run data get storage std local_lerp_op.t 1000
+    run data get storage std:temp lerp.t 1000
 
 # (b - a)
 scoreboard players operation $b std_local_lerp -= $a std_local_lerp
@@ -59,4 +59,4 @@ $execute \
 
 # free memory
 scoreboard objectives remove std_local_lerp
-data remove storage minecraft:std local_lerp_op
+data remove storage std:temp lerp

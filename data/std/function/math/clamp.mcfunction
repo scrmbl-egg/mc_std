@@ -15,27 +15,26 @@
 scoreboard objectives add std_local_clamp dummy
 
 # store params
-$data modify storage minecraft:std local_clamp_op.value set value $(value)
-$data modify storage minecraft:std local_clamp_op.min set value $(min)
-$data modify storage minecraft:std local_clamp_op.max set value $(max)
+$data modify storage std:temp clamp.value set value $(value)
+$data modify storage std:temp clamp.min set value $(min)
+$data modify storage std:temp clamp.max set value $(max)
 
 # get data as scores
 execute \
     store result score $value std_local_clamp \
-    run data get storage minecraft:std local_clamp_op.value 10000
+    run data get storage std:temp clamp.value 10000
 execute \
     store result score $min std_local_clamp \
-    run data get storage minecraft:std local_clamp_op.min 10000
+    run data get storage std:temp clamp.min 10000
 execute \
     store result score $max std_local_clamp \
-    run data get storage minecraft:std local_clamp_op.max 10000
+    run data get storage std:temp clamp.max 10000
 
 # assert that min isn't greater than max. if that's the case, abort function
 # and free data
 $execute \
     if score $min std_local_clamp > $max std_local_clamp \
     run \
-    return run \
     function core_std:math/clamp/error/fail_params_assertion \
     {min:$(min),max:$(max)}
 
@@ -54,4 +53,4 @@ $execute \
 
 # free memory
 scoreboard objectives remove std_local_clamp
-data remove storage minecraft:std local_clamp_op
+data remove storage std:temp clamp

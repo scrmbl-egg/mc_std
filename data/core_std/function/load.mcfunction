@@ -7,4 +7,5 @@ function core_std:storage/init_consts
 
 ## __ KEEP AT BOTTOM OF FILE __
 # reload message
-tellraw @a ["",{"text":"[mc_std]: ","bold":true,"color":"gold"},{"text":"Reloaded!"}]
+tellraw @a \
+    ["",{"text":"[mc_std]: ","bold":true,"color":"gold"},{"text":"Reloaded!"}]

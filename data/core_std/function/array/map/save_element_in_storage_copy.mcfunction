@@ -9,10 +9,10 @@
     # elem_macro
     # current_index
 # @generates
-    # local_map_func_memory
+    # map
         # storage_cpy
             # $(elem_macro)
 
-$data modify storage minecraft:std \ 
-    local_map_func_memory.storage_cpy.$(elem_macro) \ 
+$data modify storage std:temp \
+    map.storage_cpy.$(elem_macro) \
     set from storage $(arr_st) $(arr_path)[$(current_index)]

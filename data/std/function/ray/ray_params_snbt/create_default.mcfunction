@@ -1,8 +1,8 @@
 #>std:ray/parameters/create_default
-# Creates a new ray_params_snbt object with default values. These default values
-# result in parameters that, if casted, would result in a ray that doesn't
-# collide with any blocks, doesn't contain data, does 40 steps in 10 blocks,
-# and runs no functions.
+# Creates a new ray_params_snbt object with default values. These default
+# values result in parameters that, if casted, would result in a ray that
+# doesn't collide with any blocks, doesn't contain data, does 40 steps in 10
+# blocks, and runs no commands.
 #
 # @params
     # dest_st   -- Destination storage.

@@ -1,4 +1,4 @@
-#> docs_std:aabb/cast_centered
+#>docs_std:aabb/cast_centered
 # function name
 tellraw @a ["",{"text":"[mc_std]: ","bold":true,"color":"gold"},{"text":"std:aabb/cast_centered","color":"green"},"\n"]
 

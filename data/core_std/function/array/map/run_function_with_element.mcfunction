@@ -2,7 +2,7 @@
 #
 # @authors scrmbl-egg
 # @params
-    # local_map_func_memory
+    # map
         # arr_st
         # arr_path
         # fn
@@ -13,4 +13,4 @@
             # $(elem_macro)
 
 # run function with 'fn_st' storage copy as the parameters.
-$function $(fn) with storage minecraft:std local_map_func_memory.storage_cpy
+$function $(fn) with storage std:temp map.storage_cpy

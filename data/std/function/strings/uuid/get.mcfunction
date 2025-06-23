@@ -12,27 +12,27 @@
     # UUID string at specified storage and path.
 
 # process params
-$data modify storage minecraft:std local_get_uuid_params.dest_st set value '$(dest_st)'
-$data modify storage minecraft:std local_get_uuid_params.dest_path set value '$(dest_path)'
+$data modify storage std:temp get_uuid_params.dest_st set value '$(dest_st)'
+$data modify storage std:temp get_uuid_params.dest_path set value '$(dest_path)'
 
 # get data
-data modify storage minecraft:std local_get_uuid_params.uuid_0 set from entity @s UUID[0]
-data modify storage minecraft:std local_get_uuid_params.uuid_1 set from entity @s UUID[1]
-data modify storage minecraft:std local_get_uuid_params.uuid_2 set from entity @s UUID[2]
-data modify storage minecraft:std local_get_uuid_params.uuid_3 set from entity @s UUID[3]
+data modify storage std:temp get_uuid_params.uuid_0 set from entity @s UUID[0]
+data modify storage std:temp get_uuid_params.uuid_1 set from entity @s UUID[1]
+data modify storage std:temp get_uuid_params.uuid_2 set from entity @s UUID[2]
+data modify storage std:temp get_uuid_params.uuid_3 set from entity @s UUID[3]
 
 # generate string
 #>_
 # @in
-    # local_get_uuid_params
+    # get_uuid_params
         # dest_st
         # dest_path
         # uuid_0
         # uuid_1
         # uuid_2
         # uuid_3
-execute as @s run function core_std:strings/uuid/get/build_and_memset \
-    with storage minecraft:std local_get_uuid_params
+execute as @s run function core_std:strings/uuid/get/build_and_set \
+    with storage std:temp get_uuid_params
 
 # free memory
-data remove storage minecraft:std local_get_uuid_params
+data remove storage std:temp get_uuid_params

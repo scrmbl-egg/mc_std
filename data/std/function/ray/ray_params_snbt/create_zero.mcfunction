@@ -1,8 +1,8 @@
 #>std:ray/parameters/create_zero
-# Creates a new ray_params_snbt object with default values. These default values
-# result in parameters that, if casted, would result in a ray that doesn't
-# collide with any blocks, doesn't contain data, doesn't travel distance,
-# and runs no commands.
+# Creates a new ray_params_snbt object with default values. These default
+# values result in parameters that, if casted, would result in a ray that
+# doesn't collide with any blocks, doesn't contain data, doesn't travel
+# distance, and runs no commands.
 #
 # @params
     # dest_st   -- Destination storage.

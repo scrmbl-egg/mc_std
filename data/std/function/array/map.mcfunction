@@ -19,19 +19,19 @@ $execute \
     run \
     return run \
     function std:error/print \
-    {fn:"std:array/map/run",msg:"Path '$(arr_path)' in storage '$(arr_st)' doesn't contain data."}
+    {fn:"std:array/map",msg:"Path '$(arr_path)' in storage '$(arr_st)' doesn't contain data."}
 
 # create local scoreboard
 scoreboard objectives add std_local_map dummy
 
 # save the parameters as local
-$data modify storage minecraft:std local_map_func_memory.arr_st set value '$(arr_st)'
-$data modify storage minecraft:std local_map_func_memory.arr_path set value '$(arr_path)'
-$data modify storage minecraft:std local_map_func_memory.fn set value '$(fn)'
-$data modify storage minecraft:std local_map_func_memory.elem_macro set value '$(elem_macro)'
+$data modify storage std:temp map.arr_st set value '$(arr_st)'
+$data modify storage std:temp map.arr_path set value '$(arr_path)'
+$data modify storage std:temp map.fn set value '$(fn)'
+$data modify storage std:temp map.elem_macro set value '$(elem_macro)'
 
 # create copy of storage, so that the macro can be added later.
-$data modify storage minecraft:std local_map_func_memory.storage_cpy set from storage $(fn_st)
+$data modify storage std:temp map.storage_cpy set from storage $(fn_st)
 
 # init current index to 0
 scoreboard players set $current_iter_index std_local_map 0
@@ -47,7 +47,7 @@ $execute store result score $arr_size std_local_map \
 # server will take care of it.
 #>_
 # @in
-    # local_map_func_memory
+    # map
         # arr_st
         # arr_path
         # fn
@@ -58,13 +58,13 @@ execute \
     if entity @s \
     run \
     function core_std:array/map/iterate \
-    with storage minecraft:std local_map_func_memory
+    with storage std:temp map
 execute \
     unless entity @s \
     run \
     function core_std:array/map/iterate \
-    with storage minecraft:std local_map_func_memory
+    with storage std:temp map
 
 # free memory
 scoreboard objectives remove std_local_map
-data remove storage minecraft:std local_map_func_memory
+data remove storage std:temp map
