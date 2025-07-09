@@ -3,9 +3,9 @@ struct McTypeInfo {
     /// Name of the type.
     name: string,
     /// Size in bits of the type.
-    bits: int @ 0..,
+    bits: int @ 1..,
     /// Size in bytes of the type.
-    bytes: int @ 0..
+    bytes: int @ 1..
 }
 
 /// Struct type for integer data type constants.
@@ -44,9 +44,13 @@ struct MainStorage {
         "boolean": struct {
             ...McTypeInfo,
             /// `true`/`1b`.
-            "true": boolean,
+            true_value: boolean,
             /// `false`/`0b`.
-            "false": boolean
+            false_value: boolean,
+            /// `true` as string.
+            true_string: "true",
+            /// `false` as string.
+            false_string: "false",
         },
         /// Constants related to the `byte` (8 bit signed integer) Minecraft type.
         "byte": McIntegerType<byte>,
@@ -63,5 +67,4 @@ struct MainStorage {
     }
 }
 
-/// Docs!
 dispatch minecraft:storage[std:main] to MainStorage
