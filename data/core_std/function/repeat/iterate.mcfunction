@@ -1,24 +1,24 @@
 #>core_std:repeat/iterate
 #
+# Does a single iteration of the repeat command, and recursively runs the next.
+#
 # @authors scrmbl-egg
-# @params
+# @input
     # score_objective
     # score_holder
     # command
 
 # run command
-$execute \
-    if score \
-    $(score_holder) $(score_objective) < $std_local_times $(score_objective) \
+$execute if score \
+    $(score_holder) $(score_objective) < $times $(score_objective) \
     run \
     $(command)
 
 # add one to current iteration
 $scoreboard players add $(score_holder) $(score_objective) 1
 
-# reiterate if score_holder < std_local_times
-$execute \
-    if score \
-    $(score_holder) $(score_objective) < $std_local_times $(score_objective) \
+# reiterate if score_holder < times
+$execute if score \
+    $(score_holder) $(score_objective) < $times $(score_objective) \
     run \
-    function core_std:repeat/iterate with storage std:temp repeat_params
+    function core_std:repeat/iterate with storage std:temp repeat
