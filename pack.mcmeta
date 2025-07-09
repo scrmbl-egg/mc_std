@@ -1,7 +1,6 @@
 {
     "pack": {
-        "pack_format": 57,
-        "supported_formats": [48, 57],
+        "pack_format": 80,
         "description": "A library of standard functions and abstractions for Minecraft datapacks."
     }
 }
