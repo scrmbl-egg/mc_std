@@ -13,7 +13,7 @@
 #       Score holder.
 #   times: int @ 0..
 #       Amount of times the command will be executed.
-#   command: #[command(empty="allowed",max_length=32500)] string
+#   command: #[command(max_length=32500)] string
 #       Command executed each iteration.
 
 $scoreboard objectives add $(score_objective) dummy
@@ -25,7 +25,7 @@ $data modify storage std:temp repeat set value { \
 }
 
 $scoreboard players set $(score_holder) $(score_objective) 0
-$scoreboard players set $times $(score_objective) $(times)
+$scoreboard players set __$std_times $(score_objective) $(times)
 
 # NOTE: "execute if/unless entity" detects whether or not an entity is running
 # this command. This is so that, if there's no entity running this command, the

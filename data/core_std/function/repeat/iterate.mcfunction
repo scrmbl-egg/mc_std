@@ -10,7 +10,7 @@
 
 # run command
 $execute if score \
-    $(score_holder) $(score_objective) < $times $(score_objective) \
+    $(score_holder) $(score_objective) < __$std_times $(score_objective) \
     run \
     $(command)
 
@@ -19,6 +19,6 @@ $scoreboard players add $(score_holder) $(score_objective) 1
 
 # reiterate if score_holder < times
 $execute if score \
-    $(score_holder) $(score_objective) < $times $(score_objective) \
+    $(score_holder) $(score_objective) < __$std_times $(score_objective) \
     run \
     function core_std:repeat/iterate with storage std:temp repeat
