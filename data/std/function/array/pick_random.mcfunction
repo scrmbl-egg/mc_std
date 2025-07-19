@@ -11,7 +11,7 @@
 #       Storage NBT path where the array or list is stored.
 #   out_storage: #[id="storage"] string
 #       Storage where the result will be stored.
-#   out_nbt: #[nbt_path=minecraft:storage[[out_storage]]]
+#   out_nbt: #[nbt_path=minecraft:storage[[out_storage]]] string
 #       Storage NBT path where the result will be stored.
 # @writes
 #   A random element from the passed array into the specified location.
