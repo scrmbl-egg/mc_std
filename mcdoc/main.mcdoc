@@ -38,8 +38,13 @@ type McFloatingType<T> = struct {
 
 /// mc_std's `std:main` storage struct.
 struct MainStorage {
+    /// Global variables of the datapack.
+    vars: struct GlobalVariables {
+        /// Determines whether reload message appears.
+        show_reload_message: boolean,
+    },
     /// Constants of the datapack.
-    consts: struct {
+    consts: struct Constants {
         /// Constants related to the `boolean` (`true` or `false`) Minecraft type.
         "boolean": struct {
             ...McTypeInfo,
