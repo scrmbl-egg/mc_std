@@ -15,7 +15,7 @@
 # @writes
 #   The smallest number in the specified NBT path
 # @returns
-#   Result: 0 if numbers are equal, 1 if `first` is the smallest, 2 if `second`
+#   Result: 0 if numbers are equal, 1 if 'first' is the smallest, 2 if 'second'
 #       is the smallest.
 
 # create local scoreboard

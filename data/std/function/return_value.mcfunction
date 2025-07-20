@@ -2,7 +2,7 @@
 #
 # A function that returns the input value, and removes/deletes all temporary
 # data that the user needs to remove. It is recommended to use this function
-# with the `return run` command syntax.
+# with the 'return run' command syntax.
 #
 # @authors scrmbl-egg
 # @input
@@ -16,7 +16,7 @@
 #       List of entity selectors that will be killed, along with their
 #       passengers.
 # @returns
-#   Result: the number specified in the `value` parameter.
+#   Result: the number specified in the 'value' parameter.
 
 # save arrays
 $data modify storage std:temp return_arrays set value { \

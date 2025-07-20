@@ -5,9 +5,9 @@
 # @authors scrmbl-egg
 # @input
 #   array_storage: #[id="storage"] string
-#       Storage where the alleged array is located.
+#       Storage where the alleged array or list is located.
 #   array_nbt: #[nbt_path=minecraft:storage[[array_storage]]] string
-#       Storage NBT path where the alleged array that is located.
+#       Storage NBT path where the alleged array or list that is located.
 # @returns
 #   Success: if the specified NBT path is an array or list.
 

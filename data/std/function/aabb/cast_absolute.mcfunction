@@ -16,10 +16,10 @@
 #       Command that will be executed when the bounding box detects a specified
 #       entity.
 #   origin: [double] @ 3
-#       Coordinate that defines the origin corner of the axis-aligned bounding
+#       3D coordinate that defines the origin corner of the axis-aligned bounding
 #       box.
 #   end: [double] @ 3
-#       Coordinate that defines the opposite corner to the origin of the
+#       3D coordinate that defines the opposite corner to the origin of the
 #       axis-aligned bounding box.
 
 # create local scoreboard

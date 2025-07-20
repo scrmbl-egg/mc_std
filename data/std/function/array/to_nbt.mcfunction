@@ -16,16 +16,18 @@
 # @authors scrmbl-egg
 # @input
 #   array_storage: #[id="storage"] string
-#       Storage where the array that will be processed is located.
+#       Storage where the array or list that will be processed is located.
 #   array_nbt: #[nbt_path=minecraft:storage[[array_storage]]] string
-#       Storage NBT path where the array that will be processed is located.
+#       Storage NBT path where the array or list that will be processed is
+#       located.
 #   out_storage: #[id="storage"] string
 #       Storage where the result will be stored.
 #   out_nbt: #[nbt_path=minecraft:storage[[out_storage]]] string
 #       Storage NBT path where the result will be stored.
 #   index_prefix: string
 #       Prefix that is going to be applied to the NBT keys that indicate the
-#       original array index. Can be left empty if the keys are
+#       original array index. Can be left empty if the user wants the keys
+#       to be just the index numbers.
 # @writes
 #   The constructed NBT component in the specified location.
 

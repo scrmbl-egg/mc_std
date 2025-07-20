@@ -1,19 +1,21 @@
 #>std:array/foreach
 #
-# Executes a function for each element of an array, binding a custom macro as
-# a parameter for said function.
+# Executes a function for each element of an array or list, binding custom
+# macros as parameters for said function.
 #
 # @authors scrmbl-egg
 # @input
 #   array_storage: #[id="storage"] string
-#       Storage where the array that will be iterated through is located.
-#   array_nbt: #[nbt_path=minecraft:storage[[array_storage]]] string
-#       Storage NBT path where the array that will be iterated through is
+#       Storage where the array or list that will be iterated through is
 #       located.
+#   array_nbt: #[nbt_path=minecraft:storage[[array_storage]]] string
+#       Storage NBT path where the array or list that will be iterated through
+#       is located.
 #   function: #[id="function"] string
-#       Function that is going to be executed for each element of the array.
+#       Function that is going to be executed for each element of the array or
+#       list.
 #   function_storage: (#[id="storage"] string | "std:none")
-#       Function storage that the function will use, see `function_storage_nbt`.
+#       Function storage that the function will use, see 'function_storage_nbt'.
 #   function_storage_nbt: (#[nbt_path=minecraft:storage[[function_storage]]] string | "none")
 #       Function storage NBT path that contains the arguments that will be
 #       passed to the function.

@@ -11,7 +11,7 @@
 #   out_nbt: #[nbt_path=minecraft:storage[[out_storage]]] string
 #       Storage NBT path where the result will be stored.
 # @writes
-    # UUID string at specified storage and path.
+#   UUID string at specified NBT path.
 
 # process params
 $data modify storage std:temp get_uuid set value { \

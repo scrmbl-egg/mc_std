@@ -7,7 +7,7 @@
 # This box is not cast from two points in space, but rather, the center of a
 # position, so when the caller specifies, for example, a Y size (size[1]) of 1,
 # the box will expand 0.5 units above its center, and other 0.5 units under.
-# Due to this implementation it is recommended to NOT use this function in
+# Due to this implementation it is NOT recommended to use this function in
 # isolation, but instead, in an 'execute' command that specifies an entity's
 # or absolute position.
 #
@@ -20,7 +20,7 @@
 #       Command that will be executed when the bounding box detects a specified
 #       entity.
 #   size: [double] @ 3
-#       3D Vector that describes the size of the box.
+#       3D vector that describes the size of the box.
 
 scoreboard objectives add __std.aabb dummy
 scoreboard players set __$std_1 __std.aabb 1000
