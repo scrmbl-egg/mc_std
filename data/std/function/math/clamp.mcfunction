@@ -4,16 +4,16 @@
 #
 # @authors scrmbl-egg
 # @input
-#   out_storage: #[id="storage"] string
-#       Storage where the result will be stored.
-#   out_nbt: #[nbt_path=minecraft:storage[[out_storage]]] string
-#       Storage NBT path where the result will be stored.
 #   value: double
 #       Number to be clamped.
 #   min: double
 #       Minimum value.
 #   max: double
 #       Maximum value.
+#   out_storage: #[id="storage"] string
+#       Storage where the result will be stored.
+#   out_nbt: #[nbt_path=minecraft:storage[[out_storage]]] string
+#       Storage NBT path where the result will be stored.
 # @writes
 #   Clamped number (double) in the specified destination.
 

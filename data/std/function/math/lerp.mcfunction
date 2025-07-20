@@ -6,10 +6,6 @@
 #
 # @authors scrmbl-egg
 # @input
-#   out_storage: #[id="storage"] string
-#       Storage where the result will be stored.
-#   out_nbt: #[nbt_path=minecraft:storage[[out_storage]]] string
-#       Storage NBT path where the result will be stored.
 #   from: double
 #       First value (double) of the interpolation.
 #   to: double
@@ -17,6 +13,10 @@
 #   weight: double
 #       Weight of the interpolation. This number should usually be between 0.0
 #       and 1.0, but it can be out of that range to represent extrapolation.
+#   out_storage: #[id="storage"] string
+#       Storage where the result will be stored.
+#   out_nbt: #[nbt_path=minecraft:storage[[out_storage]]] string
+#       Storage NBT path where the result will be stored.
 # @writes
     # Interpolated value (double) in the specified NBT location
 

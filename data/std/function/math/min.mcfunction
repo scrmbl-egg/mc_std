@@ -5,7 +5,9 @@
 # @authors scrmbl-egg
 # @input
 #   first: double
+#       First number.
 #   second: double
+#       Second number.
 #   out_storage: #[id="storage"] string
 #       Storage where the result will be stored.
 #   out_nbt: #[nbt_path=minecraft:storage[[out_storage]]] string
