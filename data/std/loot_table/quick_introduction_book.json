@@ -1,0 +1,363 @@
+{
+    "pools": [{"rolls": 1,"entries":[{
+        "type": "minecraft:item",
+        "name": "minecraft:written_book",
+        "functions": [{"function": "minecraft:set_components","components": {
+            "minecraft:rarity": "epic",
+            "minecraft:written_book_content": {
+                "author": "scrmbl_egg",
+                "title": "[mc_std]: A Quick Introduction",
+                "generation": 0,
+                "pages": [
+                    [
+                        "",
+                        {
+                            "text": "[mc_std]:\n",
+                            "shadow_color": -16579837,
+                            "color": "dark_aqua",
+                            "bold": true
+                        },
+                        {
+                            "text": "A Quick Introduction\n\n"
+                        },
+                        {
+                            "text": "Chapters:\n\n"
+                        },
+                        "1. ",
+                        {
+                            "text": "What is ",
+                            "shadow_color": 2122686975,
+                            "color": "blue",
+                            "click_event": {
+                                "action": "change_page",
+                                "page": 2
+                            },
+                            "hover_event": {
+                                "action": "show_text",
+                                "value": [
+                                    {"text": "Go to "},
+                                    {"text": "What is mc_std?", "italic": true},
+                                    {"text": " chapter"}
+                                ]
+                            }
+                        },
+                        {
+                            "text": "mc_std",
+                            "shadow_color": 2122686975,
+                            "color": "blue",
+                            "italic": true,
+                            "click_event": {"action": "change_page", "page": 2},
+                            "hover_event": {
+                                "action": "show_text",
+                                "value": [
+                                    {"text": "Go to "},
+                                    {"text": "What is mc_std?", "italic": true},
+                                    {"text": " chapter"}
+                                ]
+                            }
+                        },
+                        {
+                            "text": "?\n\n",
+                            "shadow_color": 2122686975,
+                            "color": "blue",
+                            "click_event": {"action": "change_page", "page": 2},
+                            "hover_event": {
+                                "action": "show_text",
+                                "value": [
+                                    {"text": "Go to "},
+                                    {"text": "What is mc_std?", "italic": true},
+                                    {"text": " chapter"}
+                                ]
+                            }
+                        },
+                        "2. ",
+                        {
+                            "text": "How to use.\n\n",
+                            "shadow_color": 2122686975,
+                            "color": "blue",
+                            "click_event": {"action": "change_page", "page": 3},
+                            "hover_event": {
+                                "action": "show_text",
+                                "value": [
+                                    {"text": "Go to "},
+                                    {"text": "How to use", "italic": true},
+                                    {"text": " chapter"}
+                                ]
+                            }
+                        },
+                        "3. ",
+                        {
+                            "text": "Namespaces.\n\n",
+                            "shadow_color": 2122686975,
+                            "color": "blue",
+                            "click_event": {"action": "change_page", "page": 7},
+                            "hover_event": {
+                                "action": "show_text",
+                                "value": [
+                                    {"text": "Go to "},
+                                    {"text": "Namespaces", "italic": true},
+                                    {"text": " chapter"}
+                                ]
+                            }
+                        },
+                        "4. ",
+                        {
+                            "text": "Function modules.\n\n",
+                            "shadow_color": 2122686975,
+                            "color": "blue",
+                            "click_event": {"action": "change_page", "page": 10},
+                            "hover_event": {
+                                "action": "show_text",
+                                "value": [
+                                    {"text": "Go to "},
+                                    {"text": "Function modules", "italic": true},
+                                    {"text": " chapter"}
+                                ]
+                            }
+                        },
+                        "5. ",
+                        {
+                            "text": "Other.\n",
+                            "shadow_color": 2122686975,
+                            "color": "blue",
+                            "click_event": {"action": "change_page", "page": 16},
+                            "hover_event": {
+                                "action": "show_text",
+                                "value": [
+                                    {"text": "Go to "},
+                                    {"text": "Other", "italic": true},
+                                    {"text": " chapter"}
+                                ]
+                            }
+                        }
+                    ],
+                    [
+                        "",
+                        {"text": "What is ", "bold": true},
+                        {"text": "mc_std", "bold": true, "italic": true},
+                        {"text": "?\n\n", "bold": true},
+                        {"text": "mc_std ", "italic": true},
+                        "is a datapack that provides functions and other ",
+                        "abstractions that are meant to remove overhead from ",
+                        "datapack developers, by providing the ability to ",
+                        "iterate over collections, do mathematical functions, ",
+                        "or check data types."
+                    ],
+                    [
+                        "",
+                        {"text": "How to use.\n\n", "bold": true},
+                        "One of the most important aspects of this datapack, ",
+                        "is that functions that require parameters will ",
+                        {"text": "always", "underlined": true},
+                        " require them via a storage, i.e., the user won't",
+                        "have to use the ",
+                        {"text": "\n/scoreboard", "color": "dark_gray"},
+                        " command, but rather, specify SNBT data when calling",
+                        "the function."
+                    ],
+                    [
+                        "",
+                        "Here is an example of the usual syntax for a function call:\n\n",
+                        {"text": "function\n", "color": "dark_gray"},
+                        {"text": "std:math/clamp ", "color": "blue"},
+                        {
+                            "text": "{\n  min:5,\n  max:10,\n  value:20.222,\n  out_storage:\n    \"custom:storage\",\n  out_nbt:\n    \"clamped_result\"\n}",
+                            "color": "#AAB000"
+                        }
+                    ],
+                    [
+                        "",
+                        "The previous function call would generate the ",
+                        "following data in the ",
+                        {"text": "custom:storage", "color": "dark_purple"},
+                        {"text": " storage:\n\n"},
+                        "{",
+                        {"text": "clamped_result", "color": "dark_aqua"},
+                        ":",
+                        {"text": "10.0", "color": "#DE8500"},
+                        {"text": "d", "color": "dark_red"},
+                        "}\n\n",
+                        "This decision was made to allow for advanced ",
+                        "features, give the user more control, and finally, ",
+                        "remove score objectives the"
+                    ],
+                    [
+                        "",
+                        "user would need to keep track of to make use of the ",
+                        "library's functions.\n\nThe use of this syntax also ",
+                        "means the ",
+                        {"text": "function ... with storage ...", "color": "dark_gray"},
+                        " syntax is allowed as long as the storage contains ",
+                        "the appropriate keys for the function to work."
+                    ],
+                    [
+                        "",
+                        {"text": "Namespaces.\n\n", "bold": true},
+                        {"text": "mc_std", "italic": true},
+                        {"text": " contains 3 namespaces:\n\n"},
+                        "- ",
+                        {"text": "std", "color": "dark_green"},
+                        ": This is the API, i.e. the namespace that contains ",
+                        "the \"public\" and secure functions, predicates, ",
+                        "tags... etc, which the user is meant to use."
+                    ],
+                    [
+                        "",
+                        "- ",
+                        {"text": "docs_std", "color": "dark_green"},
+                        ": This is the documentation namespace, is has the ",
+                        "same structure as the ",
+                        {"text": "std", "color": "dark_green"},
+                        " namespace, but the functions have no parameters, ",
+                        "and just print the documentation of the function in ",
+                        "the chat. The user can add the \"",
+                        {"text": "docs_", "color": "dark_aqua"},
+                        {"text": "\" prefix to any "},
+                        {"text": "std", "color": "dark_green"},
+                        " function name and get its documentation."
+                    ],
+                    [
+                        "",
+                        "- ",
+                        {"text": "core_std", "color": "dark_green"},
+                        ": This is the core namespace, i.e. it contains the ",
+                        "\"private\" and unsafe functions that the public ",
+                        "functions use internally. Since these functions are ",
+                        "not documented and make unsafe macro operations: ",
+                        {"text": "the use of these functions is ", "color": "dark_red"},
+                        {"text": "not encouraged", "color": "dark_red", "underlined": true},
+                        {"text": "!", "color": "dark_red"}
+                    ],
+                    [
+                        "",
+                        {"text": "Function modules.\n\n", "bold": true},
+                        "The ",
+                        {"text": "std", "color": "dark_green"},
+                        " namespace has multiple function modules or ",
+                        "directories, each designed for different purposes, ",
+                        "but before they are explained, here are the root ",
+                        "functions, which are functions with no associated ",
+                        "directory:"
+                    ],
+                    [
+                        "",
+                        "- ",
+                        {"text": "std:empty", "color": "dark_aqua"},
+                        ": Blank function, for functions that need commands ",
+                        "as a parameter, but no operation is desired by the ",
+                        "user.\n\n",
+                        "- ",
+                        {"text": "std:fail", "color": "dark_aqua"},
+                        ": Used for early failure returns. Removes temporary ",
+                        "data and kills temporary entities."
+                    ],
+                    [
+                        "",
+                        "- ",
+                        {"text": "std:return_value", "color": "dark_aqua"},
+                        ": Opposite of ",
+                        {"text": "std:fail", "color": "dark_aqua"},
+                        ". Returns an integer value, removes temporary data ",
+                        "and kills temporary entities.\n\n",
+                        "- ",
+                        {"text": "std:repeat", "color": "dark_aqua"},
+                        ": Function that repeats a specific command a specified number of times."
+                    ],
+                    [
+                        "",
+                        "Now, here's a quick overview of the function modules ",
+                        "of the ",
+                        {"text": "std", "color": "dark_green"},
+                        " namespace:\n\n",
+                        "- ",
+                        {"text": "aabb/", "color": "dark_aqua"},
+                        ": Functions for casting axis-aligned bounding boxes ",
+                        "for precise collision detection.\n\n",
+                        "- ",
+                        {"text": "array/", "color": "dark_aqua"},
+                        ": Functions that operate with arrays or lists,"
+                    ],
+                    [
+                        "",
+                        "which includes the ",
+                        {"text": "std:array/foreach", "color": "dark_aqua"},
+                        " function for (recursively) iterating over arrays or ",
+                        "lists.\n\n",
+                        "- ",
+                        {"text": "assert/", "color": "dark_aqua"},
+                        ": Functions that check the type of a storage NBT ",
+                        "path or location.\n\n",
+                        "- ",
+                        {"text": "entity/", "color": "dark_aqua"},
+                        ": Useful functions for entities."
+                    ],
+                    [
+                        "",
+                        "- ",
+                        {"text": "math/", "color": "dark_aqua"},
+                        { "text": ": Mathematical functions.\n\n"},
+                        "- ",
+                        {"text": "string/", "color": "dark_aqua"},
+                        ": Functions for handling or generating strings."
+                    ],
+                    [
+                        "",
+                        {"text": "Other.\n\n", "bold": true},
+                        "Apart from functions, the ",
+                        {"text": "std", "color": "dark_green"},
+                        " namespace also includes predicates and tags.\n\n",
+                        "The available predicates consist of basic checks, ",
+                        "like weather, lighting, input, or player state checks."
+                    ],
+                    [
+                        "",
+                        "Lastly, the block and entity tags include empty ",
+                        "tags, or tags that aren't covered by the vanilla/",
+                        {"text": "minecraft", "color": "dark_green"},
+                        " namespace."
+                    ],
+                    [
+                        "",
+                        {"text": "THE END\n\n", "bold": true},
+                        "Thank you for using the ",
+                        {"text": "mc_std", "italic": true},
+                        {"text": " datapack!\n\n"},
+                        {"text": "♥ ♥ ♥ ♥ ♥\n\n", "shadow_color": 848694284, "color": "dark_red"},
+                        "Remember that you can visit the ",
+                        {
+                            "text": "WIKI",
+                            "shadow_color": 845807726,
+                            "color": "dark_purple",
+                            "underlined": true,
+                            "hover_event": {
+                                "action": "show_text",
+                                "value": "Go to the GitHub wiki page"
+                            },
+                            "click_event": {
+                                "action": "open_url",
+                                "url": "https://github.com/scrmbl-egg/mc_std/wiki"
+                            }
+                        },
+                        " or the ",
+                        {
+                            "text": "ISSUES",
+                            "shadow_color": 855572480,
+                            "color": "red",
+                            "underlined": true,
+                            "hover_event": {
+                                "action": "show_text",
+                                "value": "Go to the Github issues page"
+                            },
+                            "click_event": {
+                                "action": "open_url",
+                                "url": "https://github.com/scrmbl-egg/mc_std/issues"
+                            }
+                        },
+                        " page if you wish to find the full documentation or ",
+                        "report bugs or missing features."
+                    ]
+                ]}
+            }
+        }]
+    }]}]
+}

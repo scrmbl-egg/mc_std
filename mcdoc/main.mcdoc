@@ -1,0 +1,75 @@
+/// General type information struct.
+struct McTypeInfo {
+    /// Name of the type.
+    name: string,
+    /// Size in bits of the type.
+    bits: int @ 1..,
+    /// Size in bytes of the type.
+    bytes: int @ 1..
+}
+
+/// Struct type for integer data type constants.
+type McIntegerType<T> = struct {
+    ...McTypeInfo,
+    /// Minimum value.
+    min: T,
+    /// Maximum value.
+    max: T
+}
+
+/// Struct type for floating-point data type constants.
+type McFloatingType<T> = struct {
+    ...McTypeInfo,
+    /// Minimum value.
+    min: T,
+    /// Maximum value.
+    max: T,
+    /// Smallest non-zero value.
+    epsilon: T,
+    /// Ratio of a circle's circumference to its diameter.
+    pi: T,
+    /// Ratio of a circle's circumference to its radius (`pi` * 2).
+    tau: T,
+    /// Golden ratio.
+    phi: T,
+    /// Base of the natural logarithm, and exponential function.
+    euler: T
+}
+
+/// mc_std's `std:main` storage struct.
+struct MainStorage {
+    /// Global variables of the datapack.
+    vars: struct GlobalVariables {
+        /// Determines whether reload message appears.
+        show_reload_message: boolean,
+    },
+    /// Constants of the datapack.
+    consts: struct Constants {
+        /// Constants related to the `boolean` (`true` or `false`) Minecraft type.
+        "boolean": struct {
+            ...McTypeInfo,
+            /// `true`/`1b`.
+            true_value: boolean,
+            /// `false`/`0b`.
+            false_value: boolean,
+            /// `true` as string.
+            true_string: "true",
+            /// `false` as string.
+            false_string: "false",
+        },
+        /// Constants related to the `byte` (8 bit signed integer) Minecraft type.
+        "byte": McIntegerType<byte>,
+        /// Constants related to the `short` (16 bit signed integer) Minecraft type.
+        "short": McIntegerType<short>,
+        /// Constants related to the `int` (32 bit signed integer) Minecraft type.
+        "int": McIntegerType<int>,
+        /// Constants related to the `long` (64 bit signed integer) Minecraft type.
+        "long": McIntegerType<long>,
+        /// Constants related to the `float` (32 bit floating-point number) Minecraft type.
+        "float": McFloatingType<float>,
+        /// Constants related to the `double` (64 bit floating-point number) Minecraft type.
+        "double": McFloatingType<double>
+    }
+}
+
+dispatch minecraft:storage[std:main] to MainStorage

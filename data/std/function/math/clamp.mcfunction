@@ -1,57 +1,78 @@
 #>std:math/clamp
+#
 # Clamps a 'value' between a minimum and a maximum value.
 #
 # @authors scrmbl-egg
-# @params
-    # result_st     -- Storage where the result will be stored.
-    # result_path   -- NBT path where the result will be stored.
-    # value         -- Number to be clamped.
-    # min           -- Minimum value.
-    # max           -- Maximum value.
-# @generates
-    # Clamped number (double) in the specified location.
+# @input
+#   value: double
+#       Number to be clamped.
+#   min: double
+#       Minimum value.
+#   max: double
+#       Maximum value.
+#   out_storage: #[id="storage"] string
+#       Storage where the result will be stored.
+#   out_nbt: #[nbt_path=minecraft:storage[[out_storage]]] string
+#       Storage NBT path where the result will be stored.
+# @writes
+#   Clamped number (double) in the specified destination.
 
 # create local score
-scoreboard objectives add std_local_clamp dummy
+scoreboard objectives add __std.clamp dummy
 
 # store params
-$data modify storage minecraft:std local_clamp_op.value set value $(value)
-$data modify storage minecraft:std local_clamp_op.min set value $(min)
-$data modify storage minecraft:std local_clamp_op.max set value $(max)
+$data modify storage std:temp clamp.value set value $(value)
+$data modify storage std:temp clamp.min set value $(min)
+$data modify storage std:temp clamp.max set value $(max)
 
 # get data as scores
-execute \
-    store result score $value std_local_clamp \
-    run data get storage minecraft:std local_clamp_op.value 10000
-execute \
-    store result score $min std_local_clamp \
-    run data get storage minecraft:std local_clamp_op.min 10000
-execute \
-    store result score $max std_local_clamp \
-    run data get storage minecraft:std local_clamp_op.max 10000
+execute store result score __$std_value __std.clamp \
+    run data get storage std:temp clamp.value 10000
+execute store result score __$std_min __std.clamp \
+    run data get storage std:temp clamp.min 10000
+execute store result score __$std_max __std.clamp \
+    run data get storage std:temp clamp.max 10000
 
 # assert that min isn't greater than max. if that's the case, abort function
 # and free data
-$execute \
-    if score $min std_local_clamp > $max std_local_clamp \
+execute if score __$std_min __std.clamp > __$std_max __std.clamp \
+    run \
+    function core_std:error/print { \
+        function:"std:math/clamp", \
+        text:{ \
+            translate:"", \
+            fallback:"'min' parameter can't be greater than the 'max' parameter ('min'=%1$s,'max'=%2$s).", \
+            with:[ \
+                {storage:"std:temp",nbt:"clamp.min"}, \
+                {storage:"std:temp",nbt:"clamp.max"}, \
+            ], \
+        }, \
+    }
+execute if score __$std_min __std.clamp > __$std_max __std.clamp \
     run \
     return run \
-    function core_std:math/clamp/error/fail_params_assertion \
-    {min:$(min),max:$(max)}
+    function std:fail { \
+        score_objectives:["__std.clamp"], \
+        nbt_paths:[ \
+            {storage:"std:temp",nbt:"clamp"}, \
+        ], \
+        entity_selectors:[], \
+    }
 
 # set result storage, change values later if necessary
-$data modify storage $(result_st) $(result_path) set value $(value)
+$data modify storage $(out_storage) $(out_nbt) \
+    set value $(value)
 
 # less than minimum case
-$execute \
-    if score $min std_local_clamp > $value std_local_clamp \
-    run data modify storage $(result_st) $(result_path) set value $(min)
+$execute if score __$std_min __std.clamp > __$std_value __std.clamp \
+    run data modify storage $(out_storage) $(out_nbt) \
+    set value $(min)
 
 # greater than maximum case
-$execute \
-    if score $max std_local_clamp < $value std_local_clamp \
-    run data modify storage $(result_st) $(result_path) set value $(max)
+$execute if score __$std_max __std.clamp < __$std_value __std.clamp \
+    run data modify storage $(out_storage) $(out_nbt) \
+    set value $(max)
 
 # free memory
-scoreboard objectives remove std_local_clamp
-data remove storage minecraft:std local_clamp_op
+scoreboard objectives remove __std.clamp
+data remove storage std:temp clamp
