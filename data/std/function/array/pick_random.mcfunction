@@ -51,11 +51,11 @@ $execute store result score __$std_arr_size __std.pick_random \
     data get storage $(array_storage) $(array_nbt)
 
 # store random value, limit from 0 to arr_size (exclusive)
-execute store result score $random_index __std.pick_random \
+execute store result score __$std_random_index __std.pick_random \
     run \
     random value 0..2147483646
 scoreboard players operation \
-    $random_index __std.pick_random %= __$std_arr_size __std.pick_random
+    __$std_random_index __std.pick_random %= __$std_arr_size __std.pick_random
 
 # set function params
 $data modify storage std:temp get_element set value { \
@@ -65,7 +65,7 @@ $data modify storage std:temp get_element set value { \
     out_nbt:'$(out_nbt)', \
 }
 execute store result storage std:temp get_element.source_path int 1 \
-    run scoreboard players get $random_index __std.pick_random
+    run scoreboard players get __$std_random_index __std.pick_random
 
 #>_
 # @in
@@ -87,7 +87,7 @@ data modify storage std:temp return_index set value { \
     entity_selectors:[], \
 }
 execute store result storage std:temp return_index.value int 1 \
-    run scoreboard players get $random_index __std.pick_random
+    run scoreboard players get __$std_random_index __std.pick_random
 
 # return index of the obtained
 #>_

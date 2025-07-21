@@ -14,8 +14,8 @@
 # add local scoreboard
 scoreboard objectives add __std.assert dummy
 
-# set $is_string as 0 at first for later
-scoreboard players set $is_string __std.assert 0
+# set __$std_is_string as 0 at first for later
+scoreboard players set __$std_is_string __std.assert 0
 
 # save input
 data modify storage std:temp assert.string_container set value [{}]
@@ -65,13 +65,13 @@ function core_std:assert/is_string/build_string_query \
 function core_std:array/get_element_unsafe \
     with storage std:temp assert.get_element_params
 
-# set $is_string to 1 if the output address contains data
+# set __$std_is_string to 1 if the output address contains data
 execute if data storage std:temp assert.obtained_string \
     run \
-    scoreboard players set $is_string __std.assert 1
+    scoreboard players set __$std_is_string __std.assert 1
 
 # fail if no data was detected
-execute if score $is_string __std.assert matches 0 \
+execute if score __$std_is_string __std.assert matches 0 \
     run \
     return run \
     function core_std:assert/fail
