@@ -4,7 +4,7 @@ tellraw @a [ \
     {text:"[mc_std]: ",bold:true,color:"#3ad8cb"}, \
     {text:"std:fail",color:"green"}, \
     "\n\n", \
-    "A function that always fails, and removes/deletes all temporary data  ", \
+    "A function that always fails, and removes/deletes all temporary data ", \
     "that the user needs to remove.", \
     "\n\n", \
     "Parameters:", \

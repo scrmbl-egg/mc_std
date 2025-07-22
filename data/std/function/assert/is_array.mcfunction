@@ -28,12 +28,12 @@ execute if score __$std_can_be_copied __std.assert matches 0 \
 
 # try to append a number (it must be a number so it can be appended in both
 # arrays and NBT lists)
-execute store success score $can_append __std.assert \
+execute store success score __$std_can_append __std.assert \
     run \
     data modify storage std:temp assert.data_cpy append value 1
 
 # if can't append, run std:fail
-execute if score $can_append __std.assert matches 0 \
+execute if score __$std_can_append __std.assert matches 0 \
     run \
     return run \
     function core_std:assert/fail

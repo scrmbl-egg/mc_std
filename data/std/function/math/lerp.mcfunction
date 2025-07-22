@@ -30,9 +30,11 @@ scoreboard objectives add __std.lerp dummy
 scoreboard players set __$std_scale __std.lerp 1000
 
 # save parameters so they can be scaled later
-$data modify storage std:temp lerp.a set value $(from)
-$data modify storage std:temp lerp.b set value $(to)
-$data modify storage std:temp lerp.t set value $(weight)
+$data modify storage std:temp lerp set value { \
+    a:$(from), \
+    b:$(to), \
+    t:$(weight), \
+}
 
 # get data as scores
 execute \
@@ -57,10 +59,9 @@ scoreboard players operation __$std_b __std.lerp /= __$std_scale __std.lerp
 scoreboard players operation __$std_a __std.lerp += __$std_b __std.lerp
 
 # store a (scale back)
-$xecute store result storage \
-    $(out_storage) $(out_nbt) \
-    double 0.001 \
-    run scoreboard players get __$std_a __std.lerp
+$execute store result storage $(out_storage) $(out_nbt) double 0.001 \
+    run \
+    scoreboard players get __$std_a __std.lerp
 
 # free memory
 scoreboard objectives remove __std.lerp
