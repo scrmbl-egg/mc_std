@@ -21,9 +21,11 @@
 scoreboard objectives add __std.clamp dummy
 
 # store params
-$data modify storage std:temp clamp.value set value $(value)
-$data modify storage std:temp clamp.min set value $(min)
-$data modify storage std:temp clamp.max set value $(max)
+$data modify storage std:temp clamp set value { \
+    value:$(value), \
+    min:$(min), \
+    max:$(max), \
+}
 
 # get data as scores
 execute store result score __$std_value __std.clamp \
