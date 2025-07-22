@@ -149,10 +149,10 @@
                         "One of the most important aspects of this datapack, ",
                         "is that functions that require parameters will ",
                         {"text": "always", "underlined": true},
-                        " require them via a storage, i.e., the user won't",
+                        " require them via a storage, i.e. the user won't ",
                         "have to use the ",
                         {"text": "\n/scoreboard", "color": "dark_gray"},
-                        " command, but rather, specify SNBT data when calling",
+                        " command, but rather, specify SNBT data when calling ",
                         "the function."
                     ],
                     [
@@ -275,11 +275,11 @@
                         "for precise collision detection.\n\n",
                         "- ",
                         {"text": "array/", "color": "dark_aqua"},
-                        ": Functions that operate with arrays or lists,"
+                        ": Functions that operate with arrays or lists."
                     ],
                     [
                         "",
-                        "which includes the ",
+                        "Includes the ",
                         {"text": "std:array/foreach", "color": "dark_aqua"},
                         " function for (recursively) iterating over arrays or ",
                         "lists.\n\n",
