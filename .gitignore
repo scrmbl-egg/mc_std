@@ -4,3 +4,4 @@
 # ignore test and experimental directories
 **/test/*
 **/experimental/*
+**/mario_tests/*
