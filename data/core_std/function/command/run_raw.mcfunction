@@ -1,6 +1,6 @@
-#>core_std:run_command/run_raw
+#>core_std:command/run_raw
 #
-# Runs a successfully parsed command.
+# Runs a successfully parsed command macro.
 #
 # @authors scrmbl-egg
 # @input
