@@ -14,6 +14,8 @@
 #       Storage where the command that will be executed is located.
 #   command_nbt: #[nbt_path=minecraft:storage[[command_storage]]] string
 #       Storage NBT path where the command that will be executed is located.
+# @returns
+#   Result: same as the specified command.
 
 # fail function if infinite recursion is attempted
 $execute if data storage std:temp run_command_from_nbt.last_location{\
@@ -47,9 +49,21 @@ $data modify storage std:temp run_command_from_nbt.last_location set value { \
 $data modify storage std:temp run_command_from_nbt.run_params.command \
     set from storage $(command_storage) $(command_nbt)
 
+# setup return_value parameters
+data modify storage std:temp run_command_from_nbt.return set value { \
+    score_objectives:[], \
+    nbt_paths:[{storage:"std:temp",nbt:"run_command_from_nbt"}], \
+    entity_selectors:[], \
+}
+
 # run command
-function core_std:command/run_raw \
+execute store result storage std:temp run_command_from_nbt.return.value \
+    int 1 \
+    run \
+    function core_std:command/run_raw \
     with storage std:temp run_command_from_nbt.run_params
 
-# free memory
-data remove storage std:temp run_command_from_nbt
+return \
+    run \
+    function std:return_value with storage std:temp run_command_from_nbt.return
+# this function frees leftover data

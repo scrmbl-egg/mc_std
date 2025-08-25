@@ -11,10 +11,9 @@
 # @returns
 #   Result: same as the specified function.
 
-
 # get function name
 $data modify storage std:temp func_call.function \
-    set from $(function_storage) $(function_nbt)
+    set from storage $(function_storage) $(function_nbt)
 
 # setup previous return_value parameters
 data modify storage std:temp func_call.return set value { \
@@ -28,6 +27,7 @@ execute store result storage std:temp func_call.return.value int 1 \
     run \
     function std:function/call with storage std:temp func_call
 
-
-function std:return_value with storage std:temp func_call.return
+return \
+    run \
+    function std:return_value with storage std:temp func_call.return
 # this function frees leftover data

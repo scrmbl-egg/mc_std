@@ -6,5 +6,7 @@
 # @input
 #   command: #[command(max_length=32500)]
 #       Command that will be run.
+# @returns
+#   Result: same as the specified command.
 
-$$(command)
+$return run $(command)

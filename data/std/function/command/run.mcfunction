@@ -12,6 +12,8 @@
 # @input
 #   command: #[command(max_length=32500)] string
 #       Command string that is going to be executed.
+# @returns
+#   Result: same as the specified command.
 
 # pass command to run raw function
-$function core_std:command/run_raw {command:'$(command)'}
+$return run function core_std:command/run_raw {command:'$(command)'}
