@@ -56,8 +56,11 @@ temporary entities.
 Now, here's a quick overview of the function modules of the `std` namespace:
 - `aabb/`: Functions for casting axis-aligned bounding boxes for precise collision detection.
 - `array/`: Functions that operate with arrays or lists, includes the `std:array/foreach` function for
+iterating over collections.
 - `assert/`: Functions that check the type of a storage NBT path or location.
+- `command/`: Functions for running commands dynamically.
 - `entity/`: Useful functions for entities.
+- `function/`: Functions for running other functions dynamically.
 - `math/`: Mathematical functions.
 - `string/`: Functions for handling or generating strings.
 
