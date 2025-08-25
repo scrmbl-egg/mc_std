@@ -2,7 +2,7 @@
 #
 # @authors scrmbl-egg
 # @input
-#   selector: #[entity] #[selector] string
+#   entity_selector: #[entity] #[selector] string
 #   origin_x: double
 #   origin_y: double
 #   origin_z: double
@@ -20,7 +20,7 @@
 # do 2 intersecting volume checks if __$std_do_intersection score is 1
 $execute if score __$std_do_intersection __std.aabb matches 1 \
     positioned $(origin_x) $(origin_y) $(origin_z) \
-    as $(selector) \
+    as $(entity_selector) \
     if entity @s[dx=$(dx),dy=$(dy),dz=$(dz)] \
     positioned ~-0.999 ~-0.999 ~-0.999 \
     if entity @s[dx=$(dx),dy=$(dy),dz=$(dz)] \
@@ -30,7 +30,7 @@ $execute if score __$std_do_intersection __std.aabb matches 1 \
 # if do_intersection score is 0, do a simple volume check
 $execute if score __$std_do_intersection __std.aabb matches 0 \
     positioned $(origin_x) $(origin_y) $(origin_z) \
-    as $(selector) \
+    as $(entity_selector) \
     if entity @s[dx=$(dx),dy=$(dy),dz=$(dz)] \
     run \
     $(on_detection_command)

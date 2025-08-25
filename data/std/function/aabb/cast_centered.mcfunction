@@ -27,7 +27,7 @@ scoreboard players set __$std_1 __std.aabb 1000
 
 # save params
 $data modify storage std:temp aabb set value { \
-    entity_selector:'$(selector)', \
+    entity_selector:'$(entity_selector)', \
     size:$(size), \
     on_detection_command:'$(on_detection_command)', \
 }

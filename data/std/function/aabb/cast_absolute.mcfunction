@@ -35,7 +35,7 @@ $data modify storage std:temp aabb set value { \
         out_nbt:"aabb.abs", \
     }, \
     check_params: { \
-        selector:'$(entity_selector)', \
+        entity_selector:'$(entity_selector)', \
         on_detection_command:'$(on_detection_command)', \
     }, \
 }

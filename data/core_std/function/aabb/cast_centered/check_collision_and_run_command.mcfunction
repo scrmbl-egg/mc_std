@@ -2,7 +2,7 @@
 #
 # @authors scrmbl-egg
 # @input
-#   selector: #[entity] #[selector] string
+#   entity_selector: #[entity] #[selector] string
 #   origin_offset_x: double
 #   origin_offset_y: double
 #   origin_offset_z: double
@@ -20,17 +20,35 @@
 # do 2 intersecting volume checks if __$std_do_intersection score is 1
 $execute if score __$std_do_intersection __std.aabb matches 1 \
     positioned ~$(origin_offset_x) ~$(origin_offset_y) ~$(origin_offset_z) \
-    as $(selector) \
+    as $(entity_selector) \
     if entity @s[dx=$(dx),dy=$(dy),dz=$(dz)] \
     positioned ~-0.999 ~-0.999 ~-0.999 \
     if entity @s[dx=$(dx),dy=$(dy),dz=$(dz)] \
     run \
     $(on_detection_command)
+#$execute if score __$std_do_intersection __std.aabb matches 1 \
+    positioned ~$(origin_offset_x) ~$(origin_offset_y) ~$(origin_offset_z) \
+    as $(entity_selector) \
+    if entity @s[dx=$(dx),dy=$(dy),dz=$(dz)] \
+    positioned ~-0.999 ~-0.999 ~-0.999 \
+    if entity @s[dx=$(dx),dy=$(dy),dz=$(dz)] \
+    run \
+    function hipochallenge:msg/debug/send_info { \
+        text:"AABB_SUCCESS_INTERSECTION", \
+    }
 
 # if do_intersection score is 0, do a simple volume check
 $execute if score __$std_do_intersection __std.aabb matches 0 \
     positioned ~$(origin_offset_x) ~$(origin_offset_y) ~$(origin_offset_z) \
-    as $(selector) \
+    as $(entity_selector) \
     if entity @s[dx=$(dx),dy=$(dy),dz=$(dz)] \
     run \
     $(on_detection_command)
+#$execute if score __$std_do_intersection __std.aabb matches 0 \
+    positioned ~$(origin_offset_x) ~$(origin_offset_y) ~$(origin_offset_z) \
+    as $(entity_selector) \
+    if entity @s[dx=$(dx),dy=$(dy),dz=$(dz)] \
+    run \
+    function hipochallenge:msg/debug/send_info { \
+        text:"\"AABB_SUCCESS_NO_INTERSECTION dx:$(dx) dy:$(dy) dz:$(dz)\"", \
+    }
