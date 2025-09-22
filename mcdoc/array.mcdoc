@@ -1,0 +1,29 @@
+struct ForeachParameters {
+    array_storage: #[id="storage"] string,
+    array_nbt: #[nbt_path=minecraft:storage[[array_storage]]] string,
+    function: #[id="function"] string,
+    function_storage: (#[id="storage"] string | "std:none"),
+    function_storage_nbt: (#[nbt_path=minecraft:storage[[function_storage]]] string | "none"),
+    element_macro: #[match_regex=""] string,
+    index_macro: #[match_regex=""] string,
+}
+
+//#   array_storage: #[id="storage"] string
+//#       Storage where the array or list that will be iterated through is
+//#       located.
+//#   array_nbt: #[nbt_path=minecraft:storage[[array_storage]]] string
+//#       Storage NBT path where the array or list that will be iterated through
+//#       is located.
+//#   function: #[id="function"] string
+//#       Function that is going to be executed for each element of the array or
+//#       list.
+//#   function_storage: (#[id="storage"] string | "std:none")
+//#       Function storage that the function will use, see 'function_storage_nbt'.
+//#   function_storage_nbt: (#[nbt_path=minecraft:storage[[function_storage]]] string | "none")
+//#       Function storage NBT path that contains the arguments that will be
+//#       passed to the function.
+//#   element_macro: string
+//#       Name of the function macro that will represent the current element.
+//#   index_macro: string
+//#       Name of the function macro that will represent the current iteration
+//#       index.
