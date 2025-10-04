@@ -1,4 +1,4 @@
-#>core_std:memory/free_score_objective
+#>core_std:fail/free_score_objective
 #
 # Removes a specific score objective.
 #

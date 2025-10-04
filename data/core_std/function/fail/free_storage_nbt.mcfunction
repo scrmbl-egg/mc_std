@@ -1,4 +1,4 @@
-#>core_std:memory/free_storage_nbt
+#>core_std:fail/free_storage_nbt
 #
 # Removes the data from an NBT path.
 #

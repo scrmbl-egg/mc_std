@@ -1,4 +1,4 @@
-#>core_std:memory/free_data
+#>core_std:fail/free_data
 #
 # Processes a single data location for removal.
 #
