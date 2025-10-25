@@ -5,6 +5,7 @@
 # "-111_222_-333_-444", this is useful when using tags with macros.
 #
 # @authors scrmbl-egg, MARO-445
+# @context entity
 # @input
 #   out_storage: #[id="storage"] string
 #       Storage where the result will be stored.
