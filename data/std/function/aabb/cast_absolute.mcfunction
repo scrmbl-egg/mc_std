@@ -95,7 +95,7 @@ execute if score __$std_end_z __std.aabb > __$std_1 __std.aabb \
     scoreboard players add __$std_greater_than_1_components __std.aabb 1
 
 # if all components (3) are greater than 1, subtract 1 from all and set
-# 'local_do_intersection' to false, otherwise, set it to true
+# '__$std_do_intersection' to false, otherwise, set it to true
 
 # remove 1.0 from dx, dy & dz scores
 execute if score __$std_greater_than_1_components __std.aabb matches 3 \
