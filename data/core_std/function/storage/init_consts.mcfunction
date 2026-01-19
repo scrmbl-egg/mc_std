@@ -27,6 +27,7 @@ data modify storage std:main consts.byte set value { \
     bytes:1, \
     min:-128b, \
     max:127b, \
+    array_type_indicator:"B", \
 }
 
 # short (signed 16 bit number)
@@ -45,6 +46,7 @@ data modify storage std:main consts.int set value { \
     bytes:4, \
     min:-2147483648, \
     max:2147483647, \
+    array_type_indicator:"I", \
 }
 
 # long (signed 64 bit number)
@@ -54,6 +56,7 @@ data modify storage std:main consts.long set value { \
     bytes:8, \
     min:-9223372036854775808l, \
     max:9223372036854775807l, \
+    array_type_indicator:"L", \
 }
 
 # float (single precision floating point number, 32 bits)
