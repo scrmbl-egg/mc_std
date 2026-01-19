@@ -61,7 +61,7 @@ data modify storage std:main consts.float set value { \
     name:"float", \
     bits:32, \
     bytes:4, \
-    min:-3.4e-38f, \
+    min:-3.4e+38f, \
     max:3.4e+38f, \
     epsilon:1.401298e-45f, \
     pi:3.1415926535897931f, \
