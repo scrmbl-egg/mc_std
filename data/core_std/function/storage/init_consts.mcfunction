@@ -11,7 +11,7 @@ data remove storage std:main consts
 
 # boolean (true or false, byte with just 1b or 0b)
 data modify storage std:main consts.boolean set value { \
-    name: "boolean", \
+    name:"boolean", \
     bits:8, \
     bytes:1, \
     true_value:true, \
