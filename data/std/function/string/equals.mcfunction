@@ -12,33 +12,32 @@
 #   Result: 1 if the two strings are equal, 0 if not.
 
 # save parameters
-$data modify storage std:temp compare set value { \
-    first:'$(first)', \
-    second:'$(second)', \
+$data modify storage std:temp strcmp set value { \
+    compare:{ \
+        first:'$(first)', \
+        second:'$(second)', \
+    }, \
 }
 
 # attempt to copy data with a match
-$data modify storage std:temp compare_cpy \
-    set from storage std:temp compare{ \
+$data modify storage std:temp strcmp.compare_cpy \
+    set from storage std:temp strcmp.compare{ \
         first:'$(first)', \
         second:'$(first)' \
     }
 
-# if no data could be copied, fail function
-execute unless data storage std:temp compare_cpy \
+# if no data could be copied, fail
+execute unless data storage std:temp strcmp.compare_cpy \
     run \
     return run \
-    function std:fail { \
-        score_objectives:[], \
-        nbt_paths:[ \
-            {storage:"std:temp",nbt:"compare"}, \
-        ], \
-        entity_selectors:[], \
+    function core_std:util/free_data_and_return { \
+        value:0, \
+        storage:"std:temp", \
+        nbt:"strcmp", \
     }
 
 # otherwise, free data normally
-data remove storage std:temp compare
-data remove storage std:temp compare_cpy
+data remove storage std:temp strcmp
 
 # return 1 (success)
 return 1
