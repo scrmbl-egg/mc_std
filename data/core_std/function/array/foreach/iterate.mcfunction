@@ -11,8 +11,8 @@
 #   storage_cpy: any
 
 # turn current iteration index into data for next step
-execute store result storage \
-    std:temp foreach.current_index int 1 \
+execute store result storage std:temp foreach.current_index \
+    int 1 \
     run \
     scoreboard players get __$std_current_iter_index __std.foreach
 
@@ -55,7 +55,7 @@ function core_std:array/foreach/run_function_with_element \
 scoreboard players add __$std_current_iter_index __std.foreach 1
 
 # reiterate if current iteration index is less than the array size
-execute \
-    if score __$std_current_iter_index __std.foreach < __$std_arr_size __std.foreach \
+execute if score \
+    __$std_current_iter_index __std.foreach < __$std_arr_size __std.foreach \
     run \
     function core_std:array/foreach/iterate with storage std:temp foreach
