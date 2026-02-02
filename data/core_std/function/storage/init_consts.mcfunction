@@ -78,9 +78,9 @@ data modify storage std:main consts.double set value { \
     name:"double", \
     bits:64, \
     bytes:8, \
-    min:-1.7e+308, \
-    max:1.7e+308, \
     epsilon:4.94065645841247e-324d, \
+    min:-1.7e+308d, \
+    max:1.7e+308d, \
     pi:3.1415926535897931d, \
     tau:6.2831853071795864d, \
     phi:1.618033988749894d, \
