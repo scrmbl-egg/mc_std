@@ -65,14 +65,21 @@ $data modify storage std:temp foreach.arr \
 $data modify storage std:temp foreach.storage_cpy \
     set from storage $(function_storage) $(function_storage_nbt)
 
-# init current index to 0
-scoreboard players set __$std_current_iter_index __std.foreach 0
-
 # save array size in __$std_arr_size scoreholder
 execute store result score __$std_arr_size __std.foreach \
     run \
     data get storage std:temp foreach.arr
 
+# if array is empty, don't iterate at all
+execute if score __$std_arr_size __std.foreach matches 0 \
+    run \
+    return run \
+    function core_std:array/foreach/fail_on_empty_array
+
+# init current index to 0
+scoreboard players set __$std_current_iter_index __std.foreach 0
+
+## RECURSION REGION
 # execute recursive function
 #
 # "execute if/unless entity" detects whether or not an entity is running
