@@ -66,7 +66,8 @@ data modify storage std:main consts.float set value { \
     bytes:4, \
     min:-3.4e+38f, \
     max:3.4e+38f, \
-    epsilon:1.401298e-45f, \
+    positive_epsilon:1.401298e-45f, \
+    negative_epsilon:-1.401298e-45f, \
     pi:3.1415926535897931f, \
     tau:6.2831853071795864f, \
     phi:1.618033988749894f, \
@@ -78,9 +79,10 @@ data modify storage std:main consts.double set value { \
     name:"double", \
     bits:64, \
     bytes:8, \
-    epsilon:4.94065645841247e-324d, \
     min:-1.7e+308d, \
     max:1.7e+308d, \
+    positive_epsilon:4.94065645841247e-324d, \
+    negative_epsilon:-4.94065645841247e-324d, \
     pi:3.1415926535897931d, \
     tau:6.2831853071795864d, \
     phi:1.618033988749894d, \

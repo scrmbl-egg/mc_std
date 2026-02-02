@@ -31,8 +31,10 @@ type McFloatingType<T> = struct {
     min: T,
     /// Maximum value.
     max: T,
-    /// Smallest non-zero value.
-    epsilon: T,
+    /// Smallest positive non-zero value.
+    positive_epsilon: T,
+    /// Smallest negative non-zero value.
+    negative_epsilon: T,
     /// Ratio of a circle's circumference to its diameter.
     pi: T,
     /// Ratio of a circle's circumference to its radius (`pi` * 2).
