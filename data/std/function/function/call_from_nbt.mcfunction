@@ -6,7 +6,7 @@
 # @input
 #   function_storage: #[id="storage"] string
 #       Storage where the function name or tag is stored.
-#   function_nbt: #[nbt_path=minecraft:storage[[out_storage]]] string
+#   function_nbt: #[nbt_path=minecraft:storage[[function_storage]]] string
 #       Storage NBT path where the function name or tag is stored.
 # @returns
 #   Result: same as the specified function.
@@ -17,17 +17,18 @@ $data modify storage std:temp func_call.function \
 
 # setup previous return_value parameters
 data modify storage std:temp func_call.return set value { \
-    score_objectives:[], \
-    nbt_paths:[{storage:"std:temp",nbt:"func_call"}], \
-    entity_selectors:[], \
+    value:0, \
+    storage:"std:temp", \
+    nbt:"func_call", \
 }
 
 # call function
-execute store result storage std:temp func_call.return.value int 1 \
+execute store result storage std:temp func_call.return.value \
+    int 1 \
     run \
     function std:function/call with storage std:temp func_call
 
-return \
-    run \
-    function std:return_value with storage std:temp func_call.return
+return run \
+    function core_std:util/free_data_and_return \
+    with storage std:temp func_call.return
 # this function frees leftover data
