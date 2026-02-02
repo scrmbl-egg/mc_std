@@ -24,7 +24,7 @@
 #       Command which the ray will run when it makes a step.
 
 # create local scoreboard
-scoreboard objectives add __std.RayCast dummy
+scoreboard objectives add __std.raycast dummy
 
 # try get executing entity UUID
 data modify storage std:temp raycast.owner_uuid set from entity @s UUID
@@ -52,14 +52,19 @@ execute if data storage std:temp raycast.owner_uuid \
     run \
     data modify entity @s data."std:ray".owner_uuid \
     set from storage std:temp raycast.owner_uuid
+# delete later (just in case)
+data remove storage std:temp raycast.owner_uuid
 
 
 # TODO: make raycast step
-function core_std:ray/cast/take_step
+execute as @n[type=minecraft:marker,tag=std.CurrentRayCast] \
+    at @s \
+    run \
+    function core_std:ray/cast/take_step
 
 # kill marker
 kill @n[type=minecraft:marker,tag=std.CurrentRayCast]
 
 # free memory
 data remove storage std:temp raycast
-scoreboard objectives remove __std.RayCast
+scoreboard objectives remove __std.raycast
