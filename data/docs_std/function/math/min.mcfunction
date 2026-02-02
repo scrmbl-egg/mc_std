@@ -35,5 +35,5 @@ tellraw @a [ \
     "Returns:", \
     "\n", \
     {text:"Result: ",color:"gold"}, \
-    "0 if the numbers are equal, 1 if 'first' is the smallest, 2 if 'second is the smallest.'", \
+    "0 if the numbers are equal, 1 if 'first' is the smallest, 2 if 'second' is the smallest.", \
 ]

@@ -35,5 +35,5 @@ tellraw @a [ \
     "Returns:", \
     "\n", \
     {text:"Result: ",color:"gold"}, \
-    "0 if the numbers are equal, 1 if 'first' is the biggest, 2 if 'second is the biggest.'", \
+    "0 if the numbers are equal, 1 if 'first' is the biggest, 2 if 'second' is the biggest.", \
 ]
