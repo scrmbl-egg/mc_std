@@ -1,4 +1,4 @@
-use ::mc_std::mcdoc::aabb::AabbCastCenteredParameters
+use super::aabb::AabbCastCenteredParameters
 
 dispatch mcdoc:custom_data[std:ray] to struct RayMarkerData {
     /// UUID of the entity that cast the ray.
