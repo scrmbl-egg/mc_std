@@ -31,39 +31,38 @@
 # @writes
 #   The constructed NBT component in the specified location.
 
-# create local scoreboard
-scoreboard objectives add __std.to_nbt dummy
+# setup data
+$data modify storage std:temp to_nbt set value { \
+    is_array:false, \
+    foreach_function_storage:{ \
+        array_storage:"$(array_storage)", \
+        array_nbt:"$(array_nbt)", \
+        out_storage:"$(out_storage)", \
+        out_nbt:"$(out_nbt)", \
+        index_prefix:"$(index_prefix)", \
+    }, \
+}
 
 # assert nbt_path is an array or list
-$execute store success score __$std_is_array __std.to_nbt \
+$execute store result storage std:temp to_nbt.is_array \
+    byte 1 \
     run \
     function std:assert/is_array { \
         array_storage:'$(array_storage)', \
         array_nbt:'$(array_nbt)', \
     }
 
-$execute if score __$std_is_array __std.to_nbt matches 0 \
+# print error and return NOTHING if it's not an array
+$execute if data storage std:temp to_nbt{is_array:false} \
     run \
     function core_std:error/print { \
         function:"std:array/to_nbt", \
         text:"\"Path '$(array_nbt)' in storage '$(array_storage)' doesn't contain an array or list.\"", \
     }
-
-execute if score __$std_is_array __std.to_nbt matches 0 \
+execute if data storage std:temp to_nbt{is_array:false} \
     run \
     return run \
-    function std:fail { \
-        score_objectives:["__std.to_nbt"], \
-        nbt_paths:[], \
-        entity_selectors:[], \
-    }
-
-# save foreach function storage (with array storage and nbt context)
-$data modify storage std:temp to_nbt.array_storage set value '$(array_storage)'
-$data modify storage std:temp to_nbt.array_nbt set value '$(array_nbt)'
-$data modify storage std:temp to_nbt.out_storage set value '$(out_storage)'
-$data modify storage std:temp to_nbt.out_nbt set value '$(out_nbt)'
-$data modify storage std:temp to_nbt.index_prefix set value '$(index_prefix)'
+    data remove storage std:temp to_nbt
 
 # for each element, add to
 $function std:array/foreach { \
@@ -71,11 +70,10 @@ $function std:array/foreach { \
     array_nbt:'$(array_nbt)', \
     function:"core_std:array/to_nbt/turn_index_into_nbt_key", \
     function_storage:"std:temp", \
-    function_storage_nbt:"to_nbt", \
+    function_storage_nbt:"to_nbt.foreach_function_storage", \
     element_macro:"element", \
     index_macro:"index", \
 }
 
 # free memory
-scoreboard objectives remove __std.to_nbt
 data remove storage std:temp to_nbt

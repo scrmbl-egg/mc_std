@@ -1,7 +1,7 @@
 #>std:array/pick_random
 #
-# Picks a random element from a passed array and stores it in the specified
-# destination.
+# Picks a random element from a passed array or list and stores it in the
+# specified destination.
 #
 # @authors scrmbl-egg
 # @input
@@ -18,81 +18,92 @@
 # @returns
 #   Result: index of the element that was randomly picked.
 
-# create local scoreboard
-scoreboard objectives add __std.pick_random dummy
+# setup data
+$data modify storage std:temp pick_random set value { \
+    is_array:false, \
+    get_element_unsafe_args:{ \
+        array_storage:'$(array_storage)', \
+        array_nbt:'$(array_nbt)', \
+        out_storage:'$(out_storage)', \
+        out_nbt:'$(out_nbt)', \
+        source_path:0, \
+    }, \
+    success_free_data_and_return_args:{ \
+        value:0, \
+        storage:"std:temp", \
+        nbt:"pick_random", \
+    }, \
+}
 
-# assert nbt_path is array
-$execute store success score __$std_is_array __std.pick_random \
+## assert nbt_path is array
+$execute store result storage std:temp pick_random.is_array \
+    byte 1 \
     run \
     function std:assert/is_array { \
         array_storage:'$(array_storage)', \
         array_nbt:'$(array_nbt)', \
     }
 
-# print error message and fail if assertion fails
-$execute if score __$std_is_array __std.pick_random matches 0 \
+# print error message and return NOTHING if function fails
+$execute if data storage std:temp pick_random{is_array:false} \
     run \
     function core_std:error/print { \
         function:"std:array/pick_random", \
         text:{text:"Path '$(array_nbt)' in storage '$(array_storage)' doesn't contain an array or list."}, \
     }
-execute if score __$std_is_array __std.pick_random matches 0 \
+execute if data storage std:temp pick_random{is_array:false} \
     run \
     return run \
-    function std:fail { \
-        score_objectives:["__std.pick_random"], \
-        nbt_paths:[], \
-        entity_selectors:[], \
-    }
+    data remove storage std:temp pick_random
+
+## if it's array...
+# create local scoreboard
+scoreboard objectives add __std.pick_random dummy
 
 # store array size
 $execute store result score __$std_arr_size __std.pick_random \
     run \
     data get storage $(array_storage) $(array_nbt)
 
-# store random value, limit from 0 to arr_size (exclusive)
+# store random value, limit from 0 to arr_size (exclusive) and store in
+# `get_element_unsafe.source_path` and
+# `success_free_data_and_return_args.value`.
 execute store result score __$std_random_index __std.pick_random \
     run \
     random value 0..2147483646
 scoreboard players operation \
     __$std_random_index __std.pick_random %= __$std_arr_size __std.pick_random
-
-# set function params
-$data modify storage std:temp get_element set value { \
-    array_storage:'$(array_storage)', \
-    array_nbt:'$(array_nbt)', \
-    out_storage:'$(out_storage)', \
-    out_nbt:'$(out_nbt)', \
-}
-execute store result storage std:temp get_element.source_path int 1 \
-    run scoreboard players get __$std_random_index __std.pick_random
+execute store result storage \
+    std:temp pick_random.get_element_unsafe_args.source_path \
+    int 1 \
+    run \
+    scoreboard players get __$std_random_index __std.pick_random
+execute store result storage \
+    std:temp pick_random.success_free_data_and_return_args.value \
+    int 1 \
+    run \
+    scoreboard players get __$std_random_index __std.pick_random
 
 #>_
 # @in
-#   get_element
+#   pick_random.get_element_unsafe_args
 #       array_storage
 #       array_nbt
 #       out_storage
 #       out_nbt
 #       source_path
-function core_std:array/get_element_unsafe with storage std:temp get_element
+function std:array/get_element_unsafe \
+    with storage std:temp pick_random.get_element_unsafe_args
 
-# set return parameters
-data modify storage std:temp return_index set value { \
-    score_objectives:["__std.pick_random"], \
-    nbt_paths:[ \
-        {storage:"std:temp",nbt:"get_element"}, \
-        {storage:"std:temp",nbt:"return_index"}, \
-    ], \
-    entity_selectors:[], \
-}
-execute store result storage std:temp return_index.value int 1 \
-    run scoreboard players get __$std_random_index __std.pick_random
+# free scoreboard
+scoreboard objectives remove __std.pick_random
 
-# return index of the obtained
 #>_
 # @in
-#   get_element
-#       index
-return run function std:return_value with storage std:temp return_index
+#   pick_random.get_element_unsafe_args
+#       value
+#       storage
+#       nbt
+return run function core_std:util/free_data_and_return \
+    with storage std:temp pick_random.success_free_data_and_return_args
 # this function frees leftover data

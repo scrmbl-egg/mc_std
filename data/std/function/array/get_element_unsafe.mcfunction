@@ -1,12 +1,14 @@
-#>core_std:array/get_element_unsafe
+#>std:array/get_element_unsafe
+#
+# Gets an element of an array or list WITHOUT VALIDATION. Wrong inputs will
+# fail silently -- USE CAREFULLY.
 #
 # @authors scrmbl-egg
 # @input
 #   array_storage: #[id="storage"] string
-#       Storage where the array that will be iterated through is located.
+#       Storage where the array or list is located.
 #   array_nbt: #[nbt_path=minecraft:storage[[array_storage]]] string
-#       Storage NBT path where the array that will be iterated through is
-#       located.
+#       Storage NBT path where the array or list is located.
 #   out_storage: #[id="storage"] string
 #       Storage where the result will be stored.
 #   out_nbt: #[nbt_path=minecraft:storage[[out_storage]]] string

@@ -11,14 +11,20 @@
 # @writes
 #   Specified key and value into the specified NBT path.
 
-$execute store success score __$std_is_key_data_string __std.to_nbt \
+# setup data
+data modify storage std:temp index_to_nbt_key set value { \
+    is_value_string:false, \
+}
+
+$execute store result storage std:temp index_to_nbt_key.is_value_string \
+    byte 1 \
     run \
     function std:assert/is_string { \
         string_storage:'$(array_storage)', \
         string_nbt:'$(array_nbt)[$(index)]', \
     }
 
-$execute if score __$std_is_key_data_string __std.to_nbt matches 0 \
+$execute if data storage std:temp index_to_nbt_key{is_value_string:false} \
     run \
     function core_std:array/to_nbt/set_value { \
         out_storage:'$(out_storage)', \
@@ -26,10 +32,13 @@ $execute if score __$std_is_key_data_string __std.to_nbt matches 0 \
         value:'$(element)', \
     }
 
-$execute if score __$std_is_key_data_string __std.to_nbt matches 1 \
+$execute if data storage std:temp index_to_nbt_key{is_value_string:true} \
     run \
     function core_std:array/to_nbt/set_value { \
         out_storage:'$(out_storage)', \
         out_nbt:'$(out_nbt).$(index_prefix)$(index)', \
         value:'\'$(element)\'', \
     }
+
+# free memory
+data remove storage std:temp index_to_nbt_key

@@ -1,26 +1,11 @@
-#>docs_std:array/get_element
+#>docs_std:array/get_element_unsafe
 tellraw @a [ \
     "", \
     {text:"[mc_std]: ",bold:true,color:"#3ad8cb"}, \
-    {text:"std:array/get_element",color:"green"}, \
+    {text:"std:array/get_element_unsafe",color:"green"}, \
     "\n\n", \
-    "Gets an element of an array or list. This function does checks to ", \
-    "ensure the passed data location is an array and also returns a result ", \
-    "if an error occurs. If you're completely sure there's an array or list", \
-    "at the specified location, see ", \
-    { \
-        text:"std:array/get_element_unsafe", \
-        color:"green", \
-        click_event:{ \
-            action:"run_command", \
-            command:"function docs_std:array/get_element_unsafe", \
-        }, \
-        hover_event:{ \
-            action:"show_text", \
-            value:"See docs.", \
-        }, \
-    }, \
-    ".", \
+    "Gets an element of an array or list WITHOUT VALIDATION. Wrong inputs ", \
+    "will fail silently. USE CAREFULLY.", \
     "\n\n", \
     "Parameters:", \
     "\n", \
@@ -53,9 +38,4 @@ tellraw @a [ \
     "Writes:", \
     "\n", \
     "Array or list element at specified destination.", \
-    "\n\n", \
-    "Returns:", \
-    "\n", \
-    {text:"Result: ",color:"gold"}, \
-    "1 if element is retrieved, 0 if there was a failure.", \
 ]

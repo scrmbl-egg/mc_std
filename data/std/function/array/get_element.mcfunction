@@ -1,6 +1,9 @@
 #>std:array/get_element
 #
-# Gets an element of an array or list.
+# Gets an element of an array or list. This function does checks to ensure
+# the passed data location is an array and also returns a result if an error
+# occurs. If you're completely sure there's an array or list at the specified
+# location, see `std:array/get_element_unsafe`.
 #
 # @authors scrmbl-egg
 # @input
@@ -17,12 +20,16 @@
 #       the array or list index.
 # @writes
 #   Array or list element at specified destination.
+# @returns
+#   Result: 1 if element is retrieved, 0 if there was a failure.
 
-# create local scoreboard
-scoreboard objectives add __std.get_element dummy
+data modify storage std:temp get_element set value { \
+    is_array:false, \
+}
 
 # assert nbt_path is an array or list
-$execute store success score __$std_is_array __std.get_element \
+$execute store result storage std:temp get_element.is_array \
+    byte 1 \
     run \
     function std:assert/is_array { \
         array_storage:'$(array_storage)', \
@@ -30,26 +37,26 @@ $execute store success score __$std_is_array __std.get_element \
     }
 
 # print error message if assertion fails
-$execute if score __$std_is_array __std.get_element matches 0 \
+$execute if data storage std:temp get_element{is_array:true} \
     run \
     function core_std:error/print { \
         function:"std:array/get_element", \
         text:{text:"Path '$(array_nbt)' in storage '$(array_storage)' doesn't contain an array or list."}, \
     }
-execute if score __$std_is_array __std.get_element matches 0 \
+execute if data storage std:temp get_element{is_array:true} \
     run \
     return run \
-    function std:fail { \
-        score_objectives:["__std.get_element"], \
-        nbt_paths:[], \
-        entity_selectors:[], \
+    function core_std:util/free_data_and_return { \
+        value:0, \
+        storage:"std:temp", \
+        nbt:"get_element", \
     }
 
 $data modify storage $(out_storage) $(out_nbt) \
     set from storage $(array_storage) $(array_nbt)[$(source_path)]
 
 # free memory
-scoreboard objectives remove __std.get_element
+data remove storage std:temp get_element
 
 # return 1 for success
 return 1

@@ -1,6 +1,6 @@
 #>std:array/remove_element
 #
-# Removes an element from the array or list
+# Removes an element from the array or list.
 #
 # @input
 #   array_storage: #[id="storage"] string

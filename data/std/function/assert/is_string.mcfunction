@@ -9,7 +9,7 @@
 #   string_nbt: #[nbt_path=minecraft:storage[[string_storage]]] string
 #       Storage NBT path where the alleged string is located.
 # @returns
-#   Success: if the specified NBT path contains a string.
+#   Result: 1 if the specified NBT path contains a string, 0 if not.
 
 # add local scoreboard
 scoreboard objectives add __std.assert dummy
@@ -62,7 +62,7 @@ function core_std:assert/is_string/build_string_query \
 #       out_storage
 #       out_nbt
 #       source_path
-function core_std:array/get_element_unsafe \
+function std:array/get_element_unsafe \
     with storage std:temp assert.get_element_params
 
 # set __$std_is_string to 1 if the output address contains data
