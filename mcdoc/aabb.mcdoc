@@ -1,8 +1,10 @@
 /// Parameters of the `std:aabb/cast_centered` function.
 struct AabbCastCenteredParameters {
-    /// Selector of the entity (or entities) whose collider(s) will trigger the command execution if they are inside the bounding box.
+    /// Selector of the entity (or entities) whose collider(s) will trigger the
+    /// command execution if they are inside the bounding box.
     entity_selector: #[entity] #[selector] string,
-    /// Command that will be executed when the bounding box detects a specified entity.
+    /// Command that will be executed when the bounding box detects a specified
+    /// entity.
     on_detection_command: #[command(max_length=32500)] string,
     /// 3D vector that describes the size of the box.
     size: [double @ 0..] @ 3,
@@ -11,8 +13,10 @@ struct AabbCastCenteredParameters {
 /// Parameters of the `std:aabb/cast_absolute` function.
 struct AabbCastAbsoluteParameters {
     ...AabbCastCenteredParameters,
-    /// 3D vector that describes the coordinate where the origin corner of the box will be.
+    /// 3D vector that describes the coordinate where the origin corner of the
+    /// box will be.
     origin: [double] @ 3,
-    /// 3D vector that describes the coordinate where the end corner of the box will be.
+    /// 3D vector that describes the coordinate where the end corner of the box
+    /// will be.
     end: [double] @ 3,
 }
