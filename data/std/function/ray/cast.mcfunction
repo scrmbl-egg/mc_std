@@ -4,10 +4,12 @@
 #
 # @context specified location and rotation
 # @input
-#   selector: #[entity] #[selector] string
+#   entity_selector: #[entity] #[selector] string
 #       Entity selector which the ray will detect.
 #   aabb_size: [double @ 0..] @ 3
 #       Size of the AABB that will be cast for each step of the ray's path.
+#   step_distance: double @ 0..
+#       Distance the ray will traverse when it makes a single processing step.
 #   max_distance: double @ 0..
 #       Maximum distance the ray can traverse.
 #   collision_mask: #[id="block"] string
@@ -33,8 +35,9 @@ data modify storage std:temp raycast.owner_uuid set from entity @s UUID
 $summon minecraft:marker ~ ~ ~ { \
     data:{ \
         "std:ray":{ \
-            selector:'$(selector)', \
+            entity_selector:'$(entity_selector)', \
             aabb_size:$(aabb_size), \
+            step_distance:$(step_distance), \
             max_distance:$(max_distance), \
             collision_mask:'$(collision_mask)', \
             pierce:$(pierce), \
@@ -60,7 +63,8 @@ data remove storage std:temp raycast.owner_uuid
 execute as @n[type=minecraft:marker,tag=std.CurrentRayCast] \
     at @s \
     run \
-    function core_std:ray/cast/take_step
+    function core_std:ray/cast/take_step \
+    with entity @s data."std:ray"
 
 # kill marker
 kill @n[type=minecraft:marker,tag=std.CurrentRayCast]

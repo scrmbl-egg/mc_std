@@ -15,7 +15,10 @@ struct RayMarkerData {
     /// Size of the AABB that will be cast for each step of the ray's path.
     aabb_size: AabbCastCenteredParameters[size],
 
-    /// Maximum distance the ray can traverse.
+    /// Distance the ray will traverse when it makes a single processing step.
+    step_distance: double @ 0..,
+
+    /// Maximum distance in blocks the ray can traverse.
     max_distance: double @ 0..,
 
     /// Block or block tag which will stop the ray path.
