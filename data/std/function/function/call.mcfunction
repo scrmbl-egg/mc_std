@@ -8,4 +8,49 @@
 # @returns
 #   Result: same as the specified function.
 
-$return run function $(function)
+## NOTE:
+# due to minecraft's 'return' command behavior, we can't simply do the
+# following:
+#
+# $return run function $(function)
+#
+# because if the specified function doesn't return anything, 0 is returned
+# by THIS function, i.e. if you run:
+#
+# `function std:function/call {function:"std:empty"}`
+#
+# despite std:empty not returning anything, the output of std:function/call
+# will be 0. So, the function running and result processing must be separated
+# to get the expected propagation.
+
+data modify storage std:temp call set value { \
+    free_data_and_return_args:{ \
+        storage:"std:temp", \
+        nbt:"call", \
+        value:0, \
+    }, \
+}
+# `return_value` is not specified because it can be null, if it exists, it will
+# be copied in `free_data_and_return_args.value`
+
+# run function and attempt to store result
+$execute store result storage std:temp call.return_value \
+    int 1 \
+    run \
+    function $(function)
+# if a result was caught, copy into freeing function arguments
+execute if data storage std:temp call.return_value \
+    run \
+    data modify storage std:temp call.free_data_and_return_args.value \
+    set from storage std:temp call.return_value
+
+# if a result was caught, run freeing function
+execute if data storage std:temp call.return_value \
+    run \
+    return run \
+    function core_std:util/free_data_and_return \
+    with storage std:temp call.free_data_and_return_args
+# else...
+
+# free memory (and return nothing)
+data remove storage std:temp call
