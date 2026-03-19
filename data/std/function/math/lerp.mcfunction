@@ -1,8 +1,8 @@
 #>std:math/lerp
 #
-# Linearly interpolates between two values by the factor defined in
-# 'weight'. The operation follows this formula:
-# 'lerp(from, to, weight) = from + (to - from) * weight'
+# Linearly interpolates between two values by the factor defined in `weight`.
+# The operation follows this formula:
+# `lerp(from, to, weight) = from + (to - from) * weight`
 #
 # @authors scrmbl-egg
 # @input

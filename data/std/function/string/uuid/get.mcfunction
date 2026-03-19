@@ -2,7 +2,7 @@
 #
 # This function returns an entity's UUID separated by underscores.
 # For example, if the UUID is [I;-111,222,-333,-444], the result is
-# "-111_222_-333_-444", this is useful when using tags with macros.
+# `-111_222_-333_-444`, this is useful when using tags with macros.
 #
 # @authors scrmbl-egg, MARO-445
 # @context entity

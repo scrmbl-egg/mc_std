@@ -16,7 +16,10 @@
 #       list.
 #   function_storage: (#[id="storage"] string | "std:none")
 #       Function storage that the function will use, see 'function_storage_nbt'.
-#   function_storage_nbt: (#[nbt_path=minecraft:storage[[function_storage]]] string | "none")
+#   function_storage_nbt: (
+#           #[nbt_path=minecraft:storage[[function_storage]]] string |
+#           "none" |
+#       )
 #       Function storage NBT path that contains the arguments that will be
 #       passed to the function.
 #   element_macro: string

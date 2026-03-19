@@ -11,7 +11,7 @@
 #   value: (byte | int | short | long | float | double)
 #       Number whose sign is going to be checked.
 # @returns
-#   Result: 0 if 'value' is 0, 1 if 'value' is positive, -1 if 'value' is
+#   Result: 0 if `value` is 0, 1 if `value` is positive, -1 if `value` is
 #       negative.
 
 ## NOTES:
@@ -24,13 +24,13 @@
 # is zero, and if it isn't, then it MUST be positive. That way we cover all
 # possible cases.
 
-# setup data (saving 'value' as a string allows support for i64/long)
+# setup data (saving `value` as a string allows support for i64/long)
 $data modify storage std:temp sign set value { \
     value:"$(value)", \
     first_char:"", \
 }
 
-# get first character of 'value' parameter
+# get first character of `value` parameter
 data modify storage std:temp sign.first_char \
     set string storage std:temp sign.value 0 1
 

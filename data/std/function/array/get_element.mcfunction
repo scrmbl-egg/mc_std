@@ -1,9 +1,9 @@
 #>std:array/get_element
 #
-# Gets an element of an array or list. This function does checks to ensure
-# the passed data location is an array and also returns a result if an error
-# occurs. If you're completely sure there's an array or list at the specified
-# location, see `std:array/get_element_unsafe`.
+# Gets an element of an array or list. This function does checks to ensure the
+# passed data location is an array and also returns a result if an error occurs
+# If you're completely sure there's an array or list at the specified location,
+# see `std:array/get_element_unsafe`.
 #
 # @authors scrmbl-egg
 # @input

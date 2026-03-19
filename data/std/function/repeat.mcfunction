@@ -1,14 +1,14 @@
 #>std:repeat
 #
 # Repeats a command a specified amount of times. The name of a new score
-# objective and a score holder must be specified, so that they can store
-# the iteration count and allow nested loops.
+# objective and a score holder must be specified, so that they can store the
+# iteration count and allow nested loops.
 #
 # @authors scrmbl-egg
 # @input
 #   score_objective: #[objective] string
-#       New score objective where the current iteration will be stored. Will
-#       be removed after operations are completed. Useful for nested loops.
+#       New score objective where the current iteration will be stored. Will be
+#       removed after operations are completed. Useful for nested loops.
 #   score_holder: #[score_holder] string
 #       Score holder.
 #   times: int @ 0..

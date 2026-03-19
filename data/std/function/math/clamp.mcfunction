@@ -1,6 +1,6 @@
 #>std:math/clamp
 #
-# Clamps a 'value' between a minimum and a maximum value.
+# Clamps a `value` between a minimum and a maximum value.
 #
 # @authors scrmbl-egg
 # @input

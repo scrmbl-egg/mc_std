@@ -7,7 +7,12 @@
 # @input
 #   score_objectives: [#[objective] string]
 #       List of score objectives to be deleted.
-#   nbt_paths: [struct {storage: #[id="storage"] string, nbt: #[nbt_path=minecraft:storage[[storage]]] string}]
+#   nbt_paths: [
+#       struct {
+#           storage: #[id="storage"] string,
+#           nbt: #[nbt_path=minecraft:storage[[storage]]] string,
+#       }
+#   ]
 #       List of storage NBT paths to be deleted.
 #   entity_selectors: [#[entity] #[selector] string]
 #       List of entity selectors that will be killed, along with their

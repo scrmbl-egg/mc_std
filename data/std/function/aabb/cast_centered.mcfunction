@@ -5,10 +5,10 @@
 # command specified by the caller.
 #
 # This box is not cast from two points in space, but rather, the center of a
-# position, so when the caller specifies, for example, a Y size (size[1]) of 1,
-# the box will expand 0.5 units above its center, and other 0.5 units under.
-# Due to this implementation it is NOT recommended to use this function in
-# isolation, but instead, in an 'execute' command that specifies an entity's
+# position, so when the caller specifies, for example, a Y size (`size[1]`) of
+# 1, the box will expand 0.5 blocks above its center, and other 0.5 blocks
+# under. Due to this implementation it is NOT recommended to use this function
+# in isolation, but instead, in an `execute` command that specifies an entity's
 # or absolute position.
 #
 # @authors scrmbl-egg
