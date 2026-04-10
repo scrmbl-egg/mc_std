@@ -9,7 +9,7 @@
 #   array_nbt: #[nbt_path=minecraft:storage[[array_storage]]] string
 #       Storage NBT path where the alleged array or list that is located.
 # @returns
-#   Success: if the specified NBT path is an array or list.
+#   Result: 1 if the specified NBT path is an array or list, 0 if not.
 
 # make local scoreboard
 scoreboard objectives add __std.assert dummy
