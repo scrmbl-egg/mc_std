@@ -1,8 +1,8 @@
 {
     "values": [
-        "large_amethyst_bud",
-        "medium_amethyst_bud",
-        "small_amethyst_bud",
-        "amethyst_cluster"
+        "minecraft:large_amethyst_bud",
+        "minecraft:medium_amethyst_bud",
+        "minecraft:small_amethyst_bud",
+        "minecraft:amethyst_cluster"
     ]
 }
