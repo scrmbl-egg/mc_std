@@ -11,6 +11,6 @@
 #   out_nbt: #[nbt_path=minecraft:storage[[out_storage]]] string
 #       Storage NBT path where the result will be stored.
 # @writes
-#   A string in the specified destination.
+#   A string representing the data in the specified destination.
 
 $data modify storage $(out_storage) $(out_nbt) set value '$(data)'
