@@ -18,7 +18,7 @@
 #   out_nbt: #[nbt_path=minecraft:storage[[out_storage]]] string
 #       Storage NBT path where the result will be stored.
 # @writes
-    # Interpolated value (double) in the specified NBT location
+#   Interpolated value (double) in the specified NBT location
 
 # general formula
 # lerp(a, b, t) = a + (b - a) * t
