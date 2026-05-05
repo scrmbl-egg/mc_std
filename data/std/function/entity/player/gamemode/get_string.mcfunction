@@ -3,6 +3,7 @@
 # Returns the player's current game mode as a string.
 #
 # @context player
+# @input
 #   out_storage: #[id="storage"] string
 #       Storage where the result will be stored.
 #   out_nbt: #[nbt_path=minecraft:storage[[out_storage]]] string

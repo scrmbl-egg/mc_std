@@ -3,6 +3,7 @@
 # Sets the player's current gamemode. Accepts both string and integer value
 # as parameter.
 #
+# @context player
 # @input
 #   gamemode: ("survival" | "creative" | "adventure" | "spectator" | int @ 0..3)
 #       Game mode name or integer code.
