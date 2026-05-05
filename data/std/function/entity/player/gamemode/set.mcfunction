@@ -8,6 +8,15 @@
 #   gamemode: ("survival" | "creative" | "adventure" | "spectator" | int @ 0..3)
 #       Game mode name or integer code.
 
+# cancel if a player is not executing this
+execute unless entity @s[type=minecraft:player] \
+    run \
+    return run \
+    function core_std:error/print { \
+        function:"std:entity/player/gamemode/set", \
+        text:{text:"Executing entity is not a player."}, \
+    }
+
 # save parameter
 $data modify storage std:temp set_gamemode set value { \
     gamemode:$(gamemode), \
