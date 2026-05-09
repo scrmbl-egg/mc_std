@@ -1,4 +1,4 @@
-#>core_std:storage/init_consts
+#>core_std:storage/init_vars
 #
 # Initialises all global variables in the datapack/library.
 #
