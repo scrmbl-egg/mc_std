@@ -20,6 +20,11 @@ tellraw @a [ \
     {text:"#[id=\"function\"] string\n",color:"#3ad8cb"}, \
     {text:"└ ",color:"yellow"}, \
     "Function name or tag that will be called.", \
+    "\n", \
+    {text:"args: ",color:"yellow"}, \
+    {text:"any\n",color:"#3ad8cb"}, \
+    {text:"└ ",color:"yellow"}, \
+    "SNBT structure containing the arguments of the function.", \
     "\n\n", \
     "Returns:", \
     "\n", \

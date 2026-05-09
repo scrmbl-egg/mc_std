@@ -8,12 +8,17 @@
 #       Storage where the function name or tag is stored.
 #   function_nbt: #[nbt_path=minecraft:storage[[function_storage]]] string
 #       Storage NBT path where the function name or tag is stored.
+#   args: any
+#       SNBT structure containing the arguments of the function.
 # @returns
 #   Result: same as the specified function.
 
 # setup temp data
-data modify storage std:temp call_nbt set value { \
-    call_args:{function:""}, \
+$data modify storage std:temp call_nbt set value { \
+    call_args:{ \
+        function:"", \
+        args:$(args), \
+    }, \
     free_data_and_return_args:{ \
         storage:"std:temp", \
         nbt:"call_nbt", \
