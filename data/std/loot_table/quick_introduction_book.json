@@ -352,7 +352,7 @@
                                                 "underlined": true,
                                                 "hover_event": {
                                                     "action": "show_text",
-                                                    "value": "Go to the Github issues page"
+                                                    "value": "Go to the GitHub issues page"
                                                 },
                                                 "click_event": {
                                                     "action": "open_url",
