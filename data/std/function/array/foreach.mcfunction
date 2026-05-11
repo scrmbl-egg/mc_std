@@ -42,7 +42,7 @@ $execute store success score __$std_is_array __std.foreach \
 # print error message if assertion fails
 $execute if score __$std_is_array __std.foreach matches 0 \
     run \
-    function core_std:error/print { \
+    function core_std:out/print_error { \
         function:"std:array/foreach", \
         text:{text:"Path '$(array_nbt)' in storage '$(array_storage)' doesn't contain an array or list."}, \
     }

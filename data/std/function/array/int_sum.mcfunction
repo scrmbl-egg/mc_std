@@ -29,7 +29,7 @@ $execute store result score __$std_is_number_array __std.int_sum \
 # if it's not a number array, send error message and fail
 $execute if score __$std_is_number_array __std.int_sum matches 0 \
     run \
-    function core_std:error/print { \
+    function core_std:out/print_error { \
         function:"std:array/int_sum", \
         text:{text:"Path '$(array_nbt)' in storage '$(array_storage)' is not a number array."}, \
     }
@@ -45,7 +45,7 @@ execute if score __$std_is_number_array __std.int_sum matches 0 \
 # if it's a long array, print special error message and fail
 $execute if score __$std_is_number_array __std.int_sum matches 3 \
     run \
-    function core_std:error/print { \
+    function core_std:out/print_error { \
         function:"std:array/int_sum", \
         text:{text:"Path '$(array_nbt)' in storage '$(array_storage)' is a long (64-bit number) array, which is not supported for this function."}, \
     }

@@ -1,4 +1,6 @@
-#>core_std:error/print
+#>core_std:out/print_error
+#
+# Prints an error message in the chat.
 #
 # @authors scrmbl-egg
 # @input

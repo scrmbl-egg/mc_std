@@ -39,7 +39,7 @@ execute store result score __$std_max __std.clamp \
 # and free data
 execute if score __$std_min __std.clamp > __$std_max __std.clamp \
     run \
-    function core_std:error/print { \
+    function core_std:out/print_error { \
         function:"std:math/clamp", \
         text:{ \
             translate:"", \

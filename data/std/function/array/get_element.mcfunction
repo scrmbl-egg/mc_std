@@ -39,7 +39,7 @@ $execute store result storage std:temp get_element.is_array \
 # print error message if assertion fails
 $execute if data storage std:temp get_element{is_array:true} \
     run \
-    function core_std:error/print { \
+    function core_std:out/print_error { \
         function:"std:array/get_element", \
         text:{text:"Path '$(array_nbt)' in storage '$(array_storage)' doesn't contain an array or list."}, \
     }

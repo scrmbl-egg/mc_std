@@ -55,7 +55,7 @@ $execute store result storage std:temp to_nbt.is_array \
 # print error and return NOTHING if it's not an array
 $execute if data storage std:temp to_nbt{is_array:false} \
     run \
-    function core_std:error/print { \
+    function core_std:out/print_error { \
         function:"std:array/to_nbt", \
         text:"\"Path '$(array_nbt)' in storage '$(array_storage)' doesn't contain an array or list.\"", \
     }

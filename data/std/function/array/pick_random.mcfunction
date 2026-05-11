@@ -47,7 +47,7 @@ $execute store result storage std:temp pick_random.is_array \
 # print error message and return NOTHING if function fails
 $execute if data storage std:temp pick_random{is_array:false} \
     run \
-    function core_std:error/print { \
+    function core_std:out/print_error { \
         function:"std:array/pick_random", \
         text:{text:"Path '$(array_nbt)' in storage '$(array_storage)' doesn't contain an array or list."}, \
     }
