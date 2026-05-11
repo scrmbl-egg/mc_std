@@ -286,7 +286,7 @@
                                         [
                                             "",
                                             "Includes the ",
-                                            {"text": "std:array/foreach", "color": "dark_aqua"},
+                                            {"text": "std:array/for_each", "color": "dark_aqua"},
                                             " function for (recursively) iterating over arrays or ",
                                             "lists.\n\n",
                                             "- ",
