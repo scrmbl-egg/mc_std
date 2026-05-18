@@ -36,10 +36,8 @@ $execute if score __$std_is_number_array __std.int_sum matches 0 \
 execute if score __$std_is_number_array __std.int_sum matches 0 \
     run \
     return run \
-    function std:fail { \
-        score_objectives:["__std.int_sum"], \
-        nbt_paths:[], \
-        entity_selectors:[], \
+    function std:scoreboard/remove_objective_and_fail { \
+        objective:"__std.int_sum", \
     }
 
 # if it's a long array, print special error message and fail
@@ -52,19 +50,16 @@ $execute if score __$std_is_number_array __std.int_sum matches 3 \
 execute if score __$std_is_number_array __std.int_sum matches 3 \
     run \
     return run \
-    function std:fail { \
-        score_objectives:["__std.int_sum"], \
-        nbt_paths:[], \
-        entity_selectors:[], \
+    function std:scoreboard/remove_objective_and_fail { \
+        objective:"__std.int_sum", \
     }
 
 # set temp data
 data modify storage std:temp int_sum set value { \
-    return_value_args:{ \
+    remove_data_and_return_value_args:{ \
         value:0, \
-        score_objectives:["__std.int_sum"], \
-        nbt_paths:[{storage:"std:temp",nbt:"int_sum"}], \
-        entity_selectors:[], \
+        storage:"std:temp", \
+        nbt:"int_sum", \
     }, \
 }
 
@@ -73,23 +68,26 @@ scoreboard players set __$std_accum __std.int_sum 0
 scoreboard players set __$std_current __std.int_sum 0
 
 # accumulate
-$function std:array/foreach { \
+$function std:array/for_each { \
     array_storage:"$(array_storage)", \
     array_nbt:"$(array_nbt)", \
     function:"core_std:array/int_sum/accumulate", \
-    function_storage:"std:none", \
-    function_storage_nbt:"none", \
+    context_args:{}, \
     element_macro:"number", \
     index_macro:"__index__", \
 }
 
 # get result in return value function
-execute store result storage std:temp int_sum.return_value_args.value \
+execute store result storage \
+    std:temp int_sum.remove_data_and_return_value_args.value \
     int 1 \
     run \
     scoreboard players get __$std_accum __std.int_sum
 
-# run return_value (frees leftover data)
+# remove scoreboard
+scoreboard objectives remove __std.int_sum
+
+# return value (frees leftover data)
 return run \
-    function std:return_value \
-    with storage std:temp int_sum.return_value_args
+    function std:storage/remove_data_and_return_value \
+    with storage std:temp int_sum.remove_data_and_return_value_args
