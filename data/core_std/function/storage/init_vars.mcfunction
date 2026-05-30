@@ -1,6 +1,6 @@
 #>core_std:storage/init_vars
 #
-# Initialises all global variables in the datapack/library.
+# Initializes all global variables in the datapack/library.
 #
 # @authors scrmbl-egg
 

@@ -1,6 +1,6 @@
 #>core_std:storage/init_consts
 #
-# Initialises all constants in the datapack/library.
+# Initializes all constants in the datapack/library.
 #
 # @authors scrmbl-egg
 
