@@ -44,10 +44,6 @@ execute store result storage std:temp abs.value_sign \
 
 # if sign result is NOT -1 (value is 0 or positive) just set it and return
 # early
-function std:string/slice { \
-    string:"\n", \
-}
-
 $execute unless data storage std:temp abs{value_sign:-1} \
     run \
     data modify storage $(out_storage) $(out_nbt) set value $(value)
