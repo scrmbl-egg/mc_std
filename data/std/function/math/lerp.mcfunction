@@ -7,9 +7,9 @@
 # @authors scrmbl-egg
 # @input
 #   from: double
-#       First value (double) of the interpolation.
+#       First value of the interpolation.
 #   to: double
-#       Second value (double) of the interpolation.
+#       Second value of the interpolation.
 #   weight: double
 #       Weight of the interpolation. This number should usually be between 0.0
 #       and 1.0, but it can be out of that range to represent extrapolation.
@@ -18,51 +18,52 @@
 #   out_nbt: #[nbt_path=minecraft:storage[[out_storage]]] string
 #       Storage NBT path where the result will be stored.
 # @writes
-#   Interpolated value (double) in the specified NBT location
+#   Interpolated value in the specified NBT location.
 
-# general formula
+# formula:
 # lerp(a, b, t) = a + (b - a) * t
 
-# create local score
-scoreboard objectives add __std.lerp dummy
+# guard clause
+execute unless entity 2-0-0-9-deadbeef \
+    run \
+    return run \
+    function core_std:out/print_error/math_entity_not_summoned { \
+        function:"std:math/lerp", \
+    }
 
-# set 1000 constant for later
-scoreboard players set __$std_scale __std.lerp 1000
-
-# save parameters so they can be scaled later
+# set up local data
 $data modify storage std:temp lerp set value { \
-    a:$(from), \
-    b:$(to), \
-    t:$(weight), \
+    formula_args:[ \
+        { \
+            x:$(to), \
+            y:$(from), \
+            out_storage:"std:temp", \
+            out_nbt:"lerp.formula_args[1].x", \
+        }, \
+        { \
+            x:0, \
+            y:$(weight), \
+            out_storage:"std:temp", \
+            out_nbt:"lerp.formula_args[2].y", \
+        }, \
+        { \
+            x:$(from), \
+            y:0, \
+            out_storage:"$(out_storage)", \
+            out_nbt:"$(out_nbt)", \
+        }, \
+    ], \
 }
 
-# get data as scores
-execute \
-    store result score __$std_a __std.lerp \
-    run data get storage std:temp lerp.a 1000
-execute \
-    store result score __$std_b __std.lerp \
-    run data get storage std:temp lerp.b 1000
-execute \
-    store result score __$std_t __std.lerp \
-    run data get storage std:temp lerp.t 1000
-
-# (b - a)
-scoreboard players operation __$std_b __std.lerp -= __$std_a __std.lerp
-
+# b - a
+function std:math/subtract \
+    with storage std:temp lerp.formula_args[0]
 # (b - a) * t
-# multiply by scaled t, then divide by 1000 to simulate decimal multiplication
-scoreboard players operation __$std_b __std.lerp *= __$std_t __std.lerp
-scoreboard players operation __$std_b __std.lerp /= __$std_scale __std.lerp
-
+function std:math/multiply \
+    with storage std:temp lerp.formula_args[1]
 # a + ((b - a) * t)
-scoreboard players operation __$std_a __std.lerp += __$std_b __std.lerp
-
-# store a (scale back)
-$execute store result storage $(out_storage) $(out_nbt) double 0.001 \
-    run \
-    scoreboard players get __$std_a __std.lerp
+function std:math/add \
+    with storage std:temp lerp.formula_args[2]
 
 # free memory
-scoreboard objectives remove __std.lerp
 data remove storage std:temp lerp
