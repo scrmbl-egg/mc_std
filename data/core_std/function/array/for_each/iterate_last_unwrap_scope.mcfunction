@@ -7,11 +7,13 @@
 
 ## bind user macros to the std:function/call arguments
 # empty the args
-data modify storage std:temp for_each_scopes[-1].call_function_args.args \
+data modify storage \
+    std:temp for_each_unwrap_scopes[-1].call_function_args.args \
     set value {}
 # attempt to merge context args
-data modify storage std:temp for_each_scopes[-1].call_function_args.args \
-    merge from storage std:temp for_each_scopes[-1].context_args
+data modify storage \
+    std:temp for_each_unwrap_scopes[-1].call_function_args.args \
+    merge from storage std:temp for_each_unwrap_scopes[-1].context_args
 # bind context args
 data modify storage \
     std:temp for_each_unwrap_scopes[-1].call_function_args.args \
