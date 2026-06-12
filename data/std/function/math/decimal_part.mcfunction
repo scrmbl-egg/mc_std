@@ -4,7 +4,7 @@
 #
 # @authors scrmbl-egg
 # @input
-#   value: double
+#   x: double
 #       Number whose decimal part is going to be extracted.
 #   out_storage: #[id="storage"] string
 #       Storage where the result will be stored.
@@ -46,11 +46,11 @@ scoreboard objectives add __std.dec_part dummy
 
 # setup local data
 $data modify storage std:temp dec_part set value { \
-    original_value:$(value), \
-    abs_value:$(value), \
+    original_value:$(x), \
+    abs_value:$(x), \
     int_part_string:"", \
     abs_args:{ \
-        value:$(value), \
+        value:$(x), \
         out_storage:"std:temp", \
         out_nbt:"dec_part.abs_value", \
     }, \
@@ -113,11 +113,14 @@ $execute if score \
 execute if score \
     __$std_int_strlen __std.dec_part = __$std_value_strlen __std.dec_part \
     run \
+    data remove storage std:temp dec_part
+execute if score \
+    __$std_int_strlen __std.dec_part = __$std_value_strlen __std.dec_part \
+    run \
     return run \
-    function std:fail { \
-        score_objectives:["__std.dec_part"], \
-        nbt_paths:[{storage:"std:temp",nbt:"dec_part"}], \
-        entity_selectors:[], \
+    function std:scoreboard/remove_objective_and_return_value { \
+        value:0, \
+        objective:"__std.dec_part", \
     }
 
 # add 1 to account for separator in slicing
