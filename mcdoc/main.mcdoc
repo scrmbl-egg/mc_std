@@ -3,6 +3,22 @@ dispatch minecraft:storage[std:main] to MainStorage
 
 /// mc_std's `std:main` storage struct.
 struct MainStorage {
+    /// Null location for discarding function outputs. Whatever is stored here
+    /// is bound to be replaced, and eventually, at the end of the tick, be
+    /// removed.
+    ///
+    /// This location is a datapack equivalent of UNIX's `/dev/null` or
+    /// Windows's `nul`.
+    ///
+    /// Example:
+    ///
+    /// ```mcfunction
+    /// # function returns 1 since number has a decimal part, but since we
+    /// # don't want the decimal part itself, we send it to `std:main null`.
+    /// function std:math/decimal_part {x:32.344}
+    /// ```
+    null?: any,
+
     /// Global variables of the datapack.
     vars: struct GlobalVariables {
         /// Determines whether reload message appears.
