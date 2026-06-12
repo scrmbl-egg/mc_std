@@ -15,7 +15,11 @@ struct MainStorage {
     /// ```mcfunction
     /// # function returns 1 since number has a decimal part, but since we
     /// # don't want the decimal part itself, we send it to `std:main null`.
-    /// function std:math/decimal_part {x:32.344}
+    /// function std:math/decimal_part { \
+    ///     x:20.3, \
+    ///     out_storage:"std:main", \
+    ///     out_value:"null", \
+    /// }
     /// ```
     null?: any,
 
