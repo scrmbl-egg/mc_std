@@ -4,7 +4,20 @@ tellraw @a [ \
     {text:"[mc_std]: ",bold:true,color:"#3ad8cb"}, \
     {text:"std:entity/player/gamemode/get_string",color:"green"}, \
     "\n\n", \
-    "Returns the player's current game mode as a string.", \
+    "Returns the player's current game mode as a string. If only the ", \
+    "integer value is wanted, do one of these commands:", \
+    "\n\n", \
+    [ \
+        {text:"data get entity ",color:"gray"}, \
+        {text:"@s ",color:"aqua"}, \
+        {text:"playerGameType",color:"yellow"}, \
+    ], \
+    "\n", \
+    [ \
+        {text:"data get entity ",color:"gray"}, \
+        {text:"@s ",color:"aqua"}, \
+        {text:"previousPlayerGameType",color:"yellow"}, \
+    ], \
     "\n\n", \
     "Parameters:", \
     "\n", \
