@@ -50,7 +50,7 @@ $data modify storage std:temp dec_part set value { \
     abs_value:$(x), \
     int_part_string:"", \
     abs_args:{ \
-        value:$(x), \
+        x:$(x), \
         out_storage:"std:temp", \
         out_nbt:"dec_part.abs_value", \
     }, \

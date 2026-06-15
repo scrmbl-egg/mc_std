@@ -4,7 +4,7 @@
 #
 # @authors scrmbl-egg
 # @input
-#   value: double
+#   x: double
 #       Number whose absolute value is going to be calculated.
 #   out_storage: #[id="storage"] string
 #       Storage where the result will be stored.
@@ -13,17 +13,15 @@
 # @writes
 #   The absolute value in the specified location.
 
-# create local scoreboard
-scoreboard objectives add __std.abs dummy
-
 # setup local data
 $data modify storage std:temp abs set value { \
-    value_sign:0, \
+    x_as_string:"$(x)", \
+    x_sign:0, \
     sign_args:{ \
-        value:$(value), \
+        x:$(x), \
     }, \
     slice_string_args:{ \
-        string:"$(value)", \
+        string:"$(x)", \
         start:1, \
         end:0, \
         out_storage:"std:temp", \
@@ -37,17 +35,17 @@ $data modify storage std:temp abs set value { \
 }
 
 # get sign
-execute store result storage std:temp abs.value_sign \
+execute store result storage std:temp abs.x_sign \
     int 1 \
     run \
     function std:math/sign with storage std:temp abs.sign_args
 
-# if sign result is NOT -1 (value is 0 or positive) just set it and return
+# if sign result is NOT -1 (x is 0 or positive) just set it and return
 # early
-$execute unless data storage std:temp abs{value_sign:-1} \
+$execute unless data storage std:temp abs{x_sign:-1} \
     run \
-    data modify storage $(out_storage) $(out_nbt) set value $(value)
-execute unless data storage std:temp abs{value_sign:-1} \
+    data modify storage $(out_storage) $(out_nbt) set value $(x)
+execute unless data storage std:temp abs{x_sign:-1} \
     run \
     return run \
     data remove storage std:temp abs
