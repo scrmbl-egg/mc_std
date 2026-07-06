@@ -51,8 +51,8 @@ _mc_std_ contains 3 namespaces:
 secure functions, predicates, tags... etc, which the user is meant to use.
 * ✔️ `std.docs`: This is the documentation namespace, it has the same structure
 as the `std` namespace, but the functions have no parameters, and just print the
-documentation of the function in the chat. The user can add the `docs_` prefix
-to any `std` function name and get its documentation.
+documentation of the function in the chat. The user can add the `.docs`
+namespace suffix to any `std` function name and get its documentation.
 * ⚠️ `core_std`: This is the core namespace, i.e. it contains the "private" and
 unsafe functions that the public functions use internally. Since these functions
 are not documented and make unsafe macro operations:
