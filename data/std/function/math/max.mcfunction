@@ -4,9 +4,9 @@
 #
 # @authors scrmbl-egg
 # @input
-#   first: double
+#   x: double
 #       First number.
-#   second: double
+#   y: double
 #       Second number.
 #   out_storage: #[id="storage"] string
 #       Storage where the result will be stored.
@@ -15,66 +15,65 @@
 # @writes
 #   The biggest number in the specified NBT path.
 # @returns
-#   Result: 0 if numbers are equal, 1 if 'first' is the biggest, 2 if 'second'
-#       is the biggest.
+#   Result: 0 if numbers are equal, 1 if 'x' is the biggest, 2 if 'y' is the
+#       biggest.
 
-# create local scoreboard
-scoreboard objectives add __std.max dummy
+## NOTE:
+# Using std:math/sign on (x - y) will tell us which number is greater. If the
+# result of the function is -1, we turn it into a 2. Every other result of the
+# sign function on that number mirrors the expected behavior of this function.
 
-# save parameters
+# set up local data
 $data modify storage std:temp max set value { \
-    first:$(first), \
-    second:$(second), \
+    op_args:[ \
+        { \
+            x:$(x), \
+            y:$(y), \
+            out_storage:"std:temp", \
+            out_nbt:"max.op_args[1].x", \
+        }, \
+        {x:0}, \
+    ], \
+    remove_data_and_return_value_args:{ \
+        value:0, \
+        storage:"std:temp", \
+        nbt:"max", \
+    }, \
 }
 
-# get parameters as scores
-execute store result score __$std_first __std.max \
+# perform subtraction and get sign of result
+function std:math/subtract \
+    with storage std:temp max.op_args[0]
+execute store result storage \
+    std:temp max.remove_data_and_return_value_args.value \
+    int 1 \
     run \
-    data get storage std:temp max.first 1000
-execute store result score __$std_second __std.max \
-    run \
-    data get storage std:temp max.second 1000
+    function std:math/sign \
+    with storage std:temp max.op_args[1]
 
-# output first if first is larger (returns 1)
-$execute if score __$std_first __std.max > __$std_second __std.max \
+# if sign was -1 (meaning y is greater than x), turn the value to 2
+execute if data storage \
+    std:temp max.remove_data_and_return_value_args{value:-1} \
     run \
-    data modify storage $(out_storage) $(out_nbt) \
-    set from storage std:temp max.first
-execute if score __$std_first __std.max > __$std_second __std.max \
-    run \
-    return run \
-    function std:return_value { \
-        value:1, \
-        score_objectives:["__std.max"], \
-        nbt_paths:[{storage:"std:temp",nbt:"max"}], \
-        entity_selectors:[], \
-    }
-# function frees data
+    data modify storage std:temp max.remove_data_and_return_value_args.value \
+    set value 2
 
-# output second if second is larger (returns 2)
-$execute if score __$std_first __std.max < __$std_second __std.max \
+# if return value is 0 or 1 (numbers are equal or first number is greater),
+# set the first number as output.
+$execute if data storage \
+    std:temp max.remove_data_and_return_value_args{value:0} \
     run \
-    data modify storage $(out_storage) $(out_nbt) \
-    set from storage std:temp max.second
-execute if score __$std_first __std.max < __$std_second __std.max \
+    data modify storage $(out_storage) $(out_nbt) set value $(x)
+$execute if data storage \
+    std:temp max.remove_data_and_return_value_args{value:1} \
     run \
-    return run \
-    function std:return_value { \
-        value:2, \
-        score_objectives:["__std.max"], \
-        nbt_paths:[{storage:"std:temp",nbt:"max"}], \
-        entity_selectors:[], \
-    }
-# function frees data
+    data modify storage $(out_storage) $(out_nbt) set value $(x)
+# if second number is greater, output the second number.
+$execute if data storage \
+    std:temp max.remove_data_and_return_value_args{value:2} \
+    run \
+    data modify storage $(out_storage) $(out_nbt) set value $(y)
 
-# output nothing if both are equal (returns 0)
-execute if score __$std_first __std.max = __$std_second __std.max \
-    run \
-    return run \
-    function std:return_value { \
-        value:0, \
-        score_objectives:["__std.max"], \
-        nbt_paths:[{storage:"std:temp",nbt:"max"}], \
-        entity_selectors:[], \
-    }
-# function frees data
+# return from function and return value, freeing memory
+function std:storage/remove_data_and_return_value \
+    with storage std:temp max.remove_data_and_return_value_args
