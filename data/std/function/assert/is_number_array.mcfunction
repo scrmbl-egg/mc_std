@@ -33,10 +33,8 @@ $execute store result score __$std_is_array __std.assert_num_array \
 execute unless score __$std_is_array __std.assert_num_array matches 1 \
     run \
     return run \
-    function std:fail { \
-        score_objectives:["__std.assert_num_array"], \
-        nbt_paths:[], \
-        entity_selectors:[], \
+    function std:scoreboard/remove_objective_and_fail { \
+        objective:"__std.assert_num_array", \
     }
 
 # set up temp data
@@ -67,8 +65,8 @@ execute if data storage std:temp is_number_array{type_char:"B"} \
     return run \
     function std:return_value { \
         value:1, \
-        score_objectives:["__std.assert_num_array"], \
-        nbt_paths:[{storage:"std:temp",nbt:"is_number_array"}], \
+        objectives:["__std.assert_num_array"], \
+        storage_paths:[{storage:"std:temp",nbt:"is_number_array"}], \
         entity_selectors:[], \
     }
 execute if data storage std:temp is_number_array{type_char:"I"} \
@@ -76,8 +74,8 @@ execute if data storage std:temp is_number_array{type_char:"I"} \
     return run \
     function std:return_value { \
         value:2, \
-        score_objectives:["__std.assert_num_array"], \
-        nbt_paths:[{storage:"std:temp",nbt:"is_number_array"}], \
+        objectives:["__std.assert_num_array"], \
+        storage_paths:[{storage:"std:temp",nbt:"is_number_array"}], \
         entity_selectors:[], \
     }
 execute if data storage std:temp is_number_array{type_char:"L"} \
@@ -85,13 +83,11 @@ execute if data storage std:temp is_number_array{type_char:"L"} \
     return run \
     function std:return_value { \
         value:3, \
-        score_objectives:["__std.assert_num_array"], \
-        nbt_paths:[{storage:"std:temp",nbt:"is_number_array"}], \
+        objectives:["__std.assert_num_array"], \
+        storage_paths:[{storage:"std:temp",nbt:"is_number_array"}], \
         entity_selectors:[], \
     }
 
-
 # if nothing happens, free memory and return 0
-scoreboard objectives remove __std.assert_num_array
 data remove storage std:temp is_number_array
 return 0
