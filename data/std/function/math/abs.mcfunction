@@ -63,5 +63,4 @@ function core_std:math/abs/set_result \
     with storage std:temp abs.set_result_args
 
 # free memory
-scoreboard objectives remove __std.abs
 data remove storage std:temp abs
