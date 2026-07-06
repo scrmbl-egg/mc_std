@@ -41,8 +41,8 @@ $execute if data storage std:temp run_command_from_nbt.last_location{\
 
 # set specified location as the current
 $data modify storage std:temp run_command_from_nbt.last_location set value { \
-    storage:'$(command_storage)', \
-    nbt:'$(command_nbt)', \
+    storage:"$(command_storage)", \
+    nbt:"$(command_nbt)", \
 }
 
 # get referenced command
@@ -51,9 +51,9 @@ $data modify storage std:temp run_command_from_nbt.run_params.command \
 
 # setup return_value parameters
 data modify storage std:temp run_command_from_nbt.return set value { \
-    score_objectives:[], \
-    nbt_paths:[{storage:"std:temp",nbt:"run_command_from_nbt"}], \
-    entity_selectors:[], \
+    value:0, \
+    storage:"std:temp", \
+    nbt:"run_command_from_nbt", \
 }
 
 # run command
@@ -63,7 +63,7 @@ execute store result storage std:temp run_command_from_nbt.return.value \
     function core_std:command/run_raw \
     with storage std:temp run_command_from_nbt.run_params
 
-return \
-    run \
-    function std:return_value with storage std:temp run_command_from_nbt.return
+return run \
+    function std:storage/remove_data_and_return_value \
+    with storage std:temp run_command_from_nbt.return
 # this function frees leftover data
