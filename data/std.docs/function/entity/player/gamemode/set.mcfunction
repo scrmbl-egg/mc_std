@@ -1,4 +1,4 @@
-#>docs_std:entity/player/gamemode/set
+#>std.docs:entity/player/gamemode/set
 #
 # Sets the player's current game mode. Accepts both string and integer value
 # as parameter.

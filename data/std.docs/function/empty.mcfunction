@@ -1,4 +1,4 @@
-#>docs_std:empty
+#>std.docs:empty
 tellraw @a [ \
     "", \
     {text:"[mc_std]: ",bold:true,color:"#3ad8cb"}, \

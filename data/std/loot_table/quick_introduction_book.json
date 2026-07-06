@@ -210,7 +210,7 @@
                                         [
                                             "",
                                             "- ",
-                                            {"text": "docs_std", "color": "dark_green"},
+                                            {"text": "std.docs", "color": "dark_green"},
                                             ": This is the documentation namespace, it has the ",
                                             "same structure as the ",
                                             {"text": "std", "color": "dark_green"},

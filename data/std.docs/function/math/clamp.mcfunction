@@ -1,4 +1,4 @@
-#>docs_std:math/clamp
+#>std.docs:math/clamp
 tellraw @a [ \
     "", \
     {text:"[mc_std]: ",bold:true,color:"#3ad8cb"}, \

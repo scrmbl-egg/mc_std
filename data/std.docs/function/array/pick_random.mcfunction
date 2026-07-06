@@ -1,4 +1,4 @@
-#>docs_std:array/pick_random
+#>std.docs:array/pick_random
 tellraw @a [ \
     "", \
     {text:"[mc_std]: ",bold:true,color:"#3ad8cb"}, \

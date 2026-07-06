@@ -1,4 +1,4 @@
-#>docs_std:math/max
+#>std.docs:math/max
 tellraw @a [ \
     "", \
     {text:"[mc_std]: ",bold:true,color:"#3ad8cb"}, \

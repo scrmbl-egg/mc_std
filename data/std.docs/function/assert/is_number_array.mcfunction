@@ -1,4 +1,4 @@
-#>docs_std:assert/is_number_array
+#>std.docs:assert/is_number_array
 #
 # Checks if an NBT path is a number array.
 #

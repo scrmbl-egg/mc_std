@@ -1,4 +1,4 @@
-#>docs_std:array/foreach
+#>std.docs:array/foreach
 #
 # Executes a function for each element of an array or list, binding custom
 # macros as parameters for said function.

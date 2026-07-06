@@ -1,4 +1,4 @@
-#>docs_std:entity/player/get_sneaking_height
+#>std.docs:entity/player/get_sneaking_height
 tellraw @a [ \
     "", \
     {text:"[mc_std]: ",bold:true,color:"#3ad8cb"}, \

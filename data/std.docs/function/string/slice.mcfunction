@@ -1,4 +1,4 @@
-#>docs_std:string/slice
+#>std.docs:string/slice
 #
 # Dynamically slices a string.
 #

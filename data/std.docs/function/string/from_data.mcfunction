@@ -1,4 +1,4 @@
-#>docs_std:string/from_data
+#>std.docs:string/from_data
 tellraw @a [ \
     "", \
     {text:"[mc_std]: ",bold:true,color:"#3ad8cb"}, \

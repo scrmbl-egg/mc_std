@@ -1,4 +1,4 @@
-#>docs_std:aabb/cast_absolute
+#>std.docs:aabb/cast_absolute
 tellraw @a [ \
     "", \
     {text:"[mc_std]: ",bold:true,color:"#3ad8cb"}, \

@@ -1,4 +1,4 @@
-#>docs_std:array/to_nbt
+#>std.docs:array/to_nbt
 tellraw @a [ \
     "", \
     {text:"[mc_std]: ",bold:true,color:"#3ad8cb"}, \

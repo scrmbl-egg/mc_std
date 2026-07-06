@@ -1,4 +1,4 @@
-#>docs_std:entity/player/gamemode/get_string
+#>std.docs:entity/player/gamemode/get_string
 tellraw @a [ \
     "", \
     {text:"[mc_std]: ",bold:true,color:"#3ad8cb"}, \

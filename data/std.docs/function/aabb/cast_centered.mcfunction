@@ -1,4 +1,4 @@
-#>docs_std:aabb/cast_centered
+#>std.docs:aabb/cast_centered
 tellraw @a [ \
     "", \
     {text:"[mc_std]: ",bold:true,color:"#3ad8cb"}, \

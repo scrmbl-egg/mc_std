@@ -1,4 +1,4 @@
-#>docs_std:array/get_element_unsafe
+#>std.docs:array/get_element_unsafe
 tellraw @a [ \
     "", \
     {text:"[mc_std]: ",bold:true,color:"#3ad8cb"}, \

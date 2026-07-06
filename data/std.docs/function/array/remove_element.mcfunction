@@ -1,4 +1,4 @@
-#>docs_std:array/remove_element
+#>std.docs:array/remove_element
 tellraw @a [ \
     "", \
     {text:"[mc_std]: ",bold:true,color:"#3ad8cb"}, \

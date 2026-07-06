@@ -49,7 +49,7 @@ _mc_std_ contains 3 namespaces:
 
 * ✔️ `std`: This is the API, i.e. the namespace that contains the "public" and
 secure functions, predicates, tags... etc, which the user is meant to use.
-* ✔️ `docs_std`: This is the documentation namespace, it has the same structure
+* ✔️ `std.docs`: This is the documentation namespace, it has the same structure
 as the `std` namespace, but the functions have no parameters, and just print the
 documentation of the function in the chat. The user can add the `docs_` prefix
 to any `std` function name and get its documentation.

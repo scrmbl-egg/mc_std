@@ -1,4 +1,4 @@
-#>docs_std:return_value
+#>std.docs:return_value
 #
 # A function that returns the input value, and removes/deletes all temporary
 # data that the user needs to remove. It is recommended to use this function

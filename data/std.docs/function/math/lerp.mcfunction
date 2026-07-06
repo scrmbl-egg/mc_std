@@ -1,4 +1,4 @@
-#>docs_std:math/lerp
+#>std.docs:math/lerp
 tellraw @a [ \
     "", \
     {text:"[mc_std]: ",bold:true,color:"#3ad8cb"}, \

@@ -1,4 +1,4 @@
-#>docs_std:math/min
+#>std.docs:math/min
 tellraw @a [ \
     "", \
     {text:"[mc_std]: ",bold:true,color:"#3ad8cb"}, \

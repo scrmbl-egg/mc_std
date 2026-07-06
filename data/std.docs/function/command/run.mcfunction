@@ -1,4 +1,4 @@
-#>docs_std:command/run
+#>std.docs:command/run
 tellraw @a [ \
     "", \
     {text:"[mc_std]: ",bold:true,color:"#3ad8cb"}, \

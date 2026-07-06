@@ -1,4 +1,4 @@
-#>docs_std:entity/kill_self_and_passengers
+#>std.docs:entity/kill_self_and_passengers
 tellraw @a [ \
     "", \
     {text:"[mc_std]: ",bold:true,color:"#3ad8cb"}, \

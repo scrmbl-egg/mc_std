@@ -1,4 +1,4 @@
-#>docs_std:assert/is_array
+#>std.docs:assert/is_array
 tellraw @a [ \
     "", \
     {text:"[mc_std]: ",bold:true,color:"#3ad8cb"}, \

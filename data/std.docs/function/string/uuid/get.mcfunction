@@ -1,4 +1,4 @@
-#>docs_std:string/uuid/get
+#>std.docs:string/uuid/get
 tellraw @a [ \
     "", \
     {text:"[mc_std]: ",bold:true,color:"#3ad8cb"}, \

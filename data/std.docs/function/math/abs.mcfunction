@@ -1,4 +1,4 @@
-#>docs_std:math/abs
+#>std.docs:math/abs
 tellraw @a [ \
     "", \
     {text:"[mc_std]: ",bold:true,color:"#3ad8cb"}, \

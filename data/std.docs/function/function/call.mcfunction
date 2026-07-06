@@ -1,4 +1,4 @@
-#>docs_std:function/call
+#>std.docs:function/call
 #
 # Calls a function from a name or tag.
 #

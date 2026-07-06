@@ -1,4 +1,4 @@
-#>docs_std:math/decimal_part
+#>std.docs:math/decimal_part
 tellraw @a [ \
     "", \
     {text:"[mc_std]: ",bold:true,color:"#3ad8cb"}, \

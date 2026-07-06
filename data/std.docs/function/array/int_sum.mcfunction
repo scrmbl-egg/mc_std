@@ -1,4 +1,4 @@
-#>docs_std:array/int_sum
+#>std.docs:array/int_sum
 #
 # Sums all elements of an int array.
 #
