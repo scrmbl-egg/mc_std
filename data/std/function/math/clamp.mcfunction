@@ -29,6 +29,13 @@
 # and std:math/sign must return 1 and no other number when using the result of
 # the subtraction as an argument. This way, we ensure min < max
 
+# guard clause
+execute unless entity 2-0-0-9-deadbeef \
+    run \
+    return run \
+    function core_std:out/print_error/math_entity_not_summoned { \
+        function:"std:math/clamp", \
+    }
 
 # set up local data
 $data modify storage std:temp clamp set value { \

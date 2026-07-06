@@ -23,6 +23,14 @@
 # result of the function is -1, we turn it into a 2. Every other result of the
 # sign function on that number mirrors the expected behavior of this function.
 
+# guard clause
+execute unless entity 2-0-0-9-deadbeef \
+    run \
+    return run \
+    function core_std:out/print_error/math_entity_not_summoned { \
+        function:"std:math/min", \
+    }
+
 # set up local data
 $data modify storage std:temp min set value { \
     op_args:[ \
