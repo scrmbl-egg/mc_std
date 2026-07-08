@@ -1,16 +1,18 @@
-#>std:array/to_nbt
+#>std:array/to_compound_nbt
 #
 # Converts an array or list into an NBT component whose keys match the indeces
 # of the original array or list.
 #
 # Examples:
-# [1.]
+#
+# 1.
 # - Array: [L; 22l, 4l, 55l]
-# - std:array/to_nbt {...index_prefix:""}
+# - std:array/to_compound_nbt {...index_prefix:""}
 # - Output: {0:22l,1:4l,2:55l}
-# [2.]
+#
+# 2.
 # - List: ["hello", "beautiful", "world!"]
-# - std:array/to_nbt {...index_prefix:"index_"}
+# - std:array/to_compound_nbt {...index_prefix:"index_"}
 # - Output: {index_0:"hello",index_1:"beautiful",index_2:"world!"}
 #
 # @authors scrmbl-egg
@@ -32,19 +34,26 @@
 #   The constructed NBT component in the specified location.
 
 # setup data
-$data modify storage std:temp to_nbt set value { \
+$data modify storage std:temp to_compound_nbt set value { \
     is_array:false, \
-    foreach_function_storage:{ \
+    for_each_args:{ \
         array_storage:"$(array_storage)", \
         array_nbt:"$(array_nbt)", \
-        out_storage:"$(out_storage)", \
-        out_nbt:"$(out_nbt)", \
-        index_prefix:"$(index_prefix)", \
+        function:"core_std:array/to_compound_nbt/turn_element_into_key_value_pair", \
+        context_args:{ \
+            array_storage:"$(array_storage)", \
+            array_nbt:"$(array_nbt)", \
+            out_storage:"$(out_storage)", \
+            out_nbt:"$(out_nbt)", \
+            index_prefix:"$(index_prefix)", \
+        }, \
+        element_macro:"element", \
+        index_macro:"index", \
     }, \
 }
 
 # assert nbt_path is an array or list
-$execute store result storage std:temp to_nbt.is_array \
+$execute store result storage std:temp to_compound_nbt.is_array \
     byte 1 \
     run \
     function std:assert/is_array { \
@@ -53,27 +62,20 @@ $execute store result storage std:temp to_nbt.is_array \
     }
 
 # print error and return NOTHING if it's not an array
-$execute if data storage std:temp to_nbt{is_array:false} \
+$execute if data storage std:temp to_compound_nbt{is_array:false} \
     run \
     function core_std:out/print_error { \
-        function:"std:array/to_nbt", \
+        function:"std:array/to_compound_nbt", \
         text:"\"Path '$(array_nbt)' in storage '$(array_storage)' doesn't contain an array or list.\"", \
     }
-execute if data storage std:temp to_nbt{is_array:false} \
+execute if data storage std:temp to_compound_nbt{is_array:false} \
     run \
     return run \
-    data remove storage std:temp to_nbt
+    data remove storage std:temp to_compound_nbt
 
-# for each element, add to
-$function std:array/foreach { \
-    array_storage:'$(array_storage)', \
-    array_nbt:'$(array_nbt)', \
-    function:"core_std:array/to_nbt/turn_index_into_nbt_key", \
-    function_storage:"std:temp", \
-    function_storage_nbt:"to_nbt.foreach_function_storage", \
-    element_macro:"element", \
-    index_macro:"index", \
-}
+# conversion loop
+function std:array/for_each \
+    with storage std:temp to_compound_nbt.for_each_args
 
 # free memory
-data remove storage std:temp to_nbt
+data remove storage std:temp to_compound_nbt

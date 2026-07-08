@@ -26,7 +26,7 @@ data modify storage std:temp get_uuid.uuid_1 set from entity @s UUID[1]
 data modify storage std:temp get_uuid.uuid_2 set from entity @s UUID[2]
 data modify storage std:temp get_uuid.uuid_3 set from entity @s UUID[3]
 
-# std:array/to_nbt could be used here, but we leave it this way to remove
+# std:array/to_compound_nbt could be used here, but we leave it this way to remove
 # overhead
 
 # generate string

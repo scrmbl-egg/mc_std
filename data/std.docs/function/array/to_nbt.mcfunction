@@ -2,7 +2,7 @@
 tellraw @a [ \
     "", \
     {text:"[mc_std]: ",bold:true,color:"#3ad8cb"}, \
-    {text:"std:array/to_nbt",color:"green"}, \
+    {text:"std:array/to_compound_nbt",color:"green"}, \
     "\n\n", \
     "Converts an array or list into an NBT component whose keys match the indeces ", \
     "of the original array or list.", \
@@ -11,11 +11,11 @@ tellraw @a [ \
     "\n", \
     "[1.]\n", \
     "- Array: [L; 22l, 4l, 55l]\n", \
-    "- std:array/to_nbt {...index_prefix:\"index_\"}\n", \
+    "- std:array/to_compound_nbt {...index_prefix:\"index_\"}\n", \
     "- Output: {0:22l,1:4l,2:55l}\n\n", \
     "[2.]\n", \
     "- List: [\"hello\", \"beautiful\", \"world!\"]\n", \
-    "- std:array/to_nbt {...index_prefix:\"\"}\n", \
+    "- std:array/to_compound_nbt {...index_prefix:\"\"}\n", \
     "- Output: {index_0:\"hello\",index_1:\"beautiful\",index_2:\"world!\"}", \
     "\n\n", \
     "Parameters:", \
