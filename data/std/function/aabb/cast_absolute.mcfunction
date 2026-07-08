@@ -41,7 +41,7 @@ $data modify storage std:temp aabb set value { \
 }
 
 # get absolute AABB
-function core_std:aabb/abs with storage std:temp aabb.abs_params
+function std.core:aabb/abs with storage std:temp aabb.abs_params
 #>_
 # @out
 #   std:temp aabb
@@ -130,7 +130,7 @@ execute unless score __$std_greater_than_1_components __std.aabb matches 3 \
     scoreboard players set __$std_do_intersection __std.aabb 1
 
 # call function
-function core_std:aabb/cast_absolute/check_collision_and_run_command \
+function std.core:aabb/cast_absolute/check_collision_and_run_command \
     with storage std:temp aabb.check_params
 
 # free memory

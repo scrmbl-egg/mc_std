@@ -41,7 +41,7 @@ data modify storage std:temp get_uuid.uuid_3 set from entity @s UUID[3]
 #       uuid_3
 execute as @s \
     run \
-    function core_std:string/uuid/get/build_and_set \
+    function std.core:string/uuid/get/build_and_set \
     with storage std:temp get_uuid
 
 # free memory

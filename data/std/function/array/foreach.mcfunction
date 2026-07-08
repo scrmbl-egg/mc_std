@@ -42,7 +42,7 @@ $execute store success score __$std_is_array __std.foreach \
 # print error message if assertion fails
 $execute if score __$std_is_array __std.foreach matches 0 \
     run \
-    function core_std:out/print_error { \
+    function std.core:out/print_error { \
         function:"std:array/foreach", \
         text:{text:"Path '$(array_nbt)' in storage '$(array_storage)' doesn't contain an array or list."}, \
     }
@@ -50,7 +50,7 @@ $execute if score __$std_is_array __std.foreach matches 0 \
 execute if score __$std_is_array __std.foreach matches 0 \
     run \
     return run \
-    function core_std:array/foreach/fail_is_array_assertion
+    function std.core:array/foreach/fail_is_array_assertion
 # std:fail can't be used, since std:fail relies on std:array/foreach
 
 # save the parameters as local
@@ -77,7 +77,7 @@ execute store result score __$std_arr_size __std.foreach \
 execute if score __$std_arr_size __std.foreach matches 0 \
     run \
     return run \
-    function core_std:array/foreach/fail_on_empty_array
+    function std.core:array/foreach/fail_on_empty_array
 
 # init current index to 0
 scoreboard players set __$std_current_iter_index __std.foreach 0
@@ -100,10 +100,10 @@ scoreboard players set __$std_current_iter_index __std.foreach 0
 #       storage_cpy
 execute if entity @s \
     run \
-    function core_std:array/foreach/iterate with storage std:temp foreach
+    function std.core:array/foreach/iterate with storage std:temp foreach
 execute unless entity @s \
     run \
-    function core_std:array/foreach/iterate with storage std:temp foreach
+    function std.core:array/foreach/iterate with storage std:temp foreach
 
 # free memory
 scoreboard objectives remove __std.foreach

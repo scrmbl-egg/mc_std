@@ -29,7 +29,7 @@
 execute unless entity 2-0-0-9-deadbeef \
     run \
     return run \
-    function core_std:out/print_error/math_entity_not_summoned { \
+    function std.core:out/print_error/math_entity_not_summoned { \
         function:"std:math/inverse_lerp", \
     }
 

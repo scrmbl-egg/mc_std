@@ -225,7 +225,7 @@
                                         [
                                             "",
                                             "- ",
-                                            {"text": "core_std", "color": "dark_green"},
+                                            {"text": "std.core", "color": "dark_green"},
                                             ": This is the core namespace, i.e. it contains the ",
                                             "\"private\" and unsafe functions that the public ",
                                             "functions use internally. Since these functions are ",

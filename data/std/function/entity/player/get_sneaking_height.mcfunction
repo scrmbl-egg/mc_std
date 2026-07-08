@@ -16,7 +16,7 @@
 execute unless entity @s[type=minecraft:player] \
     run \
     return run \
-    function core_std:out/print_error { \
+    function std.core:out/print_error { \
         function:"std:entity/player/get_sneaking_height", \
         text:{text:"Executing entity is not a player."}, \
     }

@@ -46,7 +46,7 @@ data modify storage std:temp assert.build_query_params.string \
 #       string
 #       out_storage
 #       out_nbt
-function core_std:assert/is_string/build_string_query \
+function std.core:assert/is_string/build_string_query \
     with storage std:temp assert.build_query_params
 #>_
 # @out
@@ -74,7 +74,7 @@ execute if data storage std:temp assert.obtained_string \
 execute if score __$std_is_string __std.assert matches 0 \
     run \
     return run \
-    function core_std:assert/fail
+    function std.core:assert/fail
 
 # free data if success
 scoreboard objectives remove __std.assert

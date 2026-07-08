@@ -33,7 +33,7 @@
 execute unless entity 2-0-0-9-deadbeef \
     run \
     return run \
-    function core_std:out/print_error/math_entity_not_summoned { \
+    function std.core:out/print_error/math_entity_not_summoned { \
         function:"std:math/clamp", \
     }
 
@@ -76,7 +76,7 @@ execute store result storage std:temp clamp.difference_sign \
 # if sign result is not 1, return early with an error
 $execute unless data storage std:temp clamp{difference_sign:1} \
     run \
-    function core_std:out/print_error { \
+    function std.core:out/print_error { \
         function:"std:math/clamp", \
         text:{ \
             translate:"", \

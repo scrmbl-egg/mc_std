@@ -55,7 +55,7 @@ execute if data storage std:temp call.return_value \
 execute if data storage std:temp call.return_value \
     run \
     return run \
-    function core_std:util/free_data_and_return \
+    function std.core:util/free_data_and_return \
     with storage std:temp call.free_data_and_return_args
 # else...
 

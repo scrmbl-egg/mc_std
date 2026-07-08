@@ -1,5 +1,5 @@
 {
     "values": [
-        "core_std:tick"
+        "std.core:tick"
     ]
 }

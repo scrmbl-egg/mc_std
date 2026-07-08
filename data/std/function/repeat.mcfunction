@@ -40,10 +40,10 @@ $scoreboard players set __$std_times $(score_objective) $(times)
         # command
 execute if entity @s \
     run \
-    function core_std:repeat/iterate with storage std:temp repeat
+    function std.core:repeat/iterate with storage std:temp repeat
 execute unless entity @s \
     run \
-    function core_std:repeat/iterate with storage std:temp repeat
+    function std.core:repeat/iterate with storage std:temp repeat
 
 # free memory
 $scoreboard objectives remove $(score_objective)

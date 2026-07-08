@@ -113,7 +113,7 @@ execute unless score __$std_greater_than_1_components __std.aabb matches 3 \
 #       origin_offset_x
 #       origin_offset_y
 #       origin_offset_z
-function core_std:aabb/cast_centered/check_collision_and_run_command \
+function std.core:aabb/cast_centered/check_collision_and_run_command \
     with storage std:temp aabb
 
 # free memory

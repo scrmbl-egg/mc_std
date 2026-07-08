@@ -63,7 +63,7 @@ data remove storage std:temp raycast.owner_uuid
 execute as @n[type=minecraft:marker,tag=std.CurrentRayCast] \
     at @s \
     run \
-    function core_std:ray/cast/take_step \
+    function std.core:ray/cast/take_step \
     with entity @s data."std:ray"
 
 # kill marker

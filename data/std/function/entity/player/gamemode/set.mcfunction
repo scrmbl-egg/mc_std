@@ -12,7 +12,7 @@
 execute unless entity @s[type=minecraft:player] \
     run \
     return run \
-    function core_std:out/print_error { \
+    function std.core:out/print_error { \
         function:"std:entity/player/gamemode/set", \
         text:{text:"Executing entity is not a player."}, \
     }

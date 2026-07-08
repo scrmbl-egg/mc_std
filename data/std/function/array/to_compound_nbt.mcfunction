@@ -39,7 +39,7 @@ $data modify storage std:temp to_compound_nbt set value { \
     for_each_args:{ \
         array_storage:"$(array_storage)", \
         array_nbt:"$(array_nbt)", \
-        function:"core_std:array/to_compound_nbt/turn_element_into_key_value_pair", \
+        function:"std.core:array/to_compound_nbt/turn_element_into_key_value_pair", \
         context_args:{ \
             array_storage:"$(array_storage)", \
             array_nbt:"$(array_nbt)", \
@@ -64,7 +64,7 @@ $execute store result storage std:temp to_compound_nbt.is_array \
 # print error and return NOTHING if it's not an array
 $execute if data storage std:temp to_compound_nbt{is_array:false} \
     run \
-    function core_std:out/print_error { \
+    function std.core:out/print_error { \
         function:"std:array/to_compound_nbt", \
         text:"\"Path '$(array_nbt)' in storage '$(array_storage)' doesn't contain an array or list.\"", \
     }

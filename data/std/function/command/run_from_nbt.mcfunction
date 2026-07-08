@@ -23,7 +23,7 @@ $execute if data storage std:temp run_command_from_nbt.last_location{\
         nbt:'$(command_nbt)', \
     } \
     run \
-    function core_std:out/print_error { \
+    function std.core:out/print_error { \
         function:"std:command/run_from_nbt", \
         text:[ \
            "Can't recursively call this function on the previous NBT ", \
@@ -60,7 +60,7 @@ data modify storage std:temp run_command_from_nbt.return set value { \
 execute store result storage std:temp run_command_from_nbt.return.value \
     int 1 \
     run \
-    function core_std:command/run_raw \
+    function std.core:command/run_raw \
     with storage std:temp run_command_from_nbt.run_params
 
 return run \

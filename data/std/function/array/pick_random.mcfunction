@@ -47,7 +47,7 @@ $execute store result storage std:temp pick_random.is_array \
 # print error message and return NOTHING if function fails
 $execute if data storage std:temp pick_random{is_array:false} \
     run \
-    function core_std:out/print_error { \
+    function std.core:out/print_error { \
         function:"std:array/pick_random", \
         text:{text:"Path '$(array_nbt)' in storage '$(array_storage)' doesn't contain an array or list."}, \
     }
@@ -104,6 +104,6 @@ scoreboard objectives remove __std.pick_random
 #       value
 #       storage
 #       nbt
-return run function core_std:util/free_data_and_return \
+return run function std.core:util/free_data_and_return \
     with storage std:temp pick_random.success_free_data_and_return_args
 # this function frees leftover data

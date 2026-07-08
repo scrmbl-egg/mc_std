@@ -24,7 +24,7 @@ $execute store success score __$std_can_be_copied __std.assert \
 execute if score __$std_can_be_copied __std.assert matches 0 \
     run \
     return run \
-    function core_std:assert/fail
+    function std.core:assert/fail
 
 # try to append a number (it must be a number so it can be appended in both
 # arrays and NBT lists)
@@ -36,7 +36,7 @@ execute store success score __$std_can_append __std.assert \
 execute if score __$std_can_append __std.assert matches 0 \
     run \
     return run \
-    function core_std:assert/fail
+    function std.core:assert/fail
 
 # free memory
 scoreboard objectives remove __std.assert

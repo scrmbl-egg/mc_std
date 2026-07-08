@@ -149,7 +149,7 @@ function std:string/slice \
     with storage std:temp dec_part.slice_string_args
 
 # set result (this is the function with the side-effect)
-function core_std:math/decimal_part/set_result \
+function std.core:math/decimal_part/set_result \
     with storage std:temp dec_part.set_result_args
 
 # free memory

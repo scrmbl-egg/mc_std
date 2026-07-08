@@ -77,7 +77,7 @@ $execute store result score __$std_is_array __std.for_each \
     }
 $execute if score __$std_is_array __std.for_each matches 0 \
     run \
-    function core_std:out/print_error { \
+    function std.core:out/print_error { \
         function:"std:array/for_each", \
         text:{text:"Path '$(array_nbt)' in storage '$(array_storage)' doesn't contain an array or list."}, \
     }
@@ -138,7 +138,7 @@ $data modify storage std:temp for_each_scopes[-1].array \
 
 ## RECURSION REGION HERE!!
 # iterate
-function core_std:array/for_each/iterate_last_scope
+function std.core:array/for_each/iterate_last_scope
 ## end of recursion
 
 # free memory (if there are no scopes left)

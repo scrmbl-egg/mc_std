@@ -1,5 +1,5 @@
 {
     "values": [
-        "core_std:load"
+        "std.core:load"
     ]
 }

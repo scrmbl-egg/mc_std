@@ -59,7 +59,7 @@ function std:string/slice \
     with storage std:temp abs.slice_string_args
 
 # set result
-function core_std:math/abs/set_result \
+function std.core:math/abs/set_result \
     with storage std:temp abs.set_result_args
 
 # free memory

@@ -16,4 +16,4 @@
 #   Result: same as the specified command.
 
 # pass command to run raw function
-$return run function core_std:command/run_raw {command:'$(command)'}
+$return run function std.core:command/run_raw {command:'$(command)'}
