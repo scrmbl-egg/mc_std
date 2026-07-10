@@ -31,45 +31,95 @@ struct MainStorage {
 
     /// Constants of the datapack.
     consts: struct Constants {
-        /// Constants related to the `boolean` (`true` or `false`) Minecraft
-        /// type.
+        /// Constants related to the `boolean` (`true` or `false`) type.
+        ///
+        /// A `boolean` can be an alias for a `byte` that is either `1b`
+        /// (`true`) or `0b` (`false`), or a keyword for command syntax.
+        ///
+        /// When storing data, use the `*_value` constants, but when operating
+        /// with macros, consider using the `*_string` constants.
         "boolean": struct McBooleanTypeInfo {
             /// `true`/`1b`.
+            ///
+            /// See the `true_string` constant.
             true_value: boolean,
 
             /// `false`/`0b`.
+            ///
+            /// See the `false_string` constant.
             false_value: boolean,
 
-            /// `true` as string.
-            true_string: "true",
+            /// `true` as `string`.
+            ///
+            /// Useful for macros that are placed when a `boolean` command
+            /// keyword is needed.
+            ///
+            /// Example:
+            /// ```mcfunction
+            /// $effect give @s minecraft:absorption 10 2 $(hide_particles)
+            /// ```
+            /// If we use `true` as an argument we get a syntax error because it
+            /// is passed as a `byte`:
+            /// ```mcfunction
+            /// # ERROR!
+            /// effect give @s minecraft:absorption 10 2 1
+            /// ```
+            /// ...but if `"true"` is used as argument, the macro is evaluated
+            /// correctly:
+            /// ```mcfunction
+            /// # works!
+            /// effect give @s minecraft:absorption 10 2 true
+            /// ```
+            true_string: string,
 
-            /// `false` as string.
-            false_string: "false",
+            /// `false` as `string`.
+            ///
+            /// Useful for macros that are placed when a `boolean` command
+            /// keyword is needed.
+            ///
+            /// Example:
+            /// ```mcfunction
+            /// $effect give @s minecraft:absorption 10 2 $(hide_particles)
+            /// ```
+            /// If we use `false` as an argument we get a syntax error because
+            /// it
+            /// is passed as a `byte`.
+            /// ```mcfunction
+            /// # ERROR!
+            /// effect give @s minecraft:absorption 10 2 1
+            /// ```
+            /// ...but if `"false"` is used as argument, the macro is evaluated
+            /// correctly:
+            /// ```mcfunction
+            /// # works!
+            /// effect give @s minecraft:absorption 10 2 false
+            /// ```
+            false_string: string,
 
             ...McTypeInfo,
         },
 
-        /// Constants related to the `byte` (8 bit signed integer) Minecraft
+        /// Constants related to the `byte` (8-bit signed integer) Minecraft
         /// type.
         "byte": McArrayCompatibleIntegerTypeInfo<byte>,
 
-        /// Constants related to the `short` (16 bit signed integer) Minecraft
+        /// Constants related to the `short` (16-bit signed integer) Minecraft
         /// type.
         "short": McIntegerTypeInfo<short>,
 
-        /// Constants related to the `int` (32 bit signed integer) Minecraft
+        /// Constants related to the `int` (32-bit signed integer) Minecraft
         /// type.
         "int": McArrayCompatibleIntegerTypeInfo<int>,
 
-        /// Constants related to the `long` (64 bit signed integer) Minecraft
+        /// Constants related to the `long` (64-bit signed integer) Minecraft
         /// type.
         "long": McArrayCompatibleIntegerTypeInfo<long>,
 
-        /// Constants related to the `float` (32 bit floating-point number)
+        /// Constants related to the `float` (32-bit floating-point number)
         /// Minecraft type.
         "float": McFloatingTypeInfo<float>,
 
-        /// Constants related to the `double` (64 bit floating-point number)
+        /// Constants related to the `double` (64-bit floating-point number)
         /// Minecraft type.
         "double": McFloatingTypeInfo<double>,
     }
@@ -104,8 +154,17 @@ type McIntegerTypeInfo<T> = struct {
 /// Struct type for constants of integer data types that can be used in number
 /// arrays.
 type McArrayCompatibleIntegerTypeInfo<T> = struct {
-    /// Character that indicates the type of a number array of this type.
-    array_type_indicator: string @ 1,
+    /// Character that indicates the type of number arrays of this type.
+    array_type_indicator: enum(string) ArrayTypeIndicator {
+        /// `byte` number array indicator.
+        Byte = "B",
+
+        /// `int` number array indicator.
+        Int = "I",
+
+        /// `long` number array indicator.
+        Long = "L",
+    },
 
     ...McIntegerTypeInfo<T>,
 }
