@@ -14,35 +14,33 @@
 # @writes
 #   UUID string at specified NBT path.
 
-# process params
+# process args
 $data modify storage std:temp get_uuid set value { \
-    out_storage:'$(out_storage)', \
-    out_nbt:'$(out_nbt)', \
+    build_and_set_args:{ \
+        uuid_0:0, \
+        uuid_1:0, \
+        uuid_2:0, \
+        uuid_3:0, \
+        out_storage:'$(out_storage)', \
+        out_nbt:'$(out_nbt)', \
+    }, \
 }
 
 # get UUID integers
-data modify storage std:temp get_uuid.uuid_0 set from entity @s UUID[0]
-data modify storage std:temp get_uuid.uuid_1 set from entity @s UUID[1]
-data modify storage std:temp get_uuid.uuid_2 set from entity @s UUID[2]
-data modify storage std:temp get_uuid.uuid_3 set from entity @s UUID[3]
-
-# std:array/to_compound_nbt could be used here, but we leave it this way to remove
-# overhead
+data modify storage std:temp get_uuid.build_and_set_args.uuid_0 \
+    set from entity @s UUID[0]
+data modify storage std:temp get_uuid.build_and_set_args.uuid_1 \
+    set from entity @s UUID[1]
+data modify storage std:temp get_uuid.build_and_set_args.uuid_2 \
+    set from entity @s UUID[2]
+data modify storage std:temp get_uuid.build_and_set_args.uuid_3 \
+    set from entity @s UUID[3]
 
 # generate string
-#>_
-# @in
-#   get_uuid
-#       out_storage
-#       out_nbt
-#       uuid_0
-#       uuid_1
-#       uuid_2
-#       uuid_3
 execute as @s \
     run \
     function std.core:string/uuid/get/build_and_set \
-    with storage std:temp get_uuid
+    with storage std:temp get_uuid.build_and_set_args
 
 # free memory
 data remove storage std:temp get_uuid
