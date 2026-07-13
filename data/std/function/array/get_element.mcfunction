@@ -41,7 +41,10 @@ $execute if data storage std:temp get_element{is_array:false} \
     run \
     function std.core:out/print_error { \
         function:"std:array/get_element", \
-        text:{text:"Path '$(array_nbt)' in storage '$(array_storage)' doesn't contain an array or list."}, \
+        text:[ \
+            "Path '$(array_nbt)' in storage '$(array_storage)' doesn't ", \
+            "contain an array or list.", \
+        ], \
     }
 execute if data storage std:temp get_element{is_array:false} \
     run \

@@ -49,7 +49,10 @@ $execute if data storage std:temp pick_random{is_array:false} \
     run \
     function std.core:out/print_error { \
         function:"std:array/pick_random", \
-        text:{text:"Path '$(array_nbt)' in storage '$(array_storage)' doesn't contain an array or list."}, \
+        text:[ \
+            "Path '$(array_nbt)' in storage '$(array_storage)' doesn't ", \
+            "contain an array or list.", \
+        ], \
     }
 execute if data storage std:temp pick_random{is_array:false} \
     run \

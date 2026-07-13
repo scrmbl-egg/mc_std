@@ -78,14 +78,10 @@ $execute unless data storage std:temp clamp{difference_sign:1} \
     run \
     function std.core:out/print_error { \
         function:"std:math/clamp", \
-        text:{ \
-            translate:"", \
-            fallback:"'min' parameter can't be greater than the 'max' parameter ('min'=%1$s,'max'=%2$s).", \
-            with:[ \
-                "$(min)", \
-                "$(max)", \
-            ], \
-        }, \
+        text:[ \
+            "'min' argument can't be greater than the 'max' argument ", \
+            "('min'=$(min),'max'=$(max)).", \
+        ], \
     }
 execute unless data storage std:temp clamp{difference_sign:1} \
     run \

@@ -66,7 +66,10 @@ $execute if data storage std:temp to_compound_nbt{is_array:false} \
     run \
     function std.core:out/print_error { \
         function:"std:array/to_compound_nbt", \
-        text:"\"Path '$(array_nbt)' in storage '$(array_storage)' doesn't contain an array or list.\"", \
+        text:[ \
+            "Path '$(array_nbt)' in storage '$(array_storage)' doesn't ", \
+            "contain an array or list.", \
+        ], \
     }
 execute if data storage std:temp to_compound_nbt{is_array:false} \
     run \

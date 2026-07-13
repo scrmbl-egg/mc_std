@@ -79,7 +79,10 @@ $execute if score __$std_is_array __std.for_each matches 0 \
     run \
     function std.core:out/print_error { \
         function:"std:array/for_each", \
-        text:{text:"Path '$(array_nbt)' in storage '$(array_storage)' doesn't contain an array or list."}, \
+        text:[ \
+            "Path '$(array_nbt)' in storage '$(array_storage)' doesn't ", \
+            "contain an array or list.", \
+        ], \
     }
 execute if score __$std_is_array __std.for_each matches 0 \
     run \
