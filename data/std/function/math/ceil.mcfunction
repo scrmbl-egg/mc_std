@@ -20,12 +20,8 @@ execute unless entity 2-0-0-9-deadbeef \
         function:"std:math/ceil", \
     }
 
-# create local scoreboard
-scoreboard objectives add __std.ceil dummy
-
 # set up local data
 $data modify storage std:temp ceil set value { \
-    x:$(x), \
     has_decimal_part:false, \
     decimal_part_args:{ \
         x:$(x), \
@@ -43,21 +39,21 @@ execute store result storage std:temp ceil.has_decimal_part \
     with storage std:temp ceil.decimal_part_args
 $execute if data storage std:temp ceil{has_decimal_part:false} \
     run \
-    data modify storage $(out_storage) $(out_nbt) set value $(x)
-execute if data storage std:temp ceil{has_decimal_part:false} \
-    run \
     return run \
-    scoreboard objectives remove __std.ceil
-execute if data storage std:temp ceil{has_decimal_part:false} \
-    run \
-    return run \
-    data remove storage std:temp ceil
-
+    function std:storage/remove_data_and_return_value { \
+        value:$(x), \
+        storage:"std:temp", \
+        nbt:"ceil", \
+    }
 # otherwise...
+
+# create local scoreboard
+scoreboard objectives add __std.ceil dummy
+
 # do floor + 1 (regular method, no helper function needed)
 execute store result score __$std_ceil __std.ceil \
     run \
-    data get storage std:temp ceil.x 1
+    data get storage std:temp ceil.decimal_part_args.x 1
 scoreboard players add __$std_ceil __std.ceil 1
 # store as double in specified location
 execute store result storage std:main null \
