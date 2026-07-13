@@ -30,7 +30,7 @@ $data modify storage std:temp strcmp.compare_cpy \
 execute unless data storage std:temp strcmp.compare_cpy \
     run \
     return run \
-    function std.core:util/free_data_and_return { \
+    function std:storage/remove_data_and_return_value { \
         value:0, \
         storage:"std:temp", \
         nbt:"strcmp", \

@@ -104,6 +104,6 @@ scoreboard objectives remove __std.pick_random
 #       value
 #       storage
 #       nbt
-return run function std.core:util/free_data_and_return \
+return run function std:storage/remove_data_and_return_value \
     with storage std:temp pick_random.success_free_data_and_return_args
 # this function frees leftover data

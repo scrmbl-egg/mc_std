@@ -46,8 +46,7 @@ $execute if data storage std:temp get_element{is_array:false} \
 execute if data storage std:temp get_element{is_array:false} \
     run \
     return run \
-    function std.core:util/free_data_and_return { \
-        value:0, \
+    function std:storage/remove_data_and_fail { \
         storage:"std:temp", \
         nbt:"get_element", \
     }
