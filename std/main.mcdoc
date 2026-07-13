@@ -31,97 +31,130 @@ struct MainStorage {
 
     /// Constants of the datapack.
     consts: struct Constants {
-        /// Constants related to the `boolean` (`true` or `false`) type.
-        ///
-        /// A `boolean` can be an alias for a `byte` that is either `1b`
-        /// (`true`) or `0b` (`false`), or a keyword for command syntax.
-        ///
-        /// When storing data, use the `*_value` constants, but when operating
-        /// with macros, consider using the `*_string` constants.
-        "boolean": struct McBooleanTypeInfo {
-            /// `true`/`1b`.
+        /// Constants related to the different data types that Minecraft.
+        types: struct McTypeInfoConstants {
+            /// Constants related to the `boolean` (`true` or `false`) type.
             ///
-            /// See the `true_string` constant.
-            true_value: boolean,
+            /// A `boolean` can be an alias for a `byte` that is either `1b`
+            /// (`true`) or `0b` (`false`), or a keyword for command syntax.
+            ///
+            /// When storing data, use the `*_value` constants, but when
+            /// operating with macros, consider using the `*_string` constants.
+            "boolean": struct McBooleanTypeInfo {
+                /// `true`/`1b`.
+                ///
+                /// See the `true_string` constant.
+                true_value: boolean,
 
-            /// `false`/`0b`.
-            ///
-            /// See the `false_string` constant.
-            false_value: boolean,
+                /// `false`/`0b`.
+                ///
+                /// See the `false_string` constant.
+                false_value: boolean,
 
-            /// `true` as `string`.
-            ///
-            /// Useful for macros that are placed when a `boolean` command
-            /// keyword is needed.
-            ///
-            /// Example:
-            /// ```mcfunction
-            /// $effect give @s minecraft:absorption 10 2 $(hide_particles)
-            /// ```
-            /// If we use `true` as an argument we get a syntax error because it
-            /// is passed as a `byte`:
-            /// ```mcfunction
-            /// # ERROR!
-            /// effect give @s minecraft:absorption 10 2 1
-            /// ```
-            /// ...but if `"true"` is used as argument, the macro is evaluated
-            /// correctly:
-            /// ```mcfunction
-            /// # works!
-            /// effect give @s minecraft:absorption 10 2 true
-            /// ```
-            true_string: string,
+                /// `true` as `string`.
+                ///
+                /// Useful for macros that are placed when a `boolean` command
+                /// keyword is needed.
+                ///
+                /// Example:
+                /// ```mcfunction
+                /// $effect give @s minecraft:absorption 10 2 $(hide_particles)
+                /// ```
+                /// If we use `true` as an argument we get a syntax error
+                /// because it is passed as a `byte`:
+                /// ```mcfunction
+                /// # ERROR!
+                /// effect give @s minecraft:absorption 10 2 1
+                /// ```
+                /// ...but if `"true"` is used as argument, the macro is
+                /// evaluated correctly:
+                /// ```mcfunction
+                /// # works!
+                /// effect give @s minecraft:absorption 10 2 true
+                /// ```
+                true_string: string,
 
-            /// `false` as `string`.
-            ///
-            /// Useful for macros that are placed when a `boolean` command
-            /// keyword is needed.
-            ///
-            /// Example:
-            /// ```mcfunction
-            /// $effect give @s minecraft:absorption 10 2 $(hide_particles)
-            /// ```
-            /// If we use `false` as an argument we get a syntax error because
-            /// it
-            /// is passed as a `byte`.
-            /// ```mcfunction
-            /// # ERROR!
-            /// effect give @s minecraft:absorption 10 2 1
-            /// ```
-            /// ...but if `"false"` is used as argument, the macro is evaluated
-            /// correctly:
-            /// ```mcfunction
-            /// # works!
-            /// effect give @s minecraft:absorption 10 2 false
-            /// ```
-            false_string: string,
+                /// `false` as `string`.
+                ///
+                /// Useful for macros that are placed when a `boolean` command
+                /// keyword is needed.
+                ///
+                /// Example:
+                /// ```mcfunction
+                /// $effect give @s minecraft:absorption 10 2 $(hide_particles)
+                /// ```
+                /// If we use `false` as an argument we get a syntax error
+                /// because it is passed as a `byte`.
+                /// ```mcfunction
+                /// # ERROR!
+                /// effect give @s minecraft:absorption 10 2 1
+                /// ```
+                /// ...but if `"false"` is used as argument, the macro is
+                /// evaluated correctly:
+                /// ```mcfunction
+                /// # works!
+                /// effect give @s minecraft:absorption 10 2 false
+                /// ```
+                false_string: string,
 
-            ...McTypeInfo,
+                ...McTypeInfo,
+            },
+
+            /// Constants related to the `byte` (8-bit signed integer) Minecraft
+            /// type.
+            "byte": McArrayCompatibleIntegerTypeInfo<byte>,
+
+            /// Constants related to the `short` (16-bit signed integer)
+            /// Minecraft type.
+            "short": McIntegerTypeInfo<short>,
+
+            /// Constants related to the `int` (32-bit signed integer) Minecraft
+            /// type.
+            "int": McArrayCompatibleIntegerTypeInfo<int>,
+
+            /// Constants related to the `long` (64-bit signed integer)
+            /// Minecraft type.
+            "long": McArrayCompatibleIntegerTypeInfo<long>,
+
+            /// Constants related to the `float` (32-bit floating-point number)
+            /// Minecraft type.
+            "float": McFloatingTypeInfo<float>,
+
+            /// Constants related to the `double` (64-bit floating-point number)
+            /// Minecraft type.
+            "double": McFloatingTypeInfo<double>,
         },
 
-        /// Constants related to the `byte` (8-bit signed integer) Minecraft
-        /// type.
-        "byte": McArrayCompatibleIntegerTypeInfo<byte>,
+        /// Math constants, series, and tables.
+        math: struct MathConstants {
+            /// Ratio of a circle's circumference to its diameter.
+            pi: double,
 
-        /// Constants related to the `short` (16-bit signed integer) Minecraft
-        /// type.
-        "short": McIntegerTypeInfo<short>,
+            /// Ratio of a circle's circumference to its radius (`pi` * 2).
+            tau: double,
 
-        /// Constants related to the `int` (32-bit signed integer) Minecraft
-        /// type.
-        "int": McArrayCompatibleIntegerTypeInfo<int>,
+            /// Golden ratio.
+            phi: double,
 
-        /// Constants related to the `long` (64-bit signed integer) Minecraft
-        /// type.
-        "long": McArrayCompatibleIntegerTypeInfo<long>,
+            /// Base of the natural logarithm, and exponential function.
+            euler: double,
 
-        /// Constants related to the `float` (32-bit floating-point number)
-        /// Minecraft type.
-        "float": McFloatingTypeInfo<float>,
+            /// Lookup array for `int` factorials. If a positive index `n` is
+            /// used to look up an element of this array, the returned number is
+            /// the `n`th factorial number.
+            ///
+            /// It is recommended to use the `std:math/factorial` function for
+            /// proper validation and error printing.
+            int_factorial_lookup: int[] @ 13,
 
-        /// Constants related to the `double` (64-bit floating-point number)
-        /// Minecraft type.
-        "double": McFloatingTypeInfo<double>,
+            /// Lookup array for `long` factorials. If a positive index `n` is
+            /// used to look up an element of this array, the returned number is
+            /// the `n`th factorial number.
+            ///
+            /// It is recommended to use the `std:math/factorial_long` function
+            /// for proper validation and error printing.
+            long_factorial_lookup: long[] @ 21,
+        }
     }
 }
 
@@ -182,18 +215,6 @@ type McFloatingTypeInfo<T> = struct {
 
     /// Smallest negative non-zero value.
     negative_epsilon: T,
-
-    /// Ratio of a circle's circumference to its diameter.
-    pi: T,
-
-    /// Ratio of a circle's circumference to its radius (`pi` * 2).
-    tau: T,
-
-    /// Golden ratio.
-    phi: T,
-
-    /// Base of the natural logarithm, and exponential function.
-    euler: T,
 
     ...McTypeInfo,
 }
