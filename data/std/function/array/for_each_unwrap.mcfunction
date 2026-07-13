@@ -75,7 +75,10 @@ $execute if score __$std_is_array __std.for_each_unwrap matches 0 \
     run \
     function std.core:out/print_error { \
         function:"std:array/for_each_unwrap", \
-        text:{text:"Path '$(array_nbt)' in storage '$(array_storage)' doesn't contain an array or list."}, \
+        text:text:[ \
+            "Path '$(array_nbt)' in storage '$(array_storage)' doesn't ", \
+            "contain an array or list.", \
+        ], \
     }
 execute if score __$std_is_array __std.for_each_unwrap matches 0 \
     run \
