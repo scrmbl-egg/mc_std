@@ -11,10 +11,6 @@
 # @input
 #   x: double
 #       Number.
-#   out_storage: #[id="storage"] string
-#       Storage where the result will be stored.
-#   out_nbt: #[nbt_path=minecraft:storage[[out_storage]]] string
-#       Storage NBT path where the result will be stored.
 # @returns
 #   Result: the floor of the passed value as an integer
 
@@ -45,12 +41,12 @@ $data modify storage std:temp floor set value { \
     value:$(x), \
 }
 
-$execute store result storage $(out_storage) $(out_nbt) \
+execute store result storage std:main null \
     int 1 \
     run \
     data get storage std:temp floor.value 1
 
 # free memory and return value
 data remove storage std:temp floor
-$return run \
-    data get storage $(out_storage) $(out_nbt)
+return run \
+    data get storage std:main null

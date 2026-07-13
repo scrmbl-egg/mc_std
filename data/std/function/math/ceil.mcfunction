@@ -60,13 +60,13 @@ execute store result score __$std_ceil __std.ceil \
     data get storage std:temp ceil.x 1
 scoreboard players add __$std_ceil __std.ceil 1
 # store as double in specified location
-$execute store result storage $(out_storage) $(out_nbt) \
-    double 1 \
+execute store result storage std:main null \
+    int 1 \
     run \
     scoreboard players get __$std_ceil __std.ceil
 
 # free memory and return value
 scoreboard objectives remove __std.ceil
 data remove storage std:temp ceil
-$return run \
-    data get storage $(out_storage) $(out_nbt)
+return run \
+    data get storage std:main null
