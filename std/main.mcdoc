@@ -139,6 +139,24 @@ struct MainStorage {
             /// Base of the natural logarithm, and exponential function.
             euler: double,
 
+            /// Natural logarithm of 2.
+            ln_2: double,
+
+            /// Natural logarithm of 10.
+            ln_10: double,
+
+            /// Square root of 2.
+            sqrt_2: double,
+
+            /// Square root of 3.
+            sqrt_3: double,
+
+            /// Conversion factor from degrees to radians.
+            degrees_to_radians: double,
+
+            /// Conversion factor from radians to degrees.
+            radians_to_degrees: double,
+
             /// Lookup array for `int` factorials. If a positive index `n` is
             /// used to look up an element of this array, the returned number is
             /// the `n`th factorial number.

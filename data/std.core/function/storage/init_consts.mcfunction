@@ -75,6 +75,12 @@ data modify storage std:main consts.math set value { \
     tau:6.2831853071795864d, \
     phi:1.618033988749894d, \
     euler:2.718281828459045235360d, \
+    ln_2:0.693147180559945309d, \
+    ln_10:2.302585092994045684d, \
+    sqrt_2:1.4142135623730950488d, \
+    sqrt_3:1.73205080756887729352d, \
+    degrees_to_radians:0.017453292519943295d, \
+    radians_to_degrees:57.29577951308232d, \
     int_factorial_lookup:[I; \
         1, \
         1, \
