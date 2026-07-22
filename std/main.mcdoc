@@ -143,15 +143,15 @@ struct MainStorage {
             /// used to look up an element of this array, the returned number is
             /// the `n`th factorial number.
             ///
-            /// It is recommended to use the `std:math/factorial` function for
-            /// proper validation and error printing.
+            /// It is recommended to use the `std:math/int_factorial` function
+            /// for proper validation and error printing.
             int_factorial_lookup: int[] @ 13,
 
             /// Lookup array for `long` factorials. If a positive index `n` is
             /// used to look up an element of this array, the returned number is
             /// the `n`th factorial number.
             ///
-            /// It is recommended to use the `std:math/factorial_long` function
+            /// It is recommended to use the `std:math/long_factorial` function
             /// for proper validation and error printing.
             long_factorial_lookup: long[] @ 21,
         }
