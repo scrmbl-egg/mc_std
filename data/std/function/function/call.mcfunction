@@ -3,9 +3,9 @@
 # Calls a function from a name or tag.
 #
 # @input
-#   function: #[id="function"] string
+#   function: #[id(registry="function",tags="allowed")] string
 #       Function name or tag that will be called.
-#   args: any
+#   args: struct {[string]: any}
 #       SNBT structure containing the arguments of the function
 # @returns
 #   Result: same as the specified function.

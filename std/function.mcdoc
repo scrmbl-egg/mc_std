@@ -1,0 +1,8 @@
+/// Arguments of the `std:function/call` function.
+struct FunctionCall {
+    /// Function name or tag that will be called.
+    function: #[id(registry="function",tags="allowed")] string,
+
+    /// SNBT structure containing the arguments of the function
+    args: struct {[string]: any},
+}

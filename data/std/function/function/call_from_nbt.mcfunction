@@ -8,7 +8,7 @@
 #       Storage where the function name or tag is stored.
 #   function_nbt: #[nbt_path=minecraft:storage[[function_storage]]] string
 #       Storage NBT path where the function name or tag is stored.
-#   args: any
+#   args: struct {[string]: any}
 #       SNBT structure containing the arguments of the function.
 # @returns
 #   Result: same as the specified function.

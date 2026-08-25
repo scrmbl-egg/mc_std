@@ -45,7 +45,7 @@
 #   function: #[id="function"] string
 #       Callback function that is going to be called for each element of the
 #       array or list.
-#   context_args: any
+#   context_args: struct {[string]: any}
 #       NBT structure that contains the arguments passed to every function
 #       call.
 #   index_macro: string
