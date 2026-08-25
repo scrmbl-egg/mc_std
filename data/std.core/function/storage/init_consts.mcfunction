@@ -9,50 +9,40 @@ data remove storage std:main consts
 
 ## TYPE CONSTANTS
 data modify storage std:main consts.types set value { \
-    boolean:{ \
-        name:"boolean", \
-        bits:8, \
-        bytes:1, \
-        true_value:true, \
-        false_value:false, \
-        true_string:"true", \
-        false_string:"false", \
-    }, \
     byte:{ \
         name:"byte", \
-        bits:8, \
-        bytes:1, \
+        type_tag:1, \
+        size:1, \
         min:-128b, \
         max:127b, \
-        array_type_indicator:"B", \
+        false:false, \
+        true:true, \
     }, \
     short:{ \
         name:"short", \
-        bits:16, \
-        bytes:2, \
+        type_tag:2, \
+        size:2, \
         min:-32768s, \
         max:32767s, \
     }, \
     int:{ \
         name:"int", \
-        bits:32, \
-        bytes:4, \
+        type_tag:3, \
+        size:4, \
         min:-2147483648, \
         max:2147483647, \
-        array_type_indicator:"I", \
     }, \
     long:{ \
         name:"long", \
-        bits:64, \
-        bytes:8, \
+        type_tag:4, \
+        size:8, \
         min:-9223372036854775808l, \
         max:9223372036854775807l, \
-        array_type_indicator:"L", \
     }, \
     float:{ \
         name:"float", \
-        bits:32, \
-        bytes:4, \
+        type_tag:5, \
+        size:4, \
         min:-3.4e+38f, \
         max:3.4e+38f, \
         positive_epsilon:1.401298e-45f, \
@@ -60,12 +50,42 @@ data modify storage std:main consts.types set value { \
     }, \
     double:{ \
         name:"double", \
-        bits:64, \
-        bytes:8, \
+        type_tag:6, \
+        size:8, \
         min:-1.7e+308d, \
         max:1.7e+308d, \
         positive_epsilon:4.94065645841247e-324d, \
         negative_epsilon:-4.94065645841247e-324d, \
+    }, \
+    byte_array:{ \
+        name:"byte array", \
+        type_tag:7, \
+        type_indicator:"B", \
+    }, \
+    string:{ \
+        name:"string", \
+        type_tag:8, \
+        character_size:1, \
+        true:"true", \
+        false:"false", \
+    }, \
+    nbt_compound:{ \
+        name:"nbt compound", \
+        type_tag:9, \
+    }, \
+    list:{ \
+        name:"list", \
+        type_tag:10, \
+    }, \
+    int_array:{ \
+        name:"int array", \
+        type_tag:11, \
+        type_indicator:"I", \
+    }, \
+    long_array:{ \
+        name:"long array", \
+        type_tag:12, \
+        type_indicator:"L", \
     }, \
 }
 

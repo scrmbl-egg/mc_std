@@ -33,76 +33,21 @@ struct MainStorage {
     consts: struct Constants {
         /// Constants related to the different data types that Minecraft.
         types: struct McTypeInfoConstants {
-            /// Constants related to the `boolean` (`true` or `false`) type.
-            ///
-            /// A `boolean` can be an alias for a `byte` that is either `1b`
-            /// (`true`) or `0b` (`false`), or a keyword for command syntax.
-            ///
-            /// When storing data, use the `*_value` constants, but when
-            /// operating with macros, consider using the `*_string` constants.
-            "boolean": struct McBooleanTypeInfo {
+            /// Constants related to the `byte` (8-bit signed integer) Minecraft
+            /// type.
+            "byte": struct McByteTypeInfo {
                 /// `true`/`1b`.
                 ///
-                /// See the `true_string` constant.
-                true_value: boolean,
+                /// See the `consts.types.string.true` constant.
+                "true": boolean,
 
                 /// `false`/`0b`.
                 ///
-                /// See the `false_string` constant.
-                false_value: boolean,
+                /// See the `consts.types.string.false` constant.
+                "false": boolean,
 
-                /// `true` as `string`.
-                ///
-                /// Useful for macros that are placed when a `boolean` command
-                /// keyword is needed.
-                ///
-                /// Example:
-                /// ```mcfunction
-                /// $effect give @s minecraft:absorption 10 2 $(hide_particles)
-                /// ```
-                /// If we use `true` as an argument we get a syntax error
-                /// because it is passed as a `byte`:
-                /// ```mcfunction
-                /// # ERROR!
-                /// effect give @s minecraft:absorption 10 2 1
-                /// ```
-                /// ...but if `"true"` is used as argument, the macro is
-                /// evaluated correctly:
-                /// ```mcfunction
-                /// # works!
-                /// effect give @s minecraft:absorption 10 2 true
-                /// ```
-                true_string: string,
-
-                /// `false` as `string`.
-                ///
-                /// Useful for macros that are placed when a `boolean` command
-                /// keyword is needed.
-                ///
-                /// Example:
-                /// ```mcfunction
-                /// $effect give @s minecraft:absorption 10 2 $(hide_particles)
-                /// ```
-                /// If we use `false` as an argument we get a syntax error
-                /// because it is passed as a `byte`.
-                /// ```mcfunction
-                /// # ERROR!
-                /// effect give @s minecraft:absorption 10 2 1
-                /// ```
-                /// ...but if `"false"` is used as argument, the macro is
-                /// evaluated correctly:
-                /// ```mcfunction
-                /// # works!
-                /// effect give @s minecraft:absorption 10 2 false
-                /// ```
-                false_string: string,
-
-                ...McTypeInfo,
+                ...McIntegerTypeInfo<byte>,
             },
-
-            /// Constants related to the `byte` (8-bit signed integer) Minecraft
-            /// type.
-            "byte": McArrayCompatibleIntegerTypeInfo<byte>,
 
             /// Constants related to the `short` (16-bit signed integer)
             /// Minecraft type.
@@ -110,11 +55,11 @@ struct MainStorage {
 
             /// Constants related to the `int` (32-bit signed integer) Minecraft
             /// type.
-            "int": McArrayCompatibleIntegerTypeInfo<int>,
+            "int": McIntegerTypeInfo<int>,
 
             /// Constants related to the `long` (64-bit signed integer)
             /// Minecraft type.
-            "long": McArrayCompatibleIntegerTypeInfo<long>,
+            "long": McIntegerTypeInfo<long>,
 
             /// Constants related to the `float` (32-bit floating-point number)
             /// Minecraft type.
@@ -123,6 +68,80 @@ struct MainStorage {
             /// Constants related to the `double` (64-bit floating-point number)
             /// Minecraft type.
             "double": McFloatingTypeInfo<double>,
+
+            /// Constants related to the int array (array of signed 8-bit
+            /// integers) Minecraft type.
+            "byte_array": McArrayTypeInfo,
+
+            /// Constants related to the `string` (sequence of UTF-8 characters)
+            /// Minecraft type.
+            "string": struct McStringTypeInfo {
+                /// `true` as `string`.
+                ///
+                /// Useful for macros that are placed when a `boolean`
+                /// command keyword is needed.
+                ///
+                /// Example:
+                /// ```mcfunction
+                /// $gamerule locator_bar $(value)
+                /// ```
+                /// If we use `true` as an argument we get a syntax error
+                /// because it is passed as a `byte`:
+                /// ```mcfunction
+                /// # ERROR!
+                /// gamerule locator_bar 1b
+                /// ```
+                /// ...but if `"true"` is used as argument, the macro is
+                /// evaluated correctly:
+                /// ```mcfunction
+                /// # works!
+                /// gamerule locator_bar true
+                /// ```
+                "true": string,
+
+                /// `false` as `string`.
+                ///
+                /// Useful for macros that are placed when a `boolean`
+                /// command keyword is needed.
+                ///
+                /// Example:
+                /// ```mcfunction
+                /// $gamerule locator_bar $(value)
+                /// ```
+                /// If we use `false` as an argument we get a syntax error
+                /// because it is passed as a `byte`:
+                /// ```mcfunction
+                /// # ERROR!
+                /// gamerule locator_bar 1b
+                /// ```
+                /// ...but if `"false"` is used as argument, the macro is
+                /// evaluated correctly:
+                /// ```mcfunction
+                /// # works!
+                /// gamerule locator_bar false
+                /// ```
+                "false": string,
+
+                /// Size of a single `string` character in bytes.
+                character_size: int @ 1..,
+
+                ...McTypeInfo,
+            },
+
+            /// Constants related to the compound (unordered list of
+            /// attribute-value pairs) data type.
+            "nbt_compound": McTypeInfo,
+
+            /// Constants related to the list (ordered list) Minecraft type.
+            "list": McTypeInfo,
+
+            /// Constants related to the int array (array of signed 32-bit
+            /// integers) Minecraft type.
+            "int_array": McArrayTypeInfo,
+
+            /// Constants related to the int array (array of signed 64-bit
+            /// integers) Minecraft type.
+            "long_array": McArrayTypeInfo,
         },
 
         /// Math constants, series, and tables.
@@ -182,11 +201,58 @@ struct McTypeInfo {
     /// Name of the type.
     name: string,
 
-    /// Size in bits of the type.
-    bits: int @ 1..,
+    /// Integer tag of the type.
+    ///
+    /// See: https://minecraft.wiki/w/NBT_format#TAG_definition
+    type_tag: enum(int) McTypeTag {
+        /// Tag for `byte`s.
+        Byte = 1,
 
+        /// Tag for `short`s.
+        Short = 2,
+
+        /// Tag for `int`s.
+        Int = 3,
+
+        /// Tag for `long`s.
+        Long = 4,
+
+        /// Tag for `float`s.
+        Float = 5,
+
+        /// Tag for `double`s.
+        Double = 6,
+
+        /// Tag for `byte` arrays.
+        Byte_Array = 7,
+
+        /// Tag for `string`s.
+        String = 8,
+
+        /// Tag for lists.
+        List = 9,
+
+        /// Tag for compounds.
+        Compound = 10,
+
+        /// Tag for `int` arrays.
+        Int_Array = 11,
+
+        /// Tag for `long` arrays.
+        Long_Array = 12,
+    },
+}
+
+
+/// General type information struct for types that have a known size.
+struct McSizedTypeInfo {
     /// Size in bytes of the type.
-    bytes: int @ 1..,
+    ///
+    /// ### Note:
+    /// To get the size in bits, multiply the constant by 8.
+    size: int @ 1..,
+
+    ...McTypeInfo,
 }
 
 
@@ -198,15 +264,15 @@ type McIntegerTypeInfo<T> = struct {
     /// Maximum value.
     max: T,
 
-    ...McTypeInfo,
+    ...McSizedTypeInfo,
 }
 
 
 /// Struct type for constants of integer data types that can be used in number
 /// arrays.
-type McArrayCompatibleIntegerTypeInfo<T> = struct {
+struct McArrayTypeInfo {
     /// Character that indicates the type of number arrays of this type.
-    array_type_indicator: enum(string) ArrayTypeIndicator {
+    type_indicator: enum(string) ArrayTypeIndicator {
         /// `byte` number array indicator.
         Byte = "B",
 
@@ -217,8 +283,9 @@ type McArrayCompatibleIntegerTypeInfo<T> = struct {
         Long = "L",
     },
 
-    ...McIntegerTypeInfo<T>,
+    ...McTypeInfo,
 }
+
 
 /// Struct type for floating-point data type constants.
 type McFloatingTypeInfo<T> = struct {
@@ -234,5 +301,5 @@ type McFloatingTypeInfo<T> = struct {
     /// Smallest negative non-zero value.
     negative_epsilon: T,
 
-    ...McTypeInfo,
+    ...McSizedTypeInfo,
 }
