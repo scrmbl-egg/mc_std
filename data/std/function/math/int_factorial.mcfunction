@@ -51,8 +51,8 @@ execute store result storage \
 
 # check if value is negative
 execute if predicate { \
-    condition:"minecraft:value_check", \
-    range:{ \
+    type:"minecraft:int_value_check", \
+    test:{ \
         min:{ \
             type:"minecraft:storage", \
             storage:"std:main", \
@@ -88,8 +88,8 @@ execute if predicate { \
 
 # check if value exceeds array length
 execute if predicate { \
-    condition:"minecraft:value_check", \
-    range:{ \
+    type:"minecraft:int_value_check", \
+    test:{ \
         min:13, \
         max:{ \
             type:"minecraft:storage", \
@@ -122,11 +122,11 @@ execute if predicate { \
 
 # if any of the errors happened, free data and return fail
 execute if predicate { \
-    condition:"minecraft:any_of", \
+    type:"minecraft:any_of", \
     terms:[ \
         { \
-            condition:"minecraft:value_check", \
-            range:{ \
+            type:"minecraft:int_value_check", \
+            test:{ \
                 min:{ \
                     type:"minecraft:storage", \
                     storage:"std:main", \
@@ -141,8 +141,8 @@ execute if predicate { \
             }, \
         }, \
         { \
-            condition:"minecraft:value_check", \
-            range:{ \
+            type:"minecraft:int_value_check", \
+            test:{ \
                 min:13, \
                 max:{ \
                     type:"minecraft:storage", \

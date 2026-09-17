@@ -1,9 +1,9 @@
 {
-    "condition": "minecraft:value_check",
+    "type": "minecraft:int_value_check",
+    "test": 1,
     "value": {
         "type": "minecraft:storage",
         "storage": "std:main",
         "path": "vars.show_reload_message"
-    },
-    "range": 1
+    }
 }

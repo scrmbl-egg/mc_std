@@ -1,10 +1,9 @@
 {
-    "condition": "minecraft:entity_properties",
+    "type": "minecraft:entity_properties",
     "entity": "this",
     "predicate": {
-        "type": "minecraft:player",
-        "type_specific": {
-            "type": "minecraft:player",
+        "minecraft:entity_type": "minecraft:player",
+        "minecraft:type_specific/player": {
             "input": {
                 "jump": true
             }
