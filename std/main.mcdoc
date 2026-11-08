@@ -69,7 +69,7 @@ struct MainStorage {
             /// Minecraft type.
             "double": McFloatingTypeInfo<double>,
 
-            /// Constants related to the int array (array of signed 8-bit
+            /// Constants related to the `byte` array (array of signed 8-bit
             /// integers) Minecraft type.
             "byte_array": McArrayTypeInfo,
 
@@ -135,11 +135,11 @@ struct MainStorage {
             /// Constants related to the list (ordered list) Minecraft type.
             "list": McTypeInfo,
 
-            /// Constants related to the int array (array of signed 32-bit
+            /// Constants related to the `int` array (array of signed 32-bit
             /// integers) Minecraft type.
             "int_array": McArrayTypeInfo,
 
-            /// Constants related to the int array (array of signed 64-bit
+            /// Constants related to the `long` array (array of signed 64-bit
             /// integers) Minecraft type.
             "long_array": McArrayTypeInfo,
         },
