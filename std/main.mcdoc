@@ -10,16 +10,19 @@ struct MainStorage {
     /// This location is a datapack equivalent of UNIX's `/dev/null` or
     /// Windows's `nul`.
     ///
-    /// Example:
+    /// ---
+    ///
+    /// **Example:** Our example function returns a result `int`, but also
+    /// outputs a non-`int` type in the specified output location.
     ///
     /// ```mcfunction
-    /// # function returns 1 since number has a decimal part, but since we
-    /// # don't want the decimal part itself, we send it to `std:main null`.
-    /// function std:math/decimal_part { \
-    ///     x:20.3, \
-    ///     out_storage:"std:main", \
-    ///     out_value:"null", \
-    /// }
+    /// execute store result storage example:results status_code \
+    ///     int 1 \
+    ///     run \
+    ///     function example:function_with_output_args { \
+    ///         out_storage:"std:main", \
+    ///         out_value:"null", \
+    ///     }
     /// ```
     null?: any,
 
@@ -30,6 +33,15 @@ struct MainStorage {
     },
 
     /// Constants of the datapack.
+    ///
+    /// This resource location provides a structured compound NBT of type
+    /// definitions and constants.
+    ///
+    /// ---
+    ///
+    /// **Note:** Many of the constants present here are also accessible through
+    /// number providers (`context_float_provider`, `context_int_provider`) for
+    /// convenience.
     consts: struct Constants {
         /// Constants related to the different data types that Minecraft.
         types: struct McTypeInfoConstants {
@@ -52,15 +64,15 @@ struct MainStorage {
                 ...McIntegerTypeInfo<byte>,
             },
 
-            /// Constants related to the `short` (16-bit signed integer)
+            /// Constants related to the `short` (signed 16-bit integer)
             /// Minecraft type.
             "short": McIntegerTypeInfo<short>,
 
-            /// Constants related to the `int` (32-bit signed integer) Minecraft
+            /// Constants related to the `int` (signed 32-bit integer) Minecraft
             /// type.
             "int": McIntegerTypeInfo<int>,
 
-            /// Constants related to the `long` (64-bit signed integer)
+            /// Constants related to the `long` (signed 64-bit integer)
             /// Minecraft type.
             "long": McIntegerTypeInfo<long>,
 
@@ -185,7 +197,7 @@ struct MainStorage {
             ///
             /// It is recommended to use the `std:math/int_factorial` function
             /// for proper validation and error printing.
-            int_factorial_lookup: int[] @ 13,
+            int_factorial_lookup: int @ 0..[] @ 13,
 
             /// Lookup array for `long` factorials. If a positive index `n` is
             /// used to look up an element of this array, the returned number is
@@ -193,7 +205,7 @@ struct MainStorage {
             ///
             /// It is recommended to use the `std:math/long_factorial` function
             /// for proper validation and error printing.
-            long_factorial_lookup: long[] @ 21,
+            long_factorial_lookup: long @ 0..[] @ 21,
         }
     }
 }
