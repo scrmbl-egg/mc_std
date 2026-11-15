@@ -33,6 +33,9 @@ struct MainStorage {
     consts: struct Constants {
         /// Constants related to the different data types that Minecraft.
         types: struct McTypeInfoConstants {
+            /// Constants related to the end mark of compound tags.
+            "end": McTypeInfo,
+
             /// Constants related to the `byte` (8-bit signed integer) Minecraft
             /// type.
             "byte": struct McByteTypeInfo {
@@ -130,7 +133,7 @@ struct MainStorage {
 
             /// Constants related to the compound (unordered list of
             /// attribute-value pairs) data type.
-            "nbt_compound": McTypeInfo,
+            "compound": McTypeInfo,
 
             /// Constants related to the list (ordered list) Minecraft type.
             "list": McTypeInfo,
@@ -205,6 +208,9 @@ struct McTypeInfo {
     ///
     /// See: https://minecraft.wiki/w/NBT_format#TAG_definition
     type_tag: enum(int) McTypeTag {
+        /// End of compound tags type.
+        End = 0,
+
         /// Tag for `byte`s.
         Byte = 1,
 

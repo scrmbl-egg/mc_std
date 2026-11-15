@@ -9,6 +9,10 @@ data remove storage std:main consts
 
 ## TYPE CONSTANTS
 data modify storage std:main consts.types set value { \
+    end:{ \
+        name:"end", \
+        type_tag:0, \
+    }, \
     byte:{ \
         name:"byte", \
         type_tag:1, \
@@ -69,8 +73,8 @@ data modify storage std:main consts.types set value { \
         true:"true", \
         false:"false", \
     }, \
-    nbt_compound:{ \
-        name:"nbt compound", \
+    compound:{ \
+        name:"compound", \
         type_tag:9, \
     }, \
     list:{ \
