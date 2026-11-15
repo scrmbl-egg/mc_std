@@ -1,0 +1,5 @@
+{
+    "type": "minecraft:storage",
+    "storage": "std:main",
+    "path": "consts.math.tau"
+}

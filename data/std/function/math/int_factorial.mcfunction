@@ -53,11 +53,7 @@ execute store result storage \
 execute if predicate { \
     type:"minecraft:int_value_check", \
     test:{ \
-        min:{ \
-            type:"minecraft:storage", \
-            storage:"std:main", \
-            path:"consts.types.int.min", \
-        }, \
+        min:"std:types/int/min", \
         max:-1, \
     }, \
     value:{ \
@@ -91,11 +87,7 @@ execute if predicate { \
     type:"minecraft:int_value_check", \
     test:{ \
         min:13, \
-        max:{ \
-            type:"minecraft:storage", \
-            storage:"std:main", \
-            path:"consts.types.int.max", \
-        }, \
+        max:"std:types/int/max", \
     }, \
     value:{ \
         type:"minecraft:storage", \
@@ -127,11 +119,7 @@ execute if predicate { \
         { \
             type:"minecraft:int_value_check", \
             test:{ \
-                min:{ \
-                    type:"minecraft:storage", \
-                    storage:"std:main", \
-                    path:"consts.types.int.min", \
-                }, \
+                min:"std:types/int/min", \
                 max:-1, \
             }, \
             value:{ \
@@ -144,11 +132,7 @@ execute if predicate { \
             type:"minecraft:int_value_check", \
             test:{ \
                 min:13, \
-                max:{ \
-                    type:"minecraft:storage", \
-                    storage:"std:main", \
-                    path:"consts.types.int.max", \
-                }, \
+                max:"std:types/int/max", \
             }, \
             value:{ \
                 type:"minecraft:storage", \
