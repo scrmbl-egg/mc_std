@@ -73,12 +73,12 @@ data modify storage std:main consts.types set value { \
         true:"true", \
         false:"false", \
     }, \
-    compound:{ \
-        name:"compound", \
-        type_tag:9, \
-    }, \
     list:{ \
         name:"list", \
+        type_tag:9, \
+    }, \
+    compound:{ \
+        name:"compound", \
         type_tag:10, \
     }, \
     int_array:{ \

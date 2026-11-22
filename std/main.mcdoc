@@ -43,7 +43,8 @@ struct MainStorage {
     /// number providers (`context_float_provider`, `context_int_provider`) for
     /// convenience.
     consts: struct Constants {
-        /// Constants related to the different data types that Minecraft.
+        /// Constants related to the different data types available in
+        /// Minecraft.
         types: struct McTypeInfoConstants {
             /// Constants related to the end mark of compound tags.
             ///
@@ -209,6 +210,14 @@ struct MainStorage {
                 ...McTypeInfo,
             },
 
+            /// Constants related to the list (ordered list) Minecraft type.
+            ///
+            /// ---
+            ///
+            /// Context `int` providers:
+            /// - `std:types/list/type_tag`
+            "list": McTypeInfo,
+
             /// Constants related to the compound (unordered list of
             /// attribute-value pairs) data type.
             ///
@@ -217,14 +226,6 @@ struct MainStorage {
             /// Context `int` providers:
             /// - `std:types/compound/type_tag`
             "compound": McTypeInfo,
-
-            /// Constants related to the list (ordered list) Minecraft type.
-            ///
-            /// ---
-            ///
-            /// Context `int` providers:
-            /// - `std:types/list/type_tag`
-            "list": McTypeInfo,
 
             /// Constants related to the `int` array (array of signed 32-bit
             /// integers) Minecraft type.
