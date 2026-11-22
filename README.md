@@ -76,7 +76,7 @@ times.
 
 Now, here's a quick overview of the function modules of the `std` namespace:
 
-* `aabb/`: Functions for casting axis*aligned bounding boxes for precise
+* `aabb/`: Functions for casting axis-aligned bounding boxes for precise
 collision detection.
 * `array/`: Functions that operate with arrays or lists, includes the
 `std:array/for_each` function for iterating through them.
