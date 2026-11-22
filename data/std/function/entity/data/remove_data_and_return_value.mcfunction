@@ -5,9 +5,8 @@
 # function with the `return run` syntax.
 #
 # @authors scrmbl-egg
+# @context entity
 # @input
-#   entity: #[entity] #[selector] string
-#       Entity that contains the data that is going to be removed.
 #   nbt: #[nbt_path=minecraft:storage[[out_storage]]] string
 #       Entity NBT path of the data that is going to be removed.
 #   value: int
@@ -15,9 +14,6 @@
 # @returns
 #   Result: the number specified in the `value` parameter.
 
-$function std:entity/data/remove_data { \
-    entity:"$(entity)", \
-    nbt:"$(nbt)", \
-}
+$data remove entity @s $(nbt)
 
 $return $(value)
