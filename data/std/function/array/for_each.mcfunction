@@ -68,7 +68,87 @@ execute unless data storage std:temp for_each_scopes[0] \
     run \
     scoreboard objectives add __std.for_each dummy
 
-# check if location is an array
+# check if location is an array or list
+$execute store result score __$std_type __std.for_each \
+    run \
+    function std:storage/get_type_tag { \
+        storage:"$(array_storage)", \
+        nbt:"$(array_nbt)", \
+    }
+
+execute if predicate { \
+    type:"minecraft:int_value_check", \
+    test:"std:types/byte/true", \
+    value:{ \
+        type:"minecraft:number_dispatcher", \
+        cases:[ \
+            { \
+                condition:{ \
+                    type:"minecraft:int_value_check", \
+                    test:"std:types/list/type_tag", \
+                    value:{ \
+                        type:"minecraft:score", \
+                        score:"__std.for_each", \
+                        target:{ \
+                            type:"minecraft:fixed", \
+                            name:"__$std_type", \
+                        }, \
+                    }, \
+                }, \
+                value:"std:types/byte/true", \
+            }, \
+            { \
+                condition:{ \
+                    type:"minecraft:int_value_check", \
+                    test:"std:types/byte_array/type_tag", \
+                    value:{ \
+                        type:"minecraft:score", \
+                        score:"__std.for_each", \
+                        target:{ \
+                            type:"minecraft:fixed", \
+                            name:"__$std_type", \
+                        }, \
+                    }, \
+                }, \
+                value:"std:types/byte/true", \
+            }, \
+            { \
+                condition:{ \
+                    type:"minecraft:int_value_check", \
+                    test:"std:types/int_array/type_tag", \
+                    value:{ \
+                        type:"minecraft:score", \
+                        score:"__std.for_each", \
+                        target:{ \
+                            type:"minecraft:fixed", \
+                            name:"__$std_type", \
+                        }, \
+                    }, \
+                }, \
+                value:"std:types/byte/true", \
+            }, \
+            { \
+                condition:{ \
+                    type:"minecraft:int_value_check", \
+                    test:"std:types/long_array/type_tag", \
+                    value:{ \
+                        type:"minecraft:score", \
+                        score:"__std.for_each", \
+                        target:{ \
+                            type:"minecraft:fixed", \
+                            name:"__$std_type", \
+                        }, \
+                    }, \
+                }, \
+                value:"std:types/byte/true", \
+            }, \
+        ], \
+        default:"std:types/byte/false", \
+    }, \
+} \
+    run \
+    scoreboard players set __$std_is_array __std.for_each 1
+
 $execute store result score __$std_is_array __std.for_each \
     run \
     function std:assert/is_array { \

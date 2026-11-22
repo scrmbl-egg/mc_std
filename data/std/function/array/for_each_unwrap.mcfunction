@@ -64,23 +64,36 @@ execute unless data storage std:temp for_each_unwrap_scopes[0] \
     run \
     scoreboard objectives add __std.for_each_unwrap dummy
 
-# check if location is an array
-$execute store result score __$std_is_array __std.for_each_unwrap \
+# check if location is a list (no number arrays allowed)
+$execute store result score __$std_type __std.for_each_unwrap \
     run \
-    function std:assert/is_array { \
-        array_storage:"$(array_storage)", \
-        array_nbt:"$(array_nbt)", \
+    function std:storage/get_type_tag { \
+        storage:"$(array_storage)", \
+        nbt:"$(array_nbt)", \
     }
-$execute if score __$std_is_array __std.for_each_unwrap matches 0 \
+
+scoreboard players set __$std_is_list __std.for_each_unwrap 0
+execute if predicate { \
+    type:"minecraft:int_value_check", \
+    test:"std:types/list/type_tag", \
+    value:{ \
+        type:"minecraft:score", \
+        score:"__std.for_each_unwrap", \
+        target:{type:"minecraft:fixed",name:"__$std_type"}, \
+    }, \
+} \
+    run \
+    scoreboard players set __$std_is_list __std.for_each_unwrap 1
+$execute if score __$std_is_list __std.for_each_unwrap matches 0 \
     run \
     function std.core:out/print_error { \
         function:"std:array/for_each_unwrap", \
         text:[ \
             "Path '$(array_nbt)' in storage '$(array_storage)' doesn't ", \
-            "contain an array or list.", \
+            "contain a list (number arrays are not allowed).", \
         ], \
     }
-execute if score __$std_is_array __std.for_each_unwrap matches 0 \
+execute if score __$std_is_list __std.for_each_unwrap matches 0 \
     run \
     return run \
     function std:scoreboard/remove_objective_and_fail { \
