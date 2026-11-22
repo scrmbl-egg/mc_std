@@ -20,7 +20,9 @@
 
 # setup data
 $data modify storage std:temp pick_random set value { \
+    type:0, \
     is_array:false, \
+    size:0, \
     get_element_unsafe_args:{ \
         array_storage:'$(array_storage)', \
         array_nbt:'$(array_nbt)', \
@@ -35,14 +37,74 @@ $data modify storage std:temp pick_random set value { \
     }, \
 }
 
-## assert nbt_path is array
-$execute store result storage std:temp pick_random.is_array \
-    byte 1 \
+$execute store result storage std:temp pick_random.type \
+    int 1 \
     run \
-    function std:assert/is_array { \
-        array_storage:'$(array_storage)', \
-        array_nbt:'$(array_nbt)', \
+    function std:storage/get_type_tag { \
+        storage:"$(array_storage)", \
+        nbt:"$(array_nbt)", \
     }
+
+execute if predicate { \
+    type:"minecraft:int_value_check", \
+    test:"std:types/byte/true", \
+    value:{ \
+        type:"minecraft:number_dispatcher", \
+        cases:[ \
+            { \
+                condition:{ \
+                    type:"minecraft:int_value_check", \
+                    test:"std:types/list/type_tag", \
+                    value:{ \
+                        type:"minecraft:storage", \
+                        storage:"std:temp", \
+                        path:"pick_random.type", \
+                    }, \
+                }, \
+                value:"std:types/byte/true", \
+            }, \
+            { \
+                condition:{ \
+                    type:"minecraft:int_value_check", \
+                    test:"std:types/byte_array/type_tag", \
+                    value:{ \
+                        type:"minecraft:storage", \
+                        storage:"std:temp", \
+                        path:"pick_random.type", \
+                    }, \
+                }, \
+                value:"std:types/byte/true", \
+            }, \
+            { \
+                condition:{ \
+                    type:"minecraft:int_value_check", \
+                    test:"std:types/int_array/type_tag", \
+                    value:{ \
+                        type:"minecraft:storage", \
+                        storage:"std:temp", \
+                        path:"pick_random.type", \
+                    }, \
+                }, \
+                value:"std:types/byte/true", \
+            }, \
+            { \
+                condition:{ \
+                    type:"minecraft:int_value_check", \
+                    test:"std:types/long_array/type_tag", \
+                    value:{ \
+                        type:"minecraft:storage", \
+                        storage:"std:temp", \
+                        path:"pick_random.type", \
+                    }, \
+                }, \
+                value:"std:types/byte/true", \
+            }, \
+        ], \
+        default:"std:types/byte/false", \
+    }, \
+} \
+    run \
+    data modify storage std:temp pick_random.is_array set value true
 
 # print error message and return NOTHING if function fails
 $execute if data storage std:temp pick_random{is_array:false} \
@@ -57,35 +119,39 @@ $execute if data storage std:temp pick_random{is_array:false} \
 execute if data storage std:temp pick_random{is_array:false} \
     run \
     return run \
-    data remove storage std:temp pick_random
+    function std:storage/remove_data_and_fail { \
+        storage:"std:temp", \
+        nbt:"pick_random", \
+    }
+
+data get storage std:main consts.types.long.max
 
 ## if it's array...
-# create local scoreboard
-scoreboard objectives add __std.pick_random dummy
-
 # store array size
-$execute store result score __$std_arr_size __std.pick_random \
+$execute store result storage std:temp pick_random.size \
+    int 1 \
     run \
     data get storage $(array_storage) $(array_nbt)
 
-# store random value, limit from 0 to arr_size (exclusive) and store in
-# `get_element_unsafe.source_path` and
-# `success_free_data_and_return_args.value`.
-execute store result score __$std_random_index __std.pick_random \
-    run \
-    random value 0..2147483646
-scoreboard players operation \
-    __$std_random_index __std.pick_random %= __$std_arr_size __std.pick_random
-execute store result storage \
-    std:temp pick_random.get_element_unsafe_args.source_path \
-    int 1 \
-    run \
-    scoreboard players get __$std_random_index __std.pick_random
-execute store result storage \
+# get random index and store in necessary
+data modify storage std:temp pick_random.get_element_unsafe_args.source_path \
+    set compute default integer { \
+        type:"minecraft:uniform", \
+        min:0, \
+        max:{ \
+            type:"minecraft:sub", \
+            left:{ \
+                type:"minecraft:storage", \
+                storage:"std:temp", \
+                path:"pick_random.size", \
+            }, \
+            right:1, \
+        }, \
+    }
+data modify storage \
     std:temp pick_random.success_free_data_and_return_args.value \
-    int 1 \
-    run \
-    scoreboard players get __$std_random_index __std.pick_random
+    set from storage \
+    std:temp pick_random.get_element_unsafe_args.source_path
 
 #>_
 # @in
@@ -97,9 +163,6 @@ execute store result storage \
 #       source_path
 function std:array/get_element_unsafe \
     with storage std:temp pick_random.get_element_unsafe_args
-
-# free scoreboard
-scoreboard objectives remove __std.pick_random
 
 #>_
 # @in
