@@ -1,7 +1,7 @@
 #>std:array/for_each_unwrap
 #
-# Calls a function for each NBT object of a list. Unlike `std:array/for_each`,
-# this function "unwraps" each object, i.e. every field of the object becomes
+# Calls a function for each NBT compound of a list. Unlike `std:array/for_each`,
+# this function "unwraps" each compound, i.e. every field of the object becomes
 # a macro for the specified callback function.
 #
 # The callback function receives the following macros (from lower precedence
