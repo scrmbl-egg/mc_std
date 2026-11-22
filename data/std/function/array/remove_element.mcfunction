@@ -7,7 +7,7 @@
 #       Storage where the array or list is located.
 #   array_nbt: #[nbt_path=minecraft:storage[[array_storage]]] string
 #       Storage NBT path where the array or list is located.
-#   source_path: (any | int)
+#   source_path: (struct {[string]: any} | int)
 #       Source NBT. Can be a structure to query data, or an integer to specify
 #       the array or list index.
 
