@@ -2,16 +2,16 @@
 
 > A library of standard functions and abstractions for Minecraft datapacks
 
-## What is _mc_std_?
+## What is *mc_std*?
 
-_mc_std_ is a datapack that provides functions and other abstractions that are
+*mc_std* is a datapack that provides functions and other abstractions that are
 meant to remove overhead from datapack developers, by providing the ability to
 iterate over collections, do mathematical functions, or check data types.
 
 ## How to use
 
 One of the most important aspects of this datapack, is that functions that
-require parameters will _always_ require them via a compound object, i.e.
+require parameters will *always* require them via a compound object, i.e.
 the user won't have to use the `scoreboard` command, but rather, specify SNBT
 data when calling the function.
 
@@ -45,7 +45,7 @@ the function to work.
 
 ## Namespaces
 
-_mc_std_ contains 3 namespaces:
+*mc_std* contains 3 namespaces:
 
 * ✔️ `std`: This is the API, i.e. the namespace that contains the "public" and
 secure functions, predicates, tags... etc, which the user is meant to use.
@@ -95,7 +95,7 @@ or player state checks.
 Lastly, the block and entity tags include empty tags, or tags that aren't
 covered by the vanilla/`minecraft` namespace.
 
-## Thank you for using the _mc_std_ datapack
+## Thank you for using the *mc_std* datapack
 
 Remember that you can visit the [WIKI][wiki_link] or the [ISSUES][issues_link]
 page if you wish to find the full documentation or report bugs or missing
