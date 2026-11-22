@@ -24,28 +24,27 @@ execute unless entity @s[type=minecraft:player] \
 ## NOTE:
 # Hitbox sizes available in: https://minecraft.wiki/w/Player
 
-# create local scoreboard
-scoreboard objectives add __std.get_height dummy
-
-scoreboard players set __$std_1000 __std.get_height 1000
-scoreboard players set __$std_base __std.get_height 1500
-
-# get current scale
-execute store result score __$std_scale __std.get_height \
+data modify storage std:temp get_sneaking_height set value {scale:0}
+# get scale
+execute store result storage std:temp get_sneaking_height.scale \
+    float 0.00000625 \
     run \
-    attribute @s minecraft:scale get 1000
+    attribute @s minecraft:scale get 160000
 
-# base * scale (divided by 1000 to compensate int scales)
-scoreboard players operation \
-    __$std_base __std.get_height *= __$std_scale __std.get_height
-scoreboard players operation \
-    __$std_base __std.get_height /= __$std_1000 __std.get_height
-
-# save in output
-$execute store result storage $(out_storage) $(out_nbt) \
-    double 0.001 \
-    run \
-    scoreboard players get __$std_base __std.get_height
+# compute sneaking height
+$data modify storage $(out_storage) $(out_nbt) \
+    set compute default float { \
+        type:"minecraft:mul", \
+        inputs:[ \
+            1.5, \
+            { \
+                type:"minecraft:storage", \
+                storage:"std:temp", \
+                path:"get_sneaking_height.scale", \
+                fallback:1, \
+            }, \
+        ], \
+    }
 
 # free memory
-scoreboard objectives remove __std.get_height
+data remove storage std:temp get_sneaking_height
