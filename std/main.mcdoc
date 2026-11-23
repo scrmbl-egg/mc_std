@@ -69,10 +69,14 @@ struct MainStorage {
             "byte": struct McByteTypeInfo {
                 /// `true`/`1b`.
                 ///
+                /// ---
+                ///
                 /// See the `consts.types.string.true` constant.
                 "true": boolean,
 
                 /// `false`/`0b`.
+                ///
+                /// ---
                 ///
                 /// See the `consts.types.string.false` constant.
                 "false": boolean,
@@ -205,6 +209,11 @@ struct MainStorage {
                 "false": string,
 
                 /// Size of a single `string` character in bytes.
+                ///
+                /// ---
+                ///
+                /// **Note:**
+                /// To get the size in bits, multiply the constant by 8.
                 character_size: int @ 1..,
 
                 ...McTypeInfo,
@@ -352,6 +361,8 @@ struct McTypeInfo {
 
     /// Integer tag of the type.
     ///
+    /// ---
+    ///
     /// See: https://minecraft.wiki/w/NBT_format#TAG_definition
     type_tag: enum(int) McTypeTag {
         /// End of compound tags type.
@@ -400,7 +411,9 @@ struct McTypeInfo {
 struct McSizedTypeInfo {
     /// Size in bytes of the type.
     ///
-    /// ### Note:
+    /// ---
+    ///
+    /// **Note:**
     /// To get the size in bits, multiply the constant by 8.
     size: int @ 1..,
 
@@ -423,7 +436,7 @@ type McIntegerTypeInfo<T> = struct {
 /// Struct type for constants of integer data types that can be used in number
 /// arrays.
 struct McArrayTypeInfo {
-    /// Character that indicates the type of number arrays of this type.
+    /// Character used select the array's element type.
     type_indicator: enum(string) ArrayTypeIndicator {
         /// `byte` number array indicator.
         Byte = "B",
