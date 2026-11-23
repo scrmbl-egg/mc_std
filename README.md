@@ -19,11 +19,11 @@ Here is an example of the usual syntax for a function call:
 
 ```mcfunction
 function std:math/clamp { \
-  min:5, \
-  max:10, \
-  value:20.222d, \
-  out_storage:"custom:storage", \
-  out_nbt:"clamped_result" \
+    min:5, \
+    max:10, \
+    value:20.222d, \
+    out_storage:"custom:storage", \
+    out_nbt:"clamped_result" \
 }
 ```
 
