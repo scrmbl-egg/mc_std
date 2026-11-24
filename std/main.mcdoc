@@ -66,23 +66,7 @@ struct MainStorage {
             /// - `std:types/byte/max`
             /// - `std:types/byte/false`
             /// - `std:types/byte/true`
-            "byte": struct McByteTypeInfo {
-                /// `true`/`1b`.
-                ///
-                /// ---
-                ///
-                /// See the `consts.types.string.true` constant.
-                "true": boolean,
-
-                /// `false`/`0b`.
-                ///
-                /// ---
-                ///
-                /// See the `consts.types.string.false` constant.
-                "false": boolean,
-
-                ...McIntegerTypeInfo<byte>,
-            },
+            "byte": McByteTypeInfo,
 
             /// Constants related to the `short` (signed 16-bit integer)
             /// Minecraft type.
@@ -160,64 +144,10 @@ struct MainStorage {
             ///
             /// Context `int` providers:
             /// - `std:types/string/type_tag`
-            /// - `std:types/string/character_size`
-            "string": struct McStringTypeInfo {
-                /// `true` as `string`.
-                ///
-                /// Useful for macros that are placed when a `boolean`
-                /// command keyword is needed.
-                ///
-                /// Example:
-                /// ```mcfunction
-                /// $gamerule locator_bar $(value)
-                /// ```
-                /// If we use `true` as an argument we get a syntax error
-                /// because it is passed as a `byte`:
-                /// ```mcfunction
-                /// # ERROR!
-                /// gamerule locator_bar 1b
-                /// ```
-                /// ...but if `"true"` is used as argument, the macro is
-                /// evaluated correctly:
-                /// ```mcfunction
-                /// # works!
-                /// gamerule locator_bar true
-                /// ```
-                "true": string,
-
-                /// `false` as `string`.
-                ///
-                /// Useful for macros that are placed when a `boolean`
-                /// command keyword is needed.
-                ///
-                /// Example:
-                /// ```mcfunction
-                /// $gamerule locator_bar $(value)
-                /// ```
-                /// If we use `false` as an argument we get a syntax error
-                /// because it is passed as a `byte`:
-                /// ```mcfunction
-                /// # ERROR!
-                /// gamerule locator_bar 1b
-                /// ```
-                /// ...but if `"false"` is used as argument, the macro is
-                /// evaluated correctly:
-                /// ```mcfunction
-                /// # works!
-                /// gamerule locator_bar false
-                /// ```
-                "false": string,
-
-                /// Size of a single `string` character in bytes.
-                ///
-                /// ---
-                ///
-                /// **Note:**
-                /// To get the size in bits, multiply the constant by 8.
-                character_size: int @ 1..,
-
-                ...McTypeInfo,
-            },
+            /// - `std:types/string/char/min_nbt_size`
+            /// - `std:types/string/char/max_nbt_size`
+            /// - `std:types/string/char/java_size`
+            "string": McStringTypeInfo,
 
             /// Constants related to the list (ordered list) Minecraft type.
             ///
@@ -259,8 +189,9 @@ struct MainStorage {
         ///
         /// ---
         ///
-        /// **Note:** Many constants are stored as `double`s in order to
-        /// maintain precision, however, this means that when a specified
+        /// **Note:**
+        /// Many constants are stored as `double`s in order to maintain
+        /// precision, however, this means that when a specified
         /// `context_float_provider` version is used, there will be some loss of
         /// precision.
         math: struct MathConstants {
@@ -363,7 +294,10 @@ struct McTypeInfo {
     ///
     /// ---
     ///
-    /// See: https://minecraft.wiki/w/NBT_format#TAG_definition
+    /// See: [NBT Format > TAG Definition (Minecraft Wiki)][tag_defs].
+    ///
+    /// [tag_defs]:
+    /// https://minecraft.wiki/w/NBT_format#TAG_definition
     type_tag: enum(int) McTypeTag {
         /// End of compound tags type.
         End = 0,
@@ -433,8 +367,27 @@ type McIntegerTypeInfo<T> = struct {
 }
 
 
-/// Struct type for constants of integer data types that can be used in number
-/// arrays.
+/// Struct type for constants related to the `byte` type.
+struct McByteTypeInfo  {
+    /// `true`/`1b`.
+    ///
+    /// ---
+    ///
+    /// See the `consts.types.string.true` constant.
+    "true": boolean,
+
+    /// `false`/`0b`.
+    ///
+    /// ---
+    ///
+    /// See the `consts.types.string.false` constant.
+    "false": boolean,
+
+    ...McIntegerTypeInfo<byte>,
+}
+
+
+/// Struct type for constants of number array types.
 struct McArrayTypeInfo {
     /// Character used select the array's element type.
     type_indicator: enum(string) ArrayTypeIndicator {
@@ -446,6 +399,123 @@ struct McArrayTypeInfo {
 
         /// `long` number array indicator.
         Long = "L",
+    },
+
+    ...McTypeInfo,
+}
+
+
+/// Struct type for constants related to the `string` type.
+struct McStringTypeInfo {
+    /// `true` as `string`.
+    ///
+    /// Useful for macros that are placed when a boolean command keyword is
+    /// needed.
+    ///
+    /// ---
+    ///
+    /// **Example**:
+    ///
+    /// ```mcfunction
+    /// $gamerule locator_bar $(value)
+    /// ```
+    ///
+    /// - If we use `true` as an argument we get a syntax error because it is
+    /// passed as a `byte`:
+    ///
+    ///     ```mcfunction
+    ///     # ERROR!
+    ///     gamerule locator_bar 1b
+    ///     ```
+    ///
+    /// - ...but if `"true"` is used as argument, the macro is evaluated
+    /// correctly:
+    ///
+    ///     ```mcfunction
+    ///     # works!
+    ///     gamerule locator_bar true
+    ///     ```
+    "true": string,
+
+    /// `false` as `string`.
+    ///
+    /// Useful for macros that are placed when a boolean command keyword is
+    /// needed.
+    ///
+    /// ---
+    ///
+    /// **Example**:
+    ///
+    /// ```mcfunction
+    /// $gamerule locator_bar $(value)
+    /// ```
+    ///
+    /// - If we use `false` as an argument we get a syntax error because it is
+    /// passed as a `byte`:
+    ///
+    ///     ```mcfunction
+    ///     # ERROR!
+    ///     gamerule locator_bar 0b
+    ///     ```
+    ///
+    /// - ...but if `"false"` is used as argument, the macro is evaluated
+    /// correctly:
+    ///
+    ///     ```mcfunction
+    ///     # works!
+    ///     gamerule locator_bar false
+    ///     ```
+    "false": string,
+
+    /// Constants related to singular characters of a `string`.
+    char: struct McCharSizes {
+        /// Minimum size of a single `string` character in bytes when serialized
+        /// in an NBT payload (Modified UTF-8).
+        ///
+        /// ---
+        ///
+        /// **Note:**
+        /// To get the size in bits, multiply the constant by 8.
+        ///
+        /// ---
+        ///
+        /// See: [UTF-8 Wikipedia article (English)][utf8_wiki].
+        ///
+        /// [utf8_wiki]:
+        /// https://en.wikipedia.org/wiki/UTF-8
+        min_nbt_size: int @ 1..,
+
+        /// Maximum size of a single `string` character in bytes when serialized
+        /// in an NBT payload (Modified UTF-8).
+        ///
+        /// ---
+        ///
+        /// **Note:**
+        /// To get the size in bits, multiply the constant by 8.
+        ///
+        /// ---
+        ///
+        /// See: [UTF-8 Wikipedia article (English)][utf8_wiki].
+        ///
+        /// [utf8_wiki]:
+        /// https://en.wikipedia.org/wiki/UTF-8
+        max_nbt_size: int @ 1..,
+
+        /// Size of a single `string` character in bytes when processed in the
+        /// Java Virtual Machine.
+        ///
+        /// ---
+        ///
+        /// **Note:**
+        /// To get the size in bits, multiply the constant by 8.
+        ///
+        /// ---
+        ///
+        /// See: [Java String class documentation][string_docs].
+        ///
+        /// [string_docs]:
+        /// https://docs.oracle.com/javase/8/docs/api/java/lang/String.html
+        java_size: int @ 1..,
     },
 
     ...McTypeInfo,

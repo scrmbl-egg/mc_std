@@ -69,9 +69,13 @@ data modify storage std:main consts.types set value { \
     string:{ \
         name:"string", \
         type_tag:8, \
-        character_size:1, \
         true:"true", \
         false:"false", \
+        char:{ \
+            min_nbt_size:1, \
+            max_nbt_size:3, \
+            java_size:2, \
+        }, \
     }, \
     list:{ \
         name:"list", \
