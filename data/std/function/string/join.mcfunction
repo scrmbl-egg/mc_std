@@ -6,9 +6,9 @@
 # @authors scrmbl-egg
 # @input
 #   parts: [string]
-#       Strings will be concatinated.
+#       List of strings that will be joined.
 #   separator: string
-#       String that will separate the strings contained in `parts`.
+#       Separator for the strings contained in `parts`.
 #   out_storage: #[id="storage"] string
 #       Storage where the result will be stored.
 #   out_nbt: #[nbt_path=minecraft:storage[[out_storage]]] string
